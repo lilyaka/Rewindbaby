@@ -1,6 +1,6 @@
 package com.hoiuc.assembly;
 
-import cache.MobCache;
+import com.hoiuc.cache.MobCache;
 import com.hoiuc.io.Util;
 import com.hoiuc.server.Service;
 import com.hoiuc.server.Session;

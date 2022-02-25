@@ -1,6 +1,6 @@
 package com.hoiuc.assembly;
 
-import cache.NpcCache;
+import com.hoiuc.cache.NpcCache;
 
 public class Npc {
     public byte type;
