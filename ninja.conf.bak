@@ -1,0 +1,21 @@
+﻿#config
+os: 1
+#mysql-part: E:\\Software\\laragon\\bin\\mysql\\mysql-5.7.33-winx64\\bin\\mysqldump.exe
+#backup-part: D:\\backup
+host: bakaboiz.xyz
+debug: false
+post: 14444
+mysql-host: bakaboiz.xyz
+mysql-port: 3306
+mysql-user: teamobic_root
+mysql-password: Quanpro123@
+mysql-database_data: teamobic_data
+mysql-database_ninja: teamobic_ninja
+max-level-up: 150
+up-exp: 20
+version-Data: 30
+version-Map: 33
+version-Skill: 10
+version-Item: 43
+version-Event: 4
+nhanquatdb: 0
