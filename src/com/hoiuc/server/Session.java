@@ -3,7 +3,6 @@ package com.hoiuc.server;
 import com.hoiuc.assembly.Player;
 import com.hoiuc.io.IMessageHandler;
 import com.hoiuc.io.Message;
-import com.hoiuc.io.SQLManager;
 import com.hoiuc.io.Util;
 import com.hoiuc.stream.Client;
 import com.hoiuc.stream.Server;
@@ -286,6 +285,7 @@ public class Session {
 
     public void disconnect() {
         if (this.connected) {
+            Session.baseId--;
             if (this.messageHandler != null) {
                 this.messageHandler.onDisconnected(this);
             }
@@ -372,19 +372,18 @@ public class Session {
                     if (Session.this.connected && Session.this.dis != null) {
                         message = this.readMessage();
                         if (message != null && Session.this != null) {
-                           if(!login && !(message.getCommand() == -27  || message.getCommand() == -29)){
-                    if(!check(Session.this.clientIpAddress)&&(!check1(Session.this.clientIpAddress))){
-                        Util.WriteIp(Session.this.clientIpAddress);
-                        Session.this.socket.close();
-                    }
-                }else{
-                
-                            Util.Debug("Session: " + Session.this.id + " do message " + message.getCommand() + " size " + message.reader().available());
-                            Session.this.messageHandler.processMessage(Session.this, message);
-                            message.cleanup();
-                            continue;
+                            if(!login && !(message.getCommand() == -27  || message.getCommand() == -29)){
+                                if(!check(Session.this.clientIpAddress)&&(!check1(Session.this.clientIpAddress))){
+                                    Util.WriteIp(Session.this.clientIpAddress);
+                                    Session.this.socket.close();
+                                }
+                            }else{
+                                Util.Debug("Session: " + Session.this.id + " do message " + message.getCommand() + " size " + message.reader().available());
+                                Session.this.messageHandler.processMessage(Session.this, message);
+                                message.cleanup();
+                                continue;
+                            }
                         }
-                    }
                     }
                 } catch (Exception var2) {
                     var2.printStackTrace();
@@ -393,7 +392,6 @@ public class Session {
                         message.cleanup();
                     }
                 }
-                //Session.this.closeMessage();
                 Session.this.dis = null;               
                 Client.gI().removeClient(Session.this);
                 Client.gI().kickSession(Session.this);

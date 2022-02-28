@@ -240,7 +240,8 @@ public class Util {
         }
         return list;
     }
-     public static List<Ip> ReadIp1(){
+    
+    public static List<Ip> ReadIp1(){
         ArrayList<Ip> list = new ArrayList<>();
         try{
             FileReader fr = new FileReader("log/ipmember.txt");

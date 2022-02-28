@@ -77,6 +77,18 @@ public class Service {
         ms.cleanup();
     }
     
+    public static void sendData(Player p) throws IOException, Exception {
+        if (cache[2] == null) {
+            cache[2] = getFile("cache/data");
+        }
+        Message ms = messageNotMap((byte) -122);
+        DataOutputStream ds = ms.writer();
+        ds.write(cache[2]);
+        ds.flush();
+        p.conn.sendMessage(ms);
+        ms.cleanup();
+    }
+    
     public static void sendSkill(Player p) throws IOException, Exception {
         if (cache[3] == null) {
             cache[3] = getFile("cache/skill");
@@ -101,6 +113,7 @@ public class Service {
         ms.cleanup();
     }
     
+    /*
     public static void getPackMessage(Player p) throws IOException {
         Message msg = null;
         try {
@@ -122,7 +135,7 @@ public class Service {
                 msg.cleanup();
             }
         }
-    }
+    }*/
     
     public static byte[] getFile(String url) {
         try {
@@ -137,126 +150,6 @@ public class Service {
         return null;
     }
     
-    
-    public static void createCacheItem(){
-        try{ 
-            ByteArrayOutputStream bas = new ByteArrayOutputStream();
-            DataOutputStream dos = new DataOutputStream(bas);       
-            dos.writeByte(Manager.vsItem);
-            dos.writeByte(Manager.iOptionTemplates.length);
-            for (short i = 0; i < Manager.iOptionTemplates.length; ++i) {
-                dos.writeUTF(Manager.iOptionTemplates[i].name);
-                dos.writeByte(Manager.iOptionTemplates[i].type);
-            }
-            dos.writeShort(Manager.itemTemplates.length);
-            for (short j = 0; j < Manager.itemTemplates.length; ++j) {
-                dos.writeByte(Manager.itemTemplates[j].type);
-                dos.writeByte(Manager.itemTemplates[j].gender);
-                dos.writeUTF(Manager.itemTemplates[j].name);
-                dos.writeUTF(Manager.itemTemplates[j].description);
-                dos.writeByte(Manager.itemTemplates[j].level);
-                dos.writeShort(Manager.itemTemplates[j].iconID);
-                dos.writeShort(Manager.itemTemplates[j].part);
-                dos.writeBoolean(Manager.itemTemplates[j].isUpToUp);
-            }
-            byte[]ab = bas.toByteArray();
-            saveFile("cache/item", ab);
-            dos.close();
-            bas.close();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void createCachePart() {
-        try {
-            ByteArrayOutputStream bas = new ByteArrayOutputStream();
-            DataOutputStream dos = new DataOutputStream(bas);
-            ByteArrayOutputStream parts = new ByteArrayOutputStream();
-            DataOutputStream ds = new DataOutputStream(parts);
-            ds = new DataOutputStream(parts);
-            ds.writeShort(Manager.parts.size());
-            for (Part p : Manager.parts) {
-                ds.writeByte(p.type);
-                for (PartImage pi : p.pi) {
-                    ds.writeShort(pi.id);
-                    ds.writeByte(pi.dx);
-                    ds.writeByte(pi.dy);
-                }
-            }
-            ds.flush();
-            dos.writeInt(parts.toByteArray().length);
-            dos.write(parts.toByteArray());           
-            byte[]ab = bas.toByteArray();
-            saveFile("cache/nj_part", ab);
-            ds.close();
-            parts.close();
-            dos.close();
-            bas.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void createCacheMap() {
-        try {
-            ByteArrayOutputStream bas = new ByteArrayOutputStream();
-            DataOutputStream dos = new DataOutputStream(bas);
-            dos.writeByte(Manager.vsMap);
-            dos.writeByte(Manager.mapCache.length);
-            for (short i = 0; i < Manager.mapCache.length; ++i) {
-                dos.writeUTF(Manager.mapCache[i].mapName);
-            }
-            dos.writeByte(Npc.arrNpcTemplate.length);
-            for (byte j = 0; j < Npc.arrNpcTemplate.length; ++j) {
-                dos.writeUTF(Npc.arrNpcTemplate[j].name);
-                dos.writeShort(Npc.arrNpcTemplate[j].headId);
-                dos.writeShort(Npc.arrNpcTemplate[j].bodyId);
-                dos.writeShort(Npc.arrNpcTemplate[j].legId);
-                dos.writeByte(Npc.arrNpcTemplate[j].menu.length);
-                for (short k = 0; k < Npc.arrNpcTemplate[j].menu.length; ++k) {
-                    dos.writeByte(Npc.arrNpcTemplate[j].menu[k].length);
-                    for (short m = 0; m < Npc.arrNpcTemplate[j].menu[k].length; ++m) {
-                        dos.writeUTF(Npc.arrNpcTemplate[j].menu[k][m]);
-                    }
-                }
-            }
-            dos.writeByte(Mob.arrMobTemplate.length);
-            for (short l = 0; l < Mob.arrMobTemplate.length; ++l) {
-                dos.writeByte(Mob.arrMobTemplate[l].type);
-                dos.writeUTF(Mob.arrMobTemplate[l].name);
-                dos.writeInt(Mob.arrMobTemplate[l].hp);
-                dos.writeByte(Mob.arrMobTemplate[l].rangeMove);
-                dos.writeByte(Mob.arrMobTemplate[l].speed);
-            }
-            byte[]ab = bas.toByteArray();
-            saveFile("cache/map", ab);
-            dos.close();
-            bas.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void saveFile(final String url, final byte[] ab) {
-        try {
-            final File f = new File(url);
-            if (f.exists()) {
-                f.delete();
-            }
-            f.createNewFile();
-            final FileOutputStream fos = new FileOutputStream(url);
-            fos.write(ab);
-            fos.flush();
-            fos.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void restPoint(Char ninja) {
         if (ninja == null) {
             return;
@@ -579,7 +472,7 @@ public class Service {
             m.writer().writeShort(-1);
             m.writer().writeShort(-1);
             m.writer().writeShort(-1);
- m.writer().writeShort(p.c.clone.ID_HAIR);
+            m.writer().writeShort(p.c.clone.ID_HAIR);
             m.writer().writeShort(p.c.clone.ID_Body);
             m.writer().writeShort(p.c.clone.ID_LEG);
             m.writer().writeShort(p.c.clone.ID_WEA_PONE);

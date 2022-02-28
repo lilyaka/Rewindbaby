@@ -3,12 +3,10 @@ package com.hoiuc.stream;
 import com.hoiuc.assembly.ClanManager;
 import com.hoiuc.assembly.Map;
 import com.hoiuc.io.SQLManager;
-import com.hoiuc.io.Util;
 import com.hoiuc.server.*;
 import com.hoiuc.template.MapTemplate;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.*;
 import java.util.logging.Level;
@@ -50,8 +48,6 @@ public class Server extends Thread{
         menu = new Menu();
         serverMessageHandler = new Controller();
         cache[2] = GameSrc.loadFile("res/cache/skill");
-       
-
         this.maps = new Map[MapTemplate.arrTemplate.length];
         short i;
         for (i = 0; i < this.maps.length; ++i) {

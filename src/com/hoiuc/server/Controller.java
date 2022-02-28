@@ -585,11 +585,12 @@ public class Controller implements IMessageHandler {
                 }
                 //Gửi main data
                 case -122: {
-                    Server.manager.sendData(player);
+                   Server.manager.sendData(player);
+                   //Service.sendData(player);
                    break;
                 }
                 case -121: {
-                    Service.sendMap(player);
+                    Server.manager.sendMap(player);
                    break;
                 }
                 //Gdata skill
@@ -599,7 +600,7 @@ public class Controller implements IMessageHandler {
                 }
                 //Gdata item
                 case -119: {
-                    Service.sendItem(player);
+                    Server.manager.sendItem(player);
                    break;
                 }
                 //Gửi hình ảnh

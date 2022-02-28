@@ -2,6 +2,9 @@ package com.hoiuc.server;
 
 import com.hoiuc.assembly.*;
 import com.hoiuc.assembly.Map;
+import com.hoiuc.cache.Part;
+import com.hoiuc.cache.PartImage;
+import com.hoiuc.cache.SkillOptionTemplates;
 import com.hoiuc.io.Message;
 import com.hoiuc.io.SQLManager;
 import com.hoiuc.io.Util;
@@ -12,14 +15,7 @@ import com.hoiuc.template.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import com.hoiuc.cache.ItemCache;
-import com.hoiuc.cache.ItemOptionCache;
-import com.hoiuc.cache.MapCache;
-import com.hoiuc.cache.Part;
-import com.hoiuc.cache.NpcCache;
-import com.hoiuc.cache.MobCache;
-import com.hoiuc.cache.PartImage;
-import static com.hoiuc.server.Service.messageNotMap;
+
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -44,85 +40,38 @@ public class Manager {
     public static int max_level_up;
     public static int up_exp;
     public static int hoursUpdate = 1;
-    public static int nhanquatdb;
     public static boolean isClearSession = false;
     public static boolean isClearCloneLogin = false;
     public static boolean isSaveData = false;
     public static Alert alert = new Alert();
-    public static byte vsData;
-    public static byte vsMap;
-    public static byte vsSkill;
-    public static byte vsItem;
+    private byte vsData;
+    private byte vsMap;
+    private byte vsSkill;
+    private byte vsItem;
     private byte[][] tasks;
     private byte[][] maptasks;
     Lucky[] rotationluck;
     public byte event;
     public String[] NinjaS;
     public static ArrayList<NpcTemplate> npcs;
-    public static SkillOptionTemplate[] sOptionTemplates;
-    //public static NpcTemplate[] npcs;
-    
-    public static MapTemplate[] mapTemplates;
     public static ArrayList<Part> parts;
-    public static MapCache[] mapCache;
-    public static ItemOptionCache[] iOptionTemplates;
-    public static ItemCache[] itemTemplates;
-    public String[] NameTuTien;
-    public String[] OptionsTuTien;
-
-    
-    public static String Title = "Ở tầng này cơ thể con được tăng:\n";
-    public static String TAN_CONG_QUAI = "Tấn công khi đánh quái + ";
-    public static String TANG_HP = "HP tối đa + ";
-    public static String TAN_CONG_NGUOI = "Tấn công khi đánh người + ";
-    public static String TAN_CONG = "Tấn công + ";
-    public static String GIAM_SAT_THUONG = "Giảm sát thương + ";
-    public static String X2_CHI_MANG = "Tỉ lệ x3 ST khi đánh CM : ";
-    public static String HUT_MAU = "Tỉ lệ xuất hiện hút máu : ";
-    public static String HUT_MAU_QUAI = "Hút máu quái : ";
-    public static String HUT_MAU_NGUOI = "Hút máu người : ";
-
+    //skill
+    public static SkillOptionTemplates[] sOptionTemplates;
     public static int[] idMapLoad = new int[]{4, 5, 7, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 24, 28, 29, 30, 31, 33, 34, 35, 36, 37, 39, 40, 41, 42, 46, 47, 48, 49, 50, 51, 52, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68};
 
     public Manager() {
-         loadConfigFile();
         npcs = new ArrayList();
+        parts = new ArrayList();
         this.rotationluck = new Lucky[2];
-        this.event = 4;
+        this.event = 0;
         this.NinjaS = new String[]{"Chưa vào lớp", "Ninja Kiếm", "Ninja Phi Tiêu", "Ninja Kunai", "Ninja Cung", "Ninja Đao", "Ninja Quạt"};
-        // Tu tiên
-        this.NameTuTien = new String[]{"Phàm Nhân","Võ Giả","Tầm Tiên","Vấn Đạo","Luyện Khí","Trúc Cơ","Kim Đan","Nguyên Anh","Hóa Thần","Phi Thăng kiếp","Luyện Hư","Hợp Thể","Đại Thừa","Thăng Tiên kiếp","Chân Tiên","Kim Tiên","Thái Ất","Đại La","Hợp Đạo kiếp","Đạo Tổ Nhân Cảnh","Đạo Tổ Địa Cảnh","Đạo Tổ Thiên Cảnh","Bạch Ngọc Chí Tôn","Đại Đế"};
-        this.OptionsTuTien = new String[]{"Ở tầng này cơ thể con chưa được tăng cái gì hết tu luyện thêm đi",// tầng 0
-                                            Title + TAN_CONG_QUAI + "1000\n" + TANG_HP + "1000\n", // tầng 1
-                                            Title + TAN_CONG_QUAI + "2000\n" + TANG_HP + "2000\n" + TAN_CONG + "1000", // tầng 2
-                                            Title + TAN_CONG_QUAI + "3000\n" + TANG_HP + "3000\n" + TAN_CONG + "1500", // tầng 3
-                                            Title + TAN_CONG_QUAI + "4000\n" + TANG_HP + "4000\n" + TAN_CONG + "2000", //tầng 4
-                                            Title + TAN_CONG_QUAI + "5000\n" + TANG_HP + "5000\n" + TAN_CONG + "2500",// tầng 5
-                                            Title + TAN_CONG_QUAI + "6000\n" + TANG_HP + "6000\n" + TAN_CONG + "3000\n" + GIAM_SAT_THUONG + "600",// tầng 6
-                                            Title + TAN_CONG_QUAI + "7000\n" + TANG_HP + "7000\n" + TAN_CONG + "3500\n" + GIAM_SAT_THUONG + "700",// tầng 7
-                                            Title + TAN_CONG_QUAI + "8000\n" + TANG_HP + "8000\n" + TAN_CONG + "4000\n" + GIAM_SAT_THUONG + "800",// tầng 8
-                                            Title + TAN_CONG_QUAI + "9000\n" + TANG_HP + "9000\n" + TAN_CONG + "4500\n" + GIAM_SAT_THUONG + "900",// tầng 9
-                                            Title + TAN_CONG_QUAI + "10000\n" + TANG_HP + "10000\n" + TAN_CONG + "5000\n" + GIAM_SAT_THUONG + "1000\n",// tầng 10
-                                            Title + TAN_CONG_QUAI + "11000\n" + TANG_HP + "11000\n" + TAN_CONG + "5500\n" + GIAM_SAT_THUONG + "1100\n" + X2_CHI_MANG + "11%",// tầng 11
-                                            Title + TAN_CONG_QUAI + "12000\n" + TANG_HP + "12000\n" + TAN_CONG + "6000\n" + GIAM_SAT_THUONG + "1200\n" + X2_CHI_MANG + "12%",// tầng 12
-                                            Title + TAN_CONG_QUAI + "13000\n" + TANG_HP + "13000\n" + TAN_CONG + "6500\n" + GIAM_SAT_THUONG + "1300\n" + X2_CHI_MANG + "13%",// tầng 13
-                                            Title + TAN_CONG_QUAI + "14000\n" + TANG_HP + "14000\n" + TAN_CONG + "7000\n" + GIAM_SAT_THUONG + "1400\n" + X2_CHI_MANG + "14%",// tầng 14
-                                            Title + TAN_CONG_QUAI + "15000\n" + TANG_HP + "15000\n" + TAN_CONG + "7500\n" + GIAM_SAT_THUONG + "1500\n" + X2_CHI_MANG + "15%",// tầng 15
-                                            Title + TAN_CONG_QUAI + "16000\n" + TANG_HP + "16000\n" + TAN_CONG + "8000\n" + GIAM_SAT_THUONG + "1600\n" + X2_CHI_MANG + "16\n" + HUT_MAU + "5%\n" + HUT_MAU_QUAI + "5% tấn công\n" + HUT_MAU_NGUOI + "1% tấn công",// tầng 16
-                                            Title + TAN_CONG_QUAI + "17000\n" + TANG_HP + "17000\n" + TAN_CONG + "8500\n" + GIAM_SAT_THUONG + "1700\n" + X2_CHI_MANG + "17\n" + HUT_MAU + "6%\n" + HUT_MAU_QUAI + "6% tấn công\n" + HUT_MAU_NGUOI + "2% tấn công",// tầng 17
-                                            Title + TAN_CONG_QUAI + "18000\n" + TANG_HP + "18000\n" + TAN_CONG + "9000\n" + GIAM_SAT_THUONG + "1800\n" + X2_CHI_MANG + "18\n" + HUT_MAU + "7%\n" + HUT_MAU_QUAI + "7% tấn công\n" + HUT_MAU_NGUOI + "3% tấn công",// tầng 18
-                                            Title + TAN_CONG_QUAI + "19000\n" + TANG_HP + "19000\n" + TAN_CONG + "9500\n" + GIAM_SAT_THUONG + "1900\n" + X2_CHI_MANG + "19\n" + HUT_MAU + "8%\n" + HUT_MAU_QUAI + "8% tấn công\n" + HUT_MAU_NGUOI + "4% tấn công",// tầng 19
-                                            Title + TAN_CONG_QUAI + "20000\n" + TANG_HP + "20000\n" + TAN_CONG + "1000\n0" + GIAM_SAT_THUONG + "2000\n" + X2_CHI_MANG + "20\n" + HUT_MAU + "9%\n" + HUT_MAU_QUAI + "9% tấn công\n" + HUT_MAU_NGUOI + "5% tấn công",// tầng 20
-                                            Title + TAN_CONG_QUAI + "21000\n" + TANG_HP + "21000\n" + TAN_CONG + "10500\n" + GIAM_SAT_THUONG + "2100\n" + X2_CHI_MANG + "21\n" + HUT_MAU + "10%\n" + HUT_MAU_QUAI + "10% tấn công\n" + HUT_MAU_NGUOI + "6% tấn công",// tầng 21
-                                            Title + TAN_CONG_QUAI + "22000\n" + TANG_HP + "22000\n" + TAN_CONG + "11000\n" + GIAM_SAT_THUONG + "2200\n" + X2_CHI_MANG + "22\n" + HUT_MAU + "11%\n" + HUT_MAU_QUAI + "11% tấn công\n" + HUT_MAU_NGUOI + "7% tấn công",// tầng 22
-                                            Title + TAN_CONG_QUAI + "23000\n" + TANG_HP + "23000\n" + TAN_CONG + "12000\n" + GIAM_SAT_THUONG + "2300\n" + X2_CHI_MANG + "23\n" + HUT_MAU + "12%\n" + HUT_MAU_QUAI + "12% tấn công\n" + HUT_MAU_NGUOI + "8% tấn công",// tầng 23
-        };
+        this.loadConfigFile();
         this.rotationluck[0] = new Lucky("Vòng xoay vip", (byte)0, (short)120, 1000000, 50000000, 1000000000);
         this.rotationluck[1] = new Lucky("Vòng xoay thường", (byte)1, (short)120, 10000, 100000, 500000000);
         this.rotationluck[0].start();
         this.rotationluck[1].start();
-        LoadCache();
-       
+        this.loadDataBase();
+        this.loadVersion();
     }
 
     public static Map getMapid(int id) {
@@ -140,166 +89,6 @@ public class Manager {
             }
         }
         return null;
-    }
-    
-    private void LoadCache() {
-        SQLManager.create(this.mysql_host, this.mysql_port, this.mysql_database_data, this.mysql_user, this.mysql_pass);
-        parts = new ArrayList<>();
-        int i = 0;
-        ResultSet res;
-        System.out.println("Load Map TemPlate..");
-            try {
-                res = SQLManager.stat.executeQuery("SELECT * FROM `map`;");
-                if (res.last()) {
-                    mapCache = new MapCache[res.getRow()];
-                    res.beforeFirst();
-                }
-                i = 0;
-                while (res.next()) {
-                    final MapCache mapTemplate = new MapCache();
-                    mapTemplate.mapName = res.getString("name");
-                    mapCache[i] = mapTemplate;
-                    ++i;
-                }
-                res.close();
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-                System.exit(0);
-            }
-        System.out.println("Load Map NpcTemplate..");
-            try {
-                res = SQLManager.stat.executeQuery("SELECT * FROM `npc`;");
-                if (res.last()) {
-                    Npc.arrNpcTemplate = new NpcCache[res.getRow()];
-                    res.beforeFirst();
-                }
-                i = 0;
-                while (res.next()) {
-                    final NpcCache npcTemplate = new NpcCache();
-                    npcTemplate.name = res.getString("name");
-                    npcTemplate.headId = res.getShort("headId");
-                    npcTemplate.bodyId = res.getShort("bodyId");
-                    npcTemplate.legId = res.getShort("legId");
-                    final JSONArray jarr = (JSONArray)JSONValue.parse(res.getString("menu"));
-                    npcTemplate.menu = new String[jarr.size()][];
-                    for (int j = 0; j < npcTemplate.menu.length; ++j) {
-                        final JSONArray jarr2 = (JSONArray)jarr.get(j);
-                        npcTemplate.menu[j] = new String[jarr2.size()];
-                        for (int k2 = 0; k2 < npcTemplate.menu[j].length; ++k2) {
-                            npcTemplate.menu[j][k2] = jarr2.get(k2).toString();
-                        }
-                    }
-                    Npc.arrNpcTemplate[i] = npcTemplate;
-                    ++i;
-                }
-                res.close();
-            }
-            catch (Exception e) {
-                    e.printStackTrace();
-                    System.exit(0);
-            }
-            System.out.println("Load Map MobTemplate..");
-            try {
-                res = SQLManager.stat.executeQuery("SELECT * FROM `mob`;");
-                if (res.last()) {
-                    Mob.arrMobTemplate = new MobCache[res.getRow()];
-                    res.beforeFirst();
-                }
-                i = 0;
-                while (res.next()) {
-                    final MobCache mobTemplate = new MobCache();
-                    mobTemplate.type = res.getByte("type");
-                    mobTemplate.name = res.getString("name");
-                    mobTemplate.hp = res.getInt("hp");
-                    mobTemplate.rangeMove = res.getByte("rangeMove");
-                    mobTemplate.speed = res.getByte("speed");
-                    Mob.arrMobTemplate[i] = mobTemplate;
-                    ++i;
-                }
-                res.close();
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-                System.exit(0);
-            }
-        System.out.println("Load ItemOptionTemplate..");
-            try {
-                res = SQLManager.stat.executeQuery("SELECT * FROM `optionitem`;");
-                if (res.last()) {
-                    iOptionTemplates = new ItemOptionCache[res.getRow()];
-                    res.beforeFirst();
-                }
-                i = 0;
-                while (res.next()) {
-                    final ItemOptionCache iotemplate = new ItemOptionCache();
-                    iotemplate.id = res.getInt("id");
-                    iotemplate.name = res.getString("name");
-                    iotemplate.type = res.getByte("type");
-                    iOptionTemplates[i] = iotemplate;
-                    ++i;
-                }
-                res.close();
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-                System.exit(0);
-            }
-        System.out.println("Load ItemTemplate..");
-            try {
-                res = SQLManager.stat.executeQuery("SELECT * FROM `item`;");
-                if (res.last()) {
-                    itemTemplates = new ItemCache[res.getRow()];
-                    res.beforeFirst();
-                }
-                i = 0;
-                while (res.next()) {
-                    final ItemCache itemTemplate = new ItemCache();
-                    itemTemplate.id = res.getShort("id");
-                    itemTemplate.type = res.getByte("type");
-                    itemTemplate.gender = res.getByte("gender");
-                    itemTemplate.name = res.getString("name");
-                    itemTemplate.description = res.getString("description");
-                    itemTemplate.level = res.getInt("level");
-                    itemTemplate.iconID = res.getShort("iconID");
-                    itemTemplate.part = res.getShort("part");
-                    itemTemplate.isUpToUp = res.getBoolean("uptoup");
-                    itemTemplates[i] = itemTemplate;
-                    ++i;
-                }
-                res.close();
-            }catch (Exception e) {
-                e.printStackTrace();
-                System.exit(0);
-            }
-         /*System.out.println("Load PartNew...");
-             try {
-                 res = SQLManager.stat.executeQuery("SELECT * FROM `nj_part`;");
-                 while (res.next()) {
-                 byte type = res.getByte("type");
-                 JSONArray jA = (JSONArray) JSONValue.parse(res.getString("part"));
-                 Part part = new Part(type);
-                 for (int k = 0; k < part.pi.length; k++) {
-                     JSONObject o = (JSONObject) jA.get(k);
-                     part.pi[k] = new PartImage();
-                     part.pi[k].id = ((Long) o.get("id")).shortValue();
-                     part.pi[k].dx = ((Long) o.get("dx")).byteValue();
-                     part.pi[k].dy = ((Long) o.get("dy")).byteValue();
-                 }
-                 parts.add(part);
-                 }
-
-             }
-             catch (Exception e) {
-                 e.printStackTrace();
-                 System.exit(0);
-             }*/
-        //Service.createCachePart();
-        Service.createCacheItem();
-        Service.createCacheMap();
-        SQLManager.close();
-        SQLManager.create(this.mysql_host, this.mysql_port, this.mysql_database_data, this.mysql_user, this.mysql_pass);
-        loadDataBase();
     }
 
     private void loadConfigFile() {
@@ -397,31 +186,31 @@ public class Manager {
         if (configMap.containsKey("mysql-password")) {
             this.mysql_pass = (String)configMap.get("mysql-password");
         } else {
-            this.mysql_pass = "";
+            this.mysql_pass = "rewind";
         }
 
         if (configMap.containsKey("mysql-database_data")) {
             this.mysql_database_data = (String)configMap.get("mysql-database_data");
         } else {
-            this.mysql_database_data = "nja_data";
+            this.mysql_database_data = "data";
         }
 
         if (configMap.containsKey("mysql-database_ninja")) {
             this.mysql_database_ninja = (String)configMap.get("mysql-database_ninja");
         } else {
-            this.mysql_database_ninja = "nja_account";
+            this.mysql_database_ninja = "ninja";
         }
 
         if (configMap.containsKey("version-Data")) {
             this.vsData = Byte.parseByte((String)configMap.get("version-Data"));
         } else {
-            this.vsData = 23;
+            this.vsData = 54;
         }
 
         if (configMap.containsKey("version-Map")) {
-             vsMap = Byte.parseByte(String.valueOf(Util.nextInt(28,35)));
+            this.vsMap = Byte.parseByte((String)configMap.get("version-Map"));
         } else {
-            this.vsMap = 28;
+            this.vsMap = 86;
         }
 
         if (configMap.containsKey("version-Skill")) {
@@ -431,15 +220,15 @@ public class Manager {
         }
 
         if (configMap.containsKey("version-Item")) {
-            vsItem = Byte.parseByte(String.valueOf(Util.nextInt(32,45)));
+            this.vsItem = Byte.parseByte((String)configMap.get("version-Item"));
         } else {
-            this.vsItem = 32;
+            this.vsItem = 70;
         }
 
         if (configMap.containsKey("version-Event")) {
-            event = Byte.parseByte(configMap.get("version-Event"));
+            this.event = Byte.parseByte((String)configMap.get("version-Event"));
         } else {
-            event = 4;
+            this.event = 0;
         }
 
         if (configMap.containsKey("up-exp")) {
@@ -451,12 +240,7 @@ public class Manager {
         if (configMap.containsKey("max-level-up")) {
             max_level_up = Integer.parseInt((String)configMap.get("max-level-up"));
         } else {
-            max_level_up = 132;
-        }
-        if (configMap.containsKey("nhanquatdb")) {
-            this.nhanquatdb = Byte.parseByte((String)configMap.get("nhanquatdb"));
-        } else {
-            this.nhanquatdb = 0;
+            max_level_up = 130;
         }
     }
 
@@ -534,7 +318,33 @@ public class Manager {
             }
             res.close();
 
-            
+            res = SQLManager.stat.executeQuery("SELECT * FROM `npc`;");
+            NpcTemplate npc2;
+            JSONArray jArr2;
+            int size2;
+            while(res.next()) {
+                npc2 = new NpcTemplate();
+                npc2.npcTemplateId = res.getInt("id");
+                npc2.name = res.getString("name");
+                npc2.headId = res.getShort("headId");
+                npc2.bodyId = res.getShort("bodyId");
+                npc2.legId = res.getShort("legId");
+                Option = (JSONArray)JSONValue.parse(res.getString("menu"));
+                k = Option.size();
+                npc2.menu = new String[k][];
+                int ii;
+                for(ii = 0; ii < k; ++ii) {
+                    jArr2 = (JSONArray)JSONValue.parse(Option.get(ii).toString());
+                    size2 = jArr2.size();
+                    npc2.menu[ii] = new String[size2];
+                    int a;
+                    for(a = 0; a < size2; ++a) {
+                        npc2.menu[ii][a] = jArr2.get(a).toString();
+                    }
+                }
+                npcs.add(npc2);
+            }
+            res.close();
 
             i = 0;
             res = SQLManager.stat.executeQuery("SELECT * FROM `map`;");
@@ -722,6 +532,46 @@ public class Manager {
             }
             res.close();
 
+            //part
+            i = 0;
+            res = SQLManager.stat.executeQuery("SELECT * FROM `nj_part`;");
+            while (res.next()) {
+                byte type = res.getByte("type");
+                JSONArray jA = (JSONArray) JSONValue.parse(res.getString("part"));
+                Part part = new Part(type);
+                for (i = 0; i < part.pi.length; i++) {
+                    JSONObject o = (JSONObject) jA.get(i);
+                    part.pi[i] = new PartImage();
+                    part.pi[i].id = ((Long) o.get("id")).shortValue();
+                    part.pi[i].dx = ((Long) o.get("dx")).byteValue();
+                    part.pi[i].dy = ((Long) o.get("dy")).byteValue();
+                }
+                parts.add(part);
+            }
+            res.close();
+            
+            try {
+                res = SQLManager.stat.executeQuery("SELECT * FROM `optionskill`;");
+                if (res.last()) {
+                    sOptionTemplates = new SkillOptionTemplates[res.getRow()];
+                    res.beforeFirst();
+                }
+                i = 0;
+                while (res.next()) {
+                    final SkillOptionTemplates sotemplate = new SkillOptionTemplates();
+                    sotemplate.id = res.getInt("id");
+                    sotemplate.name = res.getString("name");
+                    sOptionTemplates[i] = sotemplate;
+                    ++i;
+                }
+                res.close();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                System.exit(0);
+            }
+            System.err.println("Lấy optionskill");
+            
             i = 0;
             for(res = SQLManager.stat.executeQuery("SELECT * FROM `itemsell`;"); res.next(); ++i) {
                 ItemSell sell = new ItemSell();
@@ -750,6 +600,9 @@ public class Manager {
         }
 
         SQLManager.close();
+        this.setCache(0);
+        this.setCache(1);
+        this.setCache(2);
         SQLManager.create(this.mysql_host, this.mysql_port, this.mysql_database_ninja, this.mysql_user, this.mysql_pass);
         this.loadGame();
     }
@@ -872,27 +725,160 @@ public class Manager {
 
     }
 
-    public static void getPackMessage(Player p) throws IOException {
-        Message msg = null;
+    private void setCache(int id) {
         try {
-            msg = messageNotMap((byte)(-123));
-            msg.writer().writeByte(Manager.vsData);
-            msg.writer().writeByte(Manager.vsMap);
-            msg.writer().writeByte(Manager.vsSkill);
-            msg.writer().writeByte(Manager.vsItem);
-            final byte[] ab = GameSrc.loadFile("cache/request").toByteArray();
-            msg.writer().write(ab);
-            p.conn.sendMessage(msg);
-            msg.cleanup();
+            ByteArrayOutputStream bas;
+            DataOutputStream dos;
+            switch(id) {
+                case 0: {
+                    bas = new ByteArrayOutputStream();
+                    dos = new DataOutputStream(bas);
+                    dos.writeByte(this.vsMap);
+                    dos.writeByte(MapTemplate.arrTemplate.length);
+                    int iii;
+                    for (iii = 0; iii < MapTemplate.arrTemplate.length; ++iii) {
+                        dos.writeUTF(MapTemplate.arrTemplate[iii].name);
+                    }
+                    dos.writeByte(npcs.size());
+                    Iterator var17 = npcs.iterator();
+                    while (var17.hasNext()) {
+                        NpcTemplate npc = (NpcTemplate) var17.next();
+                        dos.writeUTF(npc.name);
+                        dos.writeShort(npc.headId);
+                        dos.writeShort(npc.bodyId);
+                        dos.writeShort(npc.legId);
+                        String[][] menu = npc.menu;
+                        dos.writeByte(menu.length);
+                        String[][] var25 = menu;
+                        int var8 = menu.length;
+                        for (int var9 = 0; var9 < var8; ++var9) {
+                            String[] m = var25[var9];
+                            dos.writeByte(m.length);
+                            String[] var11 = m;
+                            int var12 = m.length;
+                            for (int var13 = 0; var13 < var12; ++var13) {
+                                String s = var11[var13];
+                                dos.writeUTF(s);
+                            }
+                        }
+                    }
+                    dos.writeByte(MobTemplate.entrys.size());
+                    var17 = MobTemplate.entrys.iterator();
+                    MobTemplate mob;
+                    while (var17.hasNext()) {
+                        mob = (MobTemplate) var17.next();
+                        dos.writeByte(mob.type);
+                        dos.writeUTF(mob.name);
+                        dos.writeInt(mob.hp);
+                        dos.writeByte(mob.rangeMove);
+                        dos.writeByte(mob.speed);
+                    }
+                    byte[] ab = bas.toByteArray();
+                    GameSrc.saveFile("res/cache/map", ab);
+                    dos.close();
+                    bas.close();
+                    break;
+                }
+                case 1: {
+                    bas = new ByteArrayOutputStream();
+                    dos = new DataOutputStream(bas);
+                    dos.writeByte(this.vsItem);
+                    Collection<ItemOptionTemplate> options = ItemTemplate.getOptions();
+                    dos.writeByte(options.size());
+                    Iterator var5 = options.iterator();
+                    while (var5.hasNext()) {
+                        ItemOptionTemplate item2 = (ItemOptionTemplate) var5.next();
+                        dos.writeUTF(item2.name);
+                        dos.writeByte(item2.type);
+                    }
+
+                    Collection<ItemTemplate> entrys = ItemTemplate.entrys;
+                    dos.writeShort(entrys.size());
+                    Iterator var22 = entrys.iterator();
+
+                    ItemTemplate item3;
+                    while (var22.hasNext()) {
+                        item3 = (ItemTemplate) var22.next();
+                        dos.writeByte(item3.type);
+                        dos.writeByte(item3.gender);
+                        dos.writeUTF(item3.name);
+                        dos.writeUTF(item3.description);
+                        dos.writeByte(item3.level);
+                        dos.writeShort(item3.iconID);
+                        dos.writeShort(item3.part);
+                        dos.writeBoolean(item3.isUpToUp);
+                    }
+                    byte[] ab = bas.toByteArray();
+                    GameSrc.saveFile("res/cache/item", ab);
+                    dos.close();
+                    bas.close();
+                    break;
+                }
+                case 2: {
+                    bas = new ByteArrayOutputStream();
+                    dos = new DataOutputStream(bas);
+                    dos.writeShort(Manager.parts.size());
+                    for (Part p : Manager.parts) {
+                        dos.writeByte(p.type);
+                        for (PartImage pi : p.pi) {
+                            dos.writeShort(pi.id);
+                            dos.writeByte(pi.dx);
+                            dos.writeByte(pi.dy);
+                        }
+                    }
+                    byte[] ab = bas.toByteArray();
+                    GameSrc.saveFile("cache/part", ab);
+                    dos.close();
+                    bas.close();
+                    break;
+                }
+            }
+        } catch (IOException var15) {
+            var15.printStackTrace();
         }
-        catch (Exception e) {
+
+    }
+
+    private void loadVersion() {
+        try {
+            ByteArrayOutputStream bas = new ByteArrayOutputStream();
+            DataOutputStream dos = new DataOutputStream(bas);
+            dos.writeByte(this.vsData);
+            dos.writeByte(this.vsMap);
+            dos.writeByte(this.vsSkill);
+            dos.writeByte(this.vsItem);
+            byte[] abc  = GameSrc.loadFile("res/cache/cacheVersion").toByteArray();
+            int i;
+            for (i = 0; i < abc.length; i++) {
+                dos.writeByte(abc[i]);
+            }
+            byte[] ab = bas.toByteArray();
+            GameSrc.saveFile("res/cache/version", ab);
+            dos.close();
+            bas.close();
+        } catch (Exception var4) {
+            var4.printStackTrace();
+        }
+
+    }
+
+    public static void getPackMessage(Player p) {
+        Message m = null;
+        try {
+            m = new Message(-28);
+            m.writer().writeByte(-123);
+            byte[] ab = GameSrc.loadFile("res/cache/version").toByteArray();
+            m.writer().write(ab);
+            m.writer().flush();
+            p.conn.sendMessage(m);
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (msg != null) {
-                msg.cleanup();
+        } finally {
+            if(m != null) {
+                m.cleanup();
             }
         }
+
     }
 
     public void sendData(Player p) {
@@ -910,7 +896,7 @@ public class Manager {
             ab = GameSrc.loadFile("res/cache/data/nj_image").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);
-            ab = GameSrc.loadFile("res/cache/data/nj_part").toByteArray();
+            ab = GameSrc.loadFile("cache/part").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);
             ab = GameSrc.loadFile("res/cache/data/nj_skill").toByteArray();
@@ -1101,8 +1087,335 @@ public class Manager {
         Server.maps = null;
         ClanManager.close();
     }
+    
+    public void sendMap(Player p) throws IOException {
+        Message m = new Message(-28);
+        try {
+            m.writer().writeByte(-121);
+            m.writer().writeByte(this.vsMap);
+            m.writer().writeByte(MapTemplate.arrTemplate.length);
+            for (short i = 0; i < MapTemplate.arrTemplate.length; ++i) {
+                m.writer().writeUTF(MapTemplate.arrTemplate[i].name);
+            }
+            m.writer().writeByte(npcs.size());
+            Iterator var17 = npcs.iterator();
+            while (var17.hasNext()) {
+                NpcTemplate npc = (NpcTemplate) var17.next();
+                m.writer().writeUTF(npc.name);
+                m.writer().writeShort(npc.headId);
+                m.writer().writeShort(npc.bodyId);
+                m.writer().writeShort(npc.legId);
+                String[][] menu = npc.menu;
+                m.writer().writeByte(menu.length);
+                String[][] var25 = menu;
+                int var8 = menu.length;
+                for (int var9 = 0; var9 < var8; ++var9) {
+                    String[] str = var25[var9];
+                    m.writer().writeByte(str.length);
+                    String[] var11 = str;
+                    int var12 = str.length;
+                    for (int var13 = 0; var13 < var12; ++var13) {
+                        String s = var11[var13];
+                        m.writer().writeUTF(s);
+                    }
+                }
+            }
+            m.writer().writeByte(MobTemplate.entrys.size());
+            var17 = MobTemplate.entrys.iterator();
+            MobTemplate mob;
+            while (var17.hasNext()) {
+                mob = (MobTemplate) var17.next();
+                m.writer().writeByte(mob.type);
+                m.writer().writeUTF(mob.name);
+                m.writer().writeInt(mob.hp);
+                m.writer().writeByte(mob.rangeMove);
+                m.writer().writeByte(mob.speed);
+            }
+            m.writer().flush();
+            p.conn.sendMessage(m);
+            m.cleanup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (m != null) {
+                m.cleanup();
+            }
+        }
+    }
+    
+    public void sendItem(Player p) throws IOException {
 
-   public void sendSkill(Player p) {
+        Message m = new Message(-28);
+        try {          
+            m.writer().writeByte(-119);
+            m.writer().writeByte(this.vsItem);
+            Collection<ItemOptionTemplate> options = ItemTemplate.getOptions();
+            m.writer().writeByte(options.size());
+            Iterator var5 = options.iterator();
+            while (var5.hasNext()) {
+                ItemOptionTemplate item2 = (ItemOptionTemplate) var5.next();
+                m.writer().writeUTF(item2.name);
+                m.writer().writeByte(item2.type);
+            }
+            m.writer().writeShort(ItemTemplate.entrys.size());
+            for (short j = 0; j < ItemTemplate.entrys.size(); ++j) {
+                m.writer().writeByte(ItemTemplate.entrys.get(j).type);
+                m.writer().writeByte(ItemTemplate.entrys.get(j).gender);
+                m.writer().writeUTF(ItemTemplate.entrys.get(j).name);
+                m.writer().writeUTF(ItemTemplate.entrys.get(j).description);
+                m.writer().writeByte(ItemTemplate.entrys.get(j).level);
+                m.writer().writeShort(ItemTemplate.entrys.get(j).iconID);
+                m.writer().writeShort(ItemTemplate.entrys.get(j).part);
+                m.writer().writeBoolean(ItemTemplate.entrys.get(j).isUpToUp);
+            }
+            m.writer().flush();
+            p.conn.sendMessage(m);
+            m.cleanup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (m != null) {
+                m.cleanup();
+            }
+        }
+    }
+    
+   public void sendSkill(Player p) throws IOException {
+        Message m = new Message(-28);
+        try {
+            m.writer().writeByte(-120);
+            m.writer().writeByte(this.vsSkill);
+            m.writer().writeByte(Manager.sOptionTemplates.length);
+            for (short i = 0; i < Manager.sOptionTemplates.length; ++i) {
+                m.writer().writeUTF(Manager.sOptionTemplates[i].name);
+            }
+            m.writer().writeByte(7);//nclasssize
+            m.writer().writeUTF("Chưa vào lớp");
+            m.writer().writeByte(1);//skillsize
+            for (short j = 0; j < SkillTemplate.entrys.size(); ++j) {
+                if (SkillTemplate.entrys.get(j).nclass == 0) {
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).id);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).name);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).maxPoint);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).type);
+                    m.writer().writeShort(SkillTemplate.entrys.get(j).iconId);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).desc);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).templates.size());
+                    for (int k = 0; k < SkillTemplate.entrys.get(j).templates.size(); k++) {
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).skillId);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).point);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).level);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).manaUse);
+                        m.writer().writeInt(SkillTemplate.entrys.get(j).templates.get(k).coolDown);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dx);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dy);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).maxFight);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.size());
+                        for (int l = 0; l < SkillTemplate.entrys.get(j).templates.get(k).options.size(); l++) {
+                            m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).param);
+                            m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).id);
+                        }
+                    }
+                }
+            }
+            m.writer().writeUTF("Ninja Kiếm");
+            m.writer().writeByte(14);
+            for (short j = 0; j < SkillTemplate.entrys.size(); ++j) {
+                if (SkillTemplate.entrys.get(j).nclass == 1) {
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).id);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).name);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).maxPoint);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).type);
+                    m.writer().writeShort(SkillTemplate.entrys.get(j).iconId);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).desc);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).templates.size());
+                    for (int k = 0; k < SkillTemplate.entrys.get(j).templates.size(); k++) {
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).skillId);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).point);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).level);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).manaUse);
+                        m.writer().writeInt(SkillTemplate.entrys.get(j).templates.get(k).coolDown);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dx);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dy);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).maxFight);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.size());
+                        for (int l = 0; l < SkillTemplate.entrys.get(j).templates.get(k).options.size(); l++) {
+                            m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).param);
+                            m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).id);
+                        }
+                    }
+                }
+            }
+            m.writer().writeUTF("Ninja Phi Tiêu");
+            m.writer().writeByte(14);
+            for (short j = 0; j < SkillTemplate.entrys.size(); ++j) {
+                if (SkillTemplate.entrys.get(j).nclass == 2) {
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).id);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).name);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).maxPoint);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).type);
+                    m.writer().writeShort(SkillTemplate.entrys.get(j).iconId);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).desc);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).templates.size());
+                    for (int k = 0; k < SkillTemplate.entrys.get(j).templates.size(); k++) {
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).skillId);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).point);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).level);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).manaUse);
+                        m.writer().writeInt(SkillTemplate.entrys.get(j).templates.get(k).coolDown);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dx);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dy);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).maxFight);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.size());
+                        for (int l = 0; l < SkillTemplate.entrys.get(j).templates.get(k).options.size(); l++) {
+                            m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).param);
+                            m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).id);
+                        }
+                    }
+                }
+            }
+            m.writer().writeUTF("Ninja Kunai");
+            m.writer().writeByte(14);
+            for (short j = 0; j < SkillTemplate.entrys.size(); ++j) {
+                if (SkillTemplate.entrys.get(j).nclass == 3) {
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).id);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).name);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).maxPoint);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).type);
+                    m.writer().writeShort(SkillTemplate.entrys.get(j).iconId);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).desc);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).templates.size());
+                    for (int k = 0; k < SkillTemplate.entrys.get(j).templates.size(); k++) {
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).skillId);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).point);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).level);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).manaUse);
+                        m.writer().writeInt(SkillTemplate.entrys.get(j).templates.get(k).coolDown);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dx);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dy);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).maxFight);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.size());
+                        for (int l = 0; l < SkillTemplate.entrys.get(j).templates.get(k).options.size(); l++) {
+                            m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).param);
+                            m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).id);
+                        }
+                    }
+                }
+            }
+            m.writer().writeUTF("Ninja Cung");
+            m.writer().writeByte(14);
+            for (short j = 0; j < SkillTemplate.entrys.size(); ++j) {
+                if (SkillTemplate.entrys.get(j).nclass == 4) {
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).id);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).name);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).maxPoint);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).type);
+                    m.writer().writeShort(SkillTemplate.entrys.get(j).iconId);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).desc);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).templates.size());
+                    for (int k = 0; k < SkillTemplate.entrys.get(j).templates.size(); k++) {
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).skillId);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).point);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).level);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).manaUse);
+                        m.writer().writeInt(SkillTemplate.entrys.get(j).templates.get(k).coolDown);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dx);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dy);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).maxFight);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.size());
+                        for (int l = 0; l < SkillTemplate.entrys.get(j).templates.get(k).options.size(); l++) {
+                            m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).param);
+                            m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).id);
+                        }
+                    }
+                }
+            }
+            m.writer().writeUTF("Ninja Đao");
+            m.writer().writeByte(14);
+            for (short j = 0; j < SkillTemplate.entrys.size(); ++j) {
+                if (SkillTemplate.entrys.get(j).nclass == 5) {
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).id);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).name);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).maxPoint);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).type);
+                    m.writer().writeShort(SkillTemplate.entrys.get(j).iconId);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).desc);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).templates.size());
+                    for (int k = 0; k < SkillTemplate.entrys.get(j).templates.size(); k++) {
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).skillId);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).point);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).level);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).manaUse);
+                        m.writer().writeInt(SkillTemplate.entrys.get(j).templates.get(k).coolDown);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dx);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dy);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).maxFight);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.size());
+                        for (int l = 0; l < SkillTemplate.entrys.get(j).templates.get(k).options.size(); l++) {
+                            m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).param);
+                            m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).id);
+                        }
+                    }
+                }
+            }
+            m.writer().writeUTF("Ninja Quạt");
+            m.writer().writeByte(14);
+            for (short j = 0; j < SkillTemplate.entrys.size(); ++j) {
+                if (SkillTemplate.entrys.get(j).nclass == 6) {
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).id);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).name);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).maxPoint);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).type);
+                    m.writer().writeShort(SkillTemplate.entrys.get(j).iconId);
+                    m.writer().writeUTF(SkillTemplate.entrys.get(j).desc);
+                    m.writer().writeByte(SkillTemplate.entrys.get(j).templates.size());
+                    for (int k = 0; k < SkillTemplate.entrys.get(j).templates.size(); k++) {
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).skillId);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).point);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).level);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).manaUse);
+                        m.writer().writeInt(SkillTemplate.entrys.get(j).templates.get(k).coolDown);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dx);
+                        m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).dy);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).maxFight);
+                        m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.size());
+                        for (int l = 0; l < SkillTemplate.entrys.get(j).templates.get(k).options.size(); l++) {
+                            m.writer().writeShort(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).param);
+                            m.writer().writeByte(SkillTemplate.entrys.get(j).templates.get(k).options.get(l).id);
+                        }
+                    }
+                }
+            }
+            m.writer().flush();
+            p.conn.sendMessage(m);
+            m.cleanup();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (m != null) {
+                m.cleanup();
+            }
+        }
+    }
+
+    /*public void sendMap(Player p) {
+        Message m = null;
+        try {
+            m = new Message(-28);
+            m.writer().writeByte(-121);
+            m.writer().write(Server.cache[1].toByteArray());
+            m.writer().flush();
+            p.conn.sendMessage(m);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(m != null) {
+                m.cleanup();
+            }
+        }
+    }*/
+
+    /*public void sendSkill(Player p) {
         Message m = null;
         try {
             m = new Message(-28);
@@ -1117,9 +1430,9 @@ public class Manager {
                 m.cleanup();
             }
         }
-    }
+    }*/
 
-    public void sendItem(Player p) {
+    /*public void sendItem(Player p) {
         Message m = null;
         try {
             m = new Message(-28);
@@ -1134,5 +1447,5 @@ public class Manager {
                 m.cleanup();
             }
         }
-    }
+    }*/
 }

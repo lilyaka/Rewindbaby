@@ -1545,7 +1545,7 @@ public class Draw {
                         String check = str.replaceAll("\\s+", "");
                         check = str.replaceAll(" ", "").trim();
                         int nhanquatdb = Integer.parseInt(check);
-                        Manager.nhanquatdb = nhanquatdb;
+//                        Manager.nhanquatdb = nhanquatdb;
                         p.sendAddchatYellow("Bật trạng thái nhận quà");
                         break;
                     }

@@ -2366,7 +2366,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 4: {
                         ResultSet res = null;
                         try {
-                            if(Manager.nhanquatdb == 0){
+                        if (true){//if(Manager.nhanquatdb == 0){
                            Service.chatNPC(p, (short) npcid, "Chỉ nhận quà được vào thứ 2.");
                                 return;
                             }
@@ -5248,36 +5248,36 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                                 p.conn.sendMessageLog("Trùm cần nhập học để nhận vip 5");
                                 return;
                             }
-                                for(byte i = 0; i < 2; i++){
-                                    Item itemup = ItemTemplate.itemDefault(ngokhong[i]);  
-                                    itemup.upgradeNext((byte)16);
-                                    p.c.addItemBag(false, itemup);                                                                  
+                            for (byte i = 0; i < 2; i++) {
+                                Item itemup = ItemTemplate.itemDefault(ngokhong[i]);
+                                itemup.upgradeNext((byte) 16);
+                                p.c.addItemBag(false, itemup);
+                            }
+                            p.c.addItemBag(false, ItemTemplate.itemDefault(837));
+                            if (p.c.get().nclass == 1 || p.c.get().nclass == 3 || p.c.get().nclass == 5) {
+                                Item itemup = ItemTemplate.itemDefault(833);
+                                if (p.c.get().nclass == 1) {
+                                    itemup.sys = 1;
+                                } else if (p.c.get().nclass == 3) {
+                                    itemup.sys = 2;
+                                } else if (p.c.get().nclass == 5) {
+                                    itemup.sys = 3;
                                 }
-                                p.c.addItemBag(false, ItemTemplate.itemDefault(837));
-                                if (p.c.get().nclass == 1 || p.c.get().nclass == 3 || p.c.get().nclass == 5) {
-                                    Item itemup = ItemTemplate.itemDefault(833);
-                                    if (p.c.get().nclass == 1) {
-                                        itemup.sys = 1;
-                                    } else if (p.c.get().nclass == 3) {
-                                        itemup.sys = 2;
-                                    } else if (p.c.get().nclass == 5) {
-                                        itemup.sys = 3;
-                                    }
-                                    itemup.upgradeNext((byte)16);
-                                    p.c.addItemBag(false, itemup);
+                                itemup.upgradeNext((byte) 16);
+                                p.c.addItemBag(false, itemup);
+                            }
+                            if (p.c.get().nclass == 2 || p.c.get().nclass == 4 || p.c.get().nclass == 6) {
+                                Item itemup = ItemTemplate.itemDefault(834);
+                                if (p.c.get().nclass == 2) {
+                                    itemup.sys = 1;
+                                } else if (p.c.get().nclass == 4) {
+                                    itemup.sys = 2;
+                                } else if (p.c.get().nclass == 6) {
+                                    itemup.sys = 3;
                                 }
-                                if (p.c.get().nclass == 2 || p.c.get().nclass == 4 || p.c.get().nclass == 6) {
-                                    Item itemup = ItemTemplate.itemDefault(834);
-                                    if (p.c.get().nclass == 2) {
-                                        itemup.sys = 1;
-                                    } else if (p.c.get().nclass == 4) {
-                                        itemup.sys = 2;
-                                    } else if (p.c.get().nclass == 6) {
-                                        itemup.sys = 3;
-                                    }
-                                    itemup.upgradeNext((byte)16);
-                                    p.c.addItemBag(false, itemup);
-                                }
+                                itemup.upgradeNext((byte) 16);
+                                p.c.addItemBag(false, itemup);
+                            }
                             p.vip = 5;
                             p.conn.sendMessageLog("Trùm đã nhận vip 5 thành công");
                             break;

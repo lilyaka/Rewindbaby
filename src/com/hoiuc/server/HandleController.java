@@ -3308,7 +3308,7 @@ public static void submitTrade(Player player) {
                                 m.writer().writeUTF("Trò chơi dành cho người từ 18 tuổi trở lên. Chơi game quá 180 phút 1 ngày sẽ ảnh hưởng xấu đến sức khoẻ.");
                                 // Tu tiên
                                 if (player.c.leveltutien >= 1) {
-                                    Service.chatKTG("Chào mừng " + Server.manager.NameTuTien[player.c.leveltutien] + " " + player.c.name +" đã đăng nhập vào game.");
+                                    //Service.chatKTG("Chào mừng " + Server.manager.NameTuTien[player.c.leveltutien] + " " + player.c.name +" đã đăng nhập vào game.");
                                 }
                                 Calendar rightNow;
                                 int hour;

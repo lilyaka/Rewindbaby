@@ -10,6 +10,7 @@ package com.hoiuc.cache;
  * @author Rewind
  */
 public class Part {
+    
     public Part(byte type) {
         this.type = type;
         if (type == 0) {

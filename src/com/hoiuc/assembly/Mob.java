@@ -1,6 +1,5 @@
 package com.hoiuc.assembly;
 
-import com.hoiuc.cache.MobCache;
 import com.hoiuc.io.Util;
 import com.hoiuc.server.Service;
 import com.hoiuc.server.Session;
@@ -45,7 +44,6 @@ public class Mob {
     public MobTemplate templates;
     private HashMap<Integer, Integer> nFight;
     private ArrayList<Character> sortFight;
-    public static MobCache[] arrMobTemplate;
 
     private static int[] arrMobLangCoId = new int[] {148, 146, 147, 148, 149, 151, 152, 154, 155, 156, 157, 159 };
     private static int[] arrMobChienTruongId = new int[] {90, 91, 92, 93, 94, 95, 96, 97, 98, 99 };
