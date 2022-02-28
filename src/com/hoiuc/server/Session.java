@@ -264,7 +264,7 @@ public class Session {
                 this.player = p;
                 this.outdelay = 0L;
                 this.login = true;
-                Manager.getPackMessage(p);
+                server.manager.getPackMessage(p);
                 HandleController.selectNinja(p, null);
         //        System.out.println("Login - IP: " + this.ipv4 + " - Session id: " + this.id + " - Username: " + p.username);
             } else {

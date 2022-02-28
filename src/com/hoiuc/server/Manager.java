@@ -862,7 +862,7 @@ public class Manager {
 
     }
 
-    public static void getPackMessage(Player p) {
+    /*public static void getPackMessage(Player p) {
         Message m = null;
         try {
             m = new Message(-28);
@@ -878,7 +878,25 @@ public class Manager {
                 m.cleanup();
             }
         }
-
+    }*/
+    
+    public void getPackMessage(final Player p) throws IOException {
+        final Message m = new Message(-28);
+        m.writer().writeByte(-123);
+        m.writer().writeByte(this.vsData);
+        m.writer().writeByte(this.vsMap);
+        m.writer().writeByte(this.vsSkill);
+        m.writer().writeByte(this.vsItem);
+        
+        byte[] ab = GameSrc.loadFile("cache/version").toByteArray();
+        m.writer().write(ab);
+        
+//        m.writer().writeByte(0);
+//        m.writer().writeByte(0);
+//        m.writer().writeByte(0);
+        m.writer().flush();
+        p.conn.sendMessage(m);
+        m.cleanup();
     }
 
     public void sendData(Player p) {
@@ -896,9 +914,12 @@ public class Manager {
             ab = GameSrc.loadFile("res/cache/data/nj_image").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);
-            ab = GameSrc.loadFile("cache/part").toByteArray();
+            ab = GameSrc.loadFile("res/cache/data/nj_part").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);
+            /*ab = GameSrc.loadFile("cache/part").toByteArray();
+            m.writer().writeInt(ab.length);
+            m.writer().write(ab);*/
             ab = GameSrc.loadFile("res/cache/data/nj_skill").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);

@@ -1,7 +1,5 @@
 package com.hoiuc.server;
 
-import com.hoiuc.cache.Part;
-import com.hoiuc.cache.PartImage;
 import com.hoiuc.assembly.*;
 import com.hoiuc.assembly.Char;
 import com.hoiuc.io.Message;
