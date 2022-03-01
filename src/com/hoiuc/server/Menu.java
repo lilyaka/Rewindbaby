@@ -5830,15 +5830,15 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                     return;
                 }
                 if(p.c.quantityItemyTotal(842) < 10){
-                    p.conn.sendMessageLog("Anh em không đủ 10 bí kíp cải lão");
+                    p.conn.sendMessageLog("Anh em không đủ 10 chuyển sinh đan");
                     return;
                 }
                 if (p.c.chuyenSinh == 1) {
                     Service.chatNPC(p, (short) npcid, "server chỉ mới cho chuyển sinh 1, sẽ cập nhật sau");
                     return;
                 }
-                if (p.luong < 50000000) {
-                    Service.chatNPC(p, (short) npcid, "Hành trang con ko có đủ học phí 50tr lượng để ta mua cafe sáng.\nHãy đi săn boss và kiếm đủ lượng để chuyển sinh nhé anh em yêu quý của ta ơi..!");
+                if (p.luong < 5000000) {
+                    Service.chatNPC(p, (short) npcid, "Hành trang con ko có đủ học phí 5tr lượng để ta mua cafe sáng.\nHãy đi săn boss và kiếm đủ lượng để chuyển sinh nhé anh em yêu quý của ta ơi..!");
                     return;
                 }
                 if (p.c.xu < 50000000) {
@@ -5850,7 +5850,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                 p.c.expCS -= 2000000000;
                 p.c.chuyenSinh++;
                 p.updateExp(Level.getMaxExp(10) - p.c.exp);
-                p.upluongMessage(-50000000);
+                p.upluongMessage(-5000000);
                 p.c.upxuMessage(-50000000);
                 Manager.chatKTG("Chúc mừng anh: " + p.c.name + " đã đạt cảnh giới chuyển sinh 1. Chúng ta hãy cùng " + p.c.name + " quay lại tuổi thơ dữ dội và viết lên 1 hành trình mới đầy vẻ vang nào. Anh em nhìn " + p.c.name + " mà học hỏi nhé.!");
                 break;

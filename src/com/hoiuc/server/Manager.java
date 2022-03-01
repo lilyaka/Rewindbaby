@@ -889,8 +889,7 @@ public class Manager {
         m.writer().writeByte(this.vsItem);
         
         byte[] ab = GameSrc.loadFile("cache/version").toByteArray();
-        m.writer().write(ab);
-        
+        m.writer().write(ab);     
 //        m.writer().writeByte(0);
 //        m.writer().writeByte(0);
 //        m.writer().writeByte(0);
@@ -917,9 +916,9 @@ public class Manager {
             ab = GameSrc.loadFile("res/cache/data/nj_part").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);
-            /*ab = GameSrc.loadFile("cache/part").toByteArray();
-            m.writer().writeInt(ab.length);
-            m.writer().write(ab);*/
+//            ab = GameSrc.loadFile("cache/part").toByteArray();
+//            m.writer().writeInt(ab.length);
+//            m.writer().write(ab);
             ab = GameSrc.loadFile("res/cache/data/nj_skill").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);
@@ -1031,8 +1030,8 @@ public class Manager {
 
     }
 
-    protected void stop() {
-    }
+    /*protected void stop() {
+    }*/
 
     protected void chatKTG(Player p, Message m) {
         try {
