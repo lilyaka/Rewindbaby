@@ -146,6 +146,7 @@ public class Char extends Body {
     
     //exp chuyen sinh
     public long expCS = 0;
+    public byte chuyenSinh = 0;
     
     //Đua top vũ khí
     public int luongTop = 0;
@@ -646,6 +647,7 @@ public class Char extends Body {
                     nja.countPhao = red.getInt("countPhao");
                     nja.luongTop = red.getInt("luongTN");
                     nja.expCS = red.getLong("expCS");
+                    nja.chuyenSinh = red.getByte("chuyenSinh");
                     JSONArray jar = (JSONArray)JSONValue.parse(red.getString("skill"));
                     JSONObject job;
                     Skill skill;
@@ -1365,7 +1367,7 @@ public class Char extends Body {
                 jarr.clear();
                 jarr.add(this.clan.clanName);
                 jarr.add(this.clan.pointClan);
-                sqlSET = sqlSET + ",`timeRemoveClone` = "+this.timeRemoveClone+  ",`isHangDong6x` = "+this.isHangDong6x+ ",`ldgtID` = "+this.ldgtID+",`pointBossTL` = "+this.pointBossTL+ ",`maxPointCT` = "+this.isTakePoint+",`clan`='" + jarr.toJSONString() + "',`denbu`=" + this.denbu + ",`newlogin`='" + Util.toDateString(this.newlogin) + "',`ddClan`=" + this.ddClan + ",`caveID`=" + this.caveID + ",`nCave`=" + this.nCave + ",`pointCave`=" + this.pointCave + ",`useCave`=" + this.useCave + ",`bagCaveMax`=" + this.bagCaveMax + ",`itemIDCaveMax`=" + this.itemIDCaveMax + ",`saveBXH`=" + this.saveBXH + ",`exptype`=" + this.exptype + ",`luongTN`=" + this.luongTop + ",`expCS`=" + this.expCS +""; //",`exptutien`=" + this.exptutien + ",`leveltutien`=" + this.leveltutien +
+                sqlSET = sqlSET + ",`timeRemoveClone` = "+this.timeRemoveClone+  ",`isHangDong6x` = "+this.isHangDong6x+ ",`ldgtID` = "+this.ldgtID+",`pointBossTL` = "+this.pointBossTL+ ",`maxPointCT` = "+this.isTakePoint+",`clan`='" + jarr.toJSONString() + "',`denbu`=" + this.denbu + ",`newlogin`='" + Util.toDateString(this.newlogin) + "',`ddClan`=" + this.ddClan + ",`caveID`=" + this.caveID + ",`nCave`=" + this.nCave + ",`pointCave`=" + this.pointCave + ",`useCave`=" + this.useCave + ",`bagCaveMax`=" + this.bagCaveMax + ",`itemIDCaveMax`=" + this.itemIDCaveMax + ",`saveBXH`=" + this.saveBXH + ",`exptype`=" + this.exptype + ",`luongTN`=" + this.luongTop + ",`expCS`=" + this.expCS + ",`chuyenSinh`=" + this.chuyenSinh +""; //",`exptutien`=" + this.exptutien + ",`leveltutien`=" + this.leveltutien +
                 SQLManager.stat.executeUpdate("UPDATE `ninja` SET " + sqlSET + " WHERE `id`=" + this.id + " LIMIT 1;");
                 if (jarr != null && !jarr.isEmpty()) {
                     jarr.clear();

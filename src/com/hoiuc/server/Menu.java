@@ -2787,7 +2787,6 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                         Service.chatNPC(p, (short)npcid, "Số lần tẩy điểm kỹ năng của con đã hết.");
                         return;
                     }
-
                     p.restPpoint();
                     --p.c.get().countTayTiemNang;
                     Service.chatNPC(p, (short)npcid, "Ta đã giúp con tẩy điểm tiềm năng, hãy nâng điểm thật hợp lý nha.");
@@ -5818,6 +5817,45 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                 break;
             }
             case 5: {
+                if (p.c.level < 150) {
+                    Service.chatNPC(p, (short) npcid, "anh em đã đạt cấp 150 đâu???\nKhi nào đủ tự tin hãy quay lại gặp ta nhé.! \nMày hãy cố gắng nhiều lên anh em..!");
+                    return;
+                }
+                if (p.c.expCS < 2000000000){
+                    p.conn.sendMessageLog("Anh em không đủ 2 tỷ exp chuyển sinh");
+                    return;
+                }
+                if(p.c.quantityItemyTotal(843) < 4000){
+                    p.conn.sendMessageLog("Anh em không đủ 4000 bíp cải lão");
+                    return;
+                }
+                if(p.c.quantityItemyTotal(842) < 10){
+                    p.conn.sendMessageLog("Anh em không đủ 10 bí kíp cải lão");
+                    return;
+                }
+                if (p.c.chuyenSinh == 1) {
+                    Service.chatNPC(p, (short) npcid, "server chỉ mới cho chuyển sinh 1, sẽ cập nhật sau");
+                    return;
+                }
+                if (p.luong < 50000000) {
+                    Service.chatNPC(p, (short) npcid, "Hành trang con ko có đủ học phí 50tr lượng để ta mua cafe sáng.\nHãy đi săn boss và kiếm đủ lượng để chuyển sinh nhé anh em yêu quý của ta ơi..!");
+                    return;
+                }
+                if (p.c.xu < 50000000) {
+                    Service.chatNPC(p, (short) npcid, "Hành trang con ko có đủ học phí 100tr xu để ta mua cafe sáng.\nHãy đi săn boss và kiếm đủ lượng để chuyển sinh nhé anh em yêu quý của ta ơi..!");
+                    return;
+                }
+                p.c.removeItemBags(843, 4000);
+                p.c.removeItemBags(842, 10);
+                p.c.expCS -= 2000000000;
+                p.c.chuyenSinh++;
+                p.updateExp(Level.getMaxExp(10) - p.c.exp);
+                p.upluongMessage(-50000000);
+                p.c.upxuMessage(-50000000);
+                Manager.chatKTG("Chúc mừng anh: " + p.c.name + " đã đạt cảnh giới chuyển sinh 1. Chúng ta hãy cùng " + p.c.name + " quay lại tuổi thơ dữ dội và viết lên 1 hành trình mới đầy vẻ vang nào. Anh em nhìn " + p.c.name + " mà học hỏi nhé.!");
+                break;
+            }
+            case 6:{
                 if(p.vip < 1){
                     p.conn.sendMessageLog("Bạn cần tối thiểu vip 1 để tham gia");
                     break;
@@ -5825,7 +5863,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                     Service.startYesNoDlg(p, (byte) 13, "Trùm sẽ xoá sạch rương đồ của chính mình?");
                     break;
             }
-            case 6:{
+                /*{
                 if(p.luong < 10000){
                     p.conn.sendMessageLog("Bạn không đủ lượng để tham gia");
                     return;
@@ -5843,14 +5881,6 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                 }
                 p.c.luongTop += 10000;
                 p.upluongMessage(-10000);
-                break;
-            }
-            /*case 7:{
-                int luongtieu = p.c.luongTop;
-                if(luongtieu >= 100000){
-                    Item itemup = ItemTemplate.itemDefault(842);
-                    p.c.addItemBag(false, itemup);
-                }
                 break;
             }*/
             default: {

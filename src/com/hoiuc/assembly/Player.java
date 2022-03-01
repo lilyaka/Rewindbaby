@@ -658,7 +658,7 @@ public class Player extends User{
             this.c.get().potential2 = 5;
             this.c.get().potential3 = 5;
         }
-        int usePlusPpoint = (8 - this.c.get().useTiemNang) * 10 + (10 - this.c.get().useBanhBangHoa) * 10;
+        int usePlusPpoint = (8 - this.c.get().useTiemNang) * 10 + (10 - this.c.get().useBanhBangHoa) * 10 + this.c.chuyenSinh * 5780;
         this.c.get().ppoint = (short)(Level.totalpPoint(this.c.get().level) + usePlusPpoint);
         this.loadPpoint();
     }

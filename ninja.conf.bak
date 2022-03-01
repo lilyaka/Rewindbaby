@@ -13,8 +13,8 @@ mysql-database_data: teamobic_data
 mysql-database_ninja: teamobic_ninja
 max-level-up: 150
 up-exp: 5
-version-Data: 56
-version-Map: 37
+version-Data: 57
+version-Map: 39
 version-Skill: 13
 version-Item: 57
 version-Event: 4

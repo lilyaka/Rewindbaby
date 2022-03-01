@@ -1801,7 +1801,10 @@ public class TileMap {
 
                     if (Manager.up_exp > 1) {
                         xpup *= (long)Manager.up_exp;
-                    }       
+                    }
+                    if(_char.chuyenSinh > 0){
+                        xpup /= (_char.chuyenSinh + 1);
+                    }
                     if (this.map.cave != null) {
                         this.map.cave.updateXP(xpup * 2L);
                     }else {
@@ -2030,6 +2033,10 @@ public class TileMap {
 
                                         if (Manager.up_exp > 1) {
                                             xpup *= (long)Manager.up_exp;
+                                        }
+                                        //exp chuyển sinh
+                                        if(p.c.chuyenSinh > 0){
+                                            xpup /= (p.c.chuyenSinh + 1);
                                         }
                                         if(p.c.get().level >= 10 && p.c.get().level < 70 && p.c.isHuman) {
                                             xpup *= 2;
