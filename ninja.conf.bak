@@ -3,7 +3,7 @@ os: 1
 mysql-part: C:\\xampp\\mysql\\bin\\mysqldump.exe
 backup-part: C:\\backup\\
 host: nsoanhem.com
-debug: true
+debug: false
 post: 14444
 mysql-host: nsoanhem.com
 mysql-port: 3306
@@ -12,10 +12,10 @@ mysql-password: Quanpro123@
 mysql-database_data: teamobic_data
 mysql-database_ninja: teamobic_ninja
 max-level-up: 150
-up-exp: 5
-version-Data: 57
-version-Map: 39
+up-exp: 20
+version-Data: 58
+version-Map: 40
 version-Skill: 13
-version-Item: 57
+version-Item: 58
 version-Event: 4
 nhanquatdb: 0

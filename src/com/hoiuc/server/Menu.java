@@ -727,7 +727,6 @@ public class Menu {
                         }
                     }
                 }
-
                 p.conn.sendMessageLog("Dọn Session thành công!");
                 break;
             }

@@ -182,25 +182,24 @@ public class RunTimeServer extends Thread{
                     TuTien.tuTien.finish();
                 }
                 
-                 if(sec == 10) {              
-                     
-                synchronized (Client.gI().conns) {
-                    for (i = 0; i < Client.gI().conns.size(); ++i) {
-                        Session conn = (Session) Client.gI().conns.get(i);
-                        if (conn != null) {
-                            player = conn.player;
-                            if (player != null) {
-                                if (player.c == null) {
+                if(sec == 10) {                                  
+                    synchronized (Client.gI().conns) {
+                        for (i = 0; i < Client.gI().conns.size(); ++i) {
+                            Session conn = (Session) Client.gI().conns.get(i);
+                            if (conn != null) {
+                                player = conn.player;
+                                if (player != null) {
+                                    if (player.c == null) {
+                                        Client.gI().kickSession(conn);
+                                    }
+                                } else if (player == null) {
                                     Client.gI().kickSession(conn);
                                 }
-                            } else if (player == null) {
-                                Client.gI().kickSession(conn);
                             }
                         }
-                    }
-              //      System.out.println(" Clear clone login");
-                 }                      
-                 }
+                  //      System.out.println(" Clear clone login");
+                    }                      
+                }
                 if((min == 58 || min == 30)&& sec == 0) {
                     Manager.serverChat("Server", "Hệ thống đang tự động cập nhật dữ liệu người chơi có thể gây lag!");
                     SaveData saveData = new SaveData();

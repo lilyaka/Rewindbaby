@@ -913,12 +913,12 @@ public class Manager {
             ab = GameSrc.loadFile("res/cache/data/nj_image").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);
-            ab = GameSrc.loadFile("res/cache/data/nj_part").toByteArray();
-            m.writer().writeInt(ab.length);
-            m.writer().write(ab);
-//            ab = GameSrc.loadFile("cache/part").toByteArray();
+//            ab = GameSrc.loadFile("res/cache/data/nj_part").toByteArray();
 //            m.writer().writeInt(ab.length);
 //            m.writer().write(ab);
+            ab = GameSrc.loadFile("cache/part").toByteArray();
+            m.writer().writeInt(ab.length);
+            m.writer().write(ab);
             ab = GameSrc.loadFile("res/cache/data/nj_skill").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);
