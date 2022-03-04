@@ -2102,6 +2102,26 @@ public class UseItem {
                         p.c.addItemBag(false, itemup);
                         break;
                     }
+                    case 860: {
+                        if (p.c.isNhanban) {
+                             p.conn.sendMessageLog(Language.NOT_FOR_PHAN_THAN);
+                            return;
+                        }
+                        if(p.c.getBagNull()< 2){
+                            p.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+                            return;
+                        }                       
+                        Item itemup = ItemTemplate.itemDefault(843);
+                        itemup.quantity = 3500;
+                        p.c.addItemBag(true, itemup);
+                        p.c.upyenMessage(10000000);
+                        itemup = ItemTemplate.itemDefault(842);
+                        itemup.quantity = 10;
+                        p.c.addItemBag(true, itemup);
+                        p.upluongMessage(2500000);
+                        p.c.removeItemBag(index, 1);
+                        break;
+                    }
                     default: {
                         break;
                     }

@@ -21,6 +21,8 @@ public class CloneCharacter extends Body {
     public Char c = null;
     public int percendame = 0;
     public boolean islive = false;
+    public byte status;
+    public long timeFight;
 
     public CloneCharacter (Char n) {
         try {

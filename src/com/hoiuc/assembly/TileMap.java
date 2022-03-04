@@ -3035,30 +3035,20 @@ public class TileMap {
         }
     }
 
+    //update
     public void updatePlayer() {
-        int i;
-        Player p;
-        for(i = this.players.size() - 1; i >= 0; i--) {
-            p = this.players.get(i);
-            if (p != null && p.c != null) {
-                p.c.timeKickSession -= 100L;
-                if (p.c.timeKickSession <= System.currentTimeMillis()) {
-                }
-                else {
-
-                    if(this.map.LangCo() && p.c.pk > 0) {
-                        p.c.tileMap.leave(p);
-                        Map ma = Manager.getMapid(p.c.mapLTD);
-                        byte k;
-                        for (k = 0; k < ma.area.length; k++) {
-                            if (ma.area[k].numplayers < ma.template.maxplayers) {
-                                ma.area[k].EnterMap0(p.c);
-                                return;
-                            }
-                        }
+        try {
+            int i;
+            Player p;
+            for(i = this.players.size() - 1; i >= 0; i--) {
+                p = this.players.get(i);
+                if (p != null && p.c != null) {
+                    p.c.timeKickSession -= 100L;
+                    if (p.c.timeKickSession <= System.currentTimeMillis()) {
                     }
-                    if(this.map.mapTuTien()) {
-                        if (TuTien.start == false) {
+                    else {
+
+                        if(this.map.LangCo() && p.c.pk > 0) {
                             p.c.tileMap.leave(p);
                             Map ma = Manager.getMapid(p.c.mapLTD);
                             byte k;
@@ -3069,265 +3059,283 @@ public class TileMap {
                                 }
                             }
                         }
-                    }
-                    short s;
-                    PartyPlease var20;
-                    if (p.c.aPartyInvate != null && p.c.aPartyInvate.size() > 0) {
-                        synchronized(p.c.aPartyInvate) {
-                            if (p.c.party != null) {
-                                p.c.aPartyInvate.clear();
-                            } else {
-                                for(s = 0; s < p.c.aPartyInvate.size(); s++) {
-                                    var20 = p.c.aPartyInvate.get(s);
-                                    if (var20 != null) {
-                                        var20.timeLive -= 500;
-                                        if ((p.c.aPartyInvate.get(s)).timeLive <= 0) {
-                                            p.c.aPartyInvate.remove(s);
-                                            s--;
+                        if(this.map.mapTuTien()) {
+                            if (TuTien.start == false) {
+                                p.c.tileMap.leave(p);
+                                Map ma = Manager.getMapid(p.c.mapLTD);
+                                byte k;
+                                for (k = 0; k < ma.area.length; k++) {
+                                    if (ma.area[k].numplayers < ma.template.maxplayers) {
+                                        ma.area[k].EnterMap0(p.c);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        short s;
+                        PartyPlease var20;
+                        if (p.c.aPartyInvate != null && p.c.aPartyInvate.size() > 0) {
+                            synchronized(p.c.aPartyInvate) {
+                                if (p.c.party != null) {
+                                    p.c.aPartyInvate.clear();
+                                } else {
+                                    for(s = 0; s < p.c.aPartyInvate.size(); s++) {
+                                        var20 = p.c.aPartyInvate.get(s);
+                                        if (var20 != null) {
+                                            var20.timeLive -= 500;
+                                            if ((p.c.aPartyInvate.get(s)).timeLive <= 0) {
+                                                p.c.aPartyInvate.remove(s);
+                                                s--;
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
 
-                    if (p.c.aPartyInvite != null && p.c.aPartyInvite.size() > 0) {
-                        synchronized(p.c.aPartyInvite) {
-                            if (p.c.party == null) {
-                                p.c.aPartyInvite.clear();
-                            } else {
-                                for(s = 0; s < p.c.aPartyInvite.size(); s++) {
-                                    if (p.c.aPartyInvite.get(s) != null) {
-                                        var20 = p.c.aPartyInvite.get(s);
-                                        var20.timeLive -= 500;
-                                        if ((p.c.aPartyInvite.get(s)).timeLive <= 0) {
-                                            p.c.aPartyInvite.remove(s);
-                                            s--;
+                        if (p.c.aPartyInvite != null && p.c.aPartyInvite.size() > 0) {
+                            synchronized(p.c.aPartyInvite) {
+                                if (p.c.party == null) {
+                                    p.c.aPartyInvite.clear();
+                                } else {
+                                    for(s = 0; s < p.c.aPartyInvite.size(); s++) {
+                                        if (p.c.aPartyInvite.get(s) != null) {
+                                            var20 = p.c.aPartyInvite.get(s);
+                                            var20.timeLive -= 500;
+                                            if ((p.c.aPartyInvite.get(s)).timeLive <= 0) {
+                                                p.c.aPartyInvite.remove(s);
+                                                s--;
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
 
-                    int k;
-                    Effect effect;
-                    for(k = p.c.get().veff.size() - 1; k >= 0; k--) {
-                        effect = p.c.get().veff.get(k);
-                        if (System.currentTimeMillis() >= effect.timeRemove) {
-                            p.removeEffect(effect.template.id);
-                            k--;
-                        } else if (effect.template.type != 0 && effect.template.type != 12) {
-                            if (effect.template.type != 4 && effect.template.type != 17) {
-                                if (effect.template.type == 13) {
-                                    p.c.get().upHP(-(p.c.get().getMaxHP() * 3 / 100));
-                                    if (p.c.get().isDie) {
-                                        p.c.get().upDie();
+                        int k;
+                        Effect effect;
+                        for(k = p.c.get().veff.size() - 1; k >= 0; k--) {
+                            effect = p.c.get().veff.get(k);
+                            if (System.currentTimeMillis() >= effect.timeRemove) {
+                                p.removeEffect(effect.template.id);
+                                k--;
+                            } else if (effect.template.type != 0 && effect.template.type != 12) {
+                                if (effect.template.type != 4 && effect.template.type != 17) {
+                                    if (effect.template.type == 13) {
+                                        p.c.get().upHP(-(p.c.get().getMaxHP() * 3 / 100));
+                                        if (p.c.get().isDie) {
+                                            p.c.get().upDie();
+                                        }
                                     }
+                                } else {
+                                    p.c.get().upHP(effect.param);
                                 }
                             } else {
                                 p.c.get().upHP(effect.param);
+                                p.c.get().upMP(effect.param);
                             }
-                        } else {
-                            p.c.get().upHP(effect.param);
-                            p.c.get().upMP(effect.param);
                         }
-                    }
 
-                    if ((p.c.eff5buffHP() > 0 || p.c.get().eff5buffMP() > 0) && p.c.eff5buff <= System.currentTimeMillis()) {
-                        p.c.eff5buff = System.currentTimeMillis() + 5000L;
-                        p.c.get().upHP(p.c.get().eff5buffHP());
-                        p.c.get().upMP(p.c.get().eff5buffMP());
-                    }
+                        if ((p.c.eff5buffHP() > 0 || p.c.get().eff5buffMP() > 0) && p.c.eff5buff <= System.currentTimeMillis()) {
+                            p.c.eff5buff = System.currentTimeMillis() + 5000L;
+                            p.c.get().upHP(p.c.get().eff5buffHP());
+                            p.c.get().upMP(p.c.get().eff5buffMP());
+                        }
 
-                    byte l;
-                    if (p.c.get().fullTL() >= 9 && System.currentTimeMillis() > p.c.delayEffect) {
-                        p.c.delayEffect = System.currentTimeMillis() + 5000L;
-                        l = 0;
-                        switch(GameSrc.SysClass(p.c.nclass)) {
-                            case 1:
-                                l = 9;
-                                break;
-                            case 2:
-                                l = 3;
-                                break;
-                            case 3:
-                                l = 6;
-                         }
-                        if (p.c.fullTL() >= 9) {
-                            l += 1;
-                        }
-                        if (p.c.fullTL() >= 7) {
-                            l += 0;
-                        }
-                        for(k = this.players.size() - 1; k>=0; k--) {
-                            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)l, 1, 1, false);
-                        }
-                    }
-
-                    if (p.c.get().getNgocEff() != -1 && System.currentTimeMillis() > p.c.delayEffect) {
-                        p.c.delayEffect = System.currentTimeMillis() + 5000L;
-                        for(k = this.players.size() - 1; k>=0; k--) {
-                            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)p.c.get().ngocEff, 1, 1, false);
-                        }
-                    }
-
-                    if (p.c.get().ItemBody[18] != null && System.currentTimeMillis() > p.c.delayEffect) {
-                        p.c.delayEffect = System.currentTimeMillis() + 3000L;
-                        for(k = this.players.size() - 1; k>=0; k--) {
-                            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, p.c.gender == 1 ? (short)34 : (short)33, 1, 1, false);
-                        }
-                    }
-                //    if (p.c.id == 1 && System.currentTimeMillis() > p.c.delayEffect) {
-              //         p.c.delayEffect = System.currentTimeMillis() + 3000L;
-              //           for(k = this.players.size() - 1; k>=0; k--) {
-                //            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)64, 0, 0, false);
-               //             GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)65, 0, 0, false);
-              //         }   
-                //        }
-                   for (byte j = 0; j < p.c.get().ItemBody.length; j++) {
-                            Item item = p.c.get().ItemBody[j];
-                            if (item != null && item.id == 825) {
-                             for(k = this.players.size() - 1; k>=0; k--) {;
-                            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)61, 0, 0, false);
-                        }   
-                        }
-                   }
-                   for (byte j = 0; j < p.c.get().ItemBody.length; j++) {
-                            Item item = p.c.get().ItemBody[j];
-                            if (item != null && item.id == 826) {
-                             for(k = this.players.size() - 1; k>=0; k--) {;
-                            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)62, 0, 1, false);
-                        }   
-
-                        }
-                    }
-                  for (byte j = 0; j < p.c.get().ItemBody.length; j++) {
-                            Item item = p.c.get().ItemBody[j];
-                            if (item != null && item.id == 834) {
-                             for(k = this.players.size() - 1; k>=0; k--) {;
-                            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)74, 1000, 1, true);
-                        } 
+                        byte l;
+                        if (p.c.get().fullTL() >= 9 && System.currentTimeMillis() > p.c.delayEffect) {
+                            p.c.delayEffect = System.currentTimeMillis() + 5000L;
+                            l = 0;
+                            switch(GameSrc.SysClass(p.c.nclass)) {
+                                case 1:
+                                    l = 9;
+                                    break;
+                                case 2:
+                                    l = 3;
+                                    break;
+                                case 3:
+                                    l = 6;
+                             }
+                            if (p.c.fullTL() >= 9) {
+                                l += 1;
                             }
-                  }
-                    if(p.c.isGiftTDB == 0) {
-                        switch (p.c.rankTDB) {
-                            case 1: {
-                                for(k = this.players.size() - 1; k>=0; k--) {
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)35, 1, 1, false);
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)22, 1, 1, false);
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)23, 1, 1, false);
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)24, 1, 1, false);
+                            if (p.c.fullTL() >= 7) {
+                                l += 0;
+                            }
+                            for(k = this.players.size() - 1; k>=0; k--) {
+                                GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)l, 1, 1, false);
+                            }
+                        }
+
+                        if (p.c.get().getNgocEff() != -1 && System.currentTimeMillis() > p.c.delayEffect) {
+                            p.c.delayEffect = System.currentTimeMillis() + 5000L;
+                            for(k = this.players.size() - 1; k>=0; k--) {
+                                GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)p.c.get().ngocEff, 1, 1, false);
+                            }
+                        }
+
+                        if (p.c.get().ItemBody[18] != null && System.currentTimeMillis() > p.c.delayEffect) {
+                            p.c.delayEffect = System.currentTimeMillis() + 3000L;
+                            for(k = this.players.size() - 1; k>=0; k--) {
+                                GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, p.c.gender == 1 ? (short)34 : (short)33, 1, 1, false);
+                            }
+                        }
+                    //    if (p.c.id == 1 && System.currentTimeMillis() > p.c.delayEffect) {
+                  //         p.c.delayEffect = System.currentTimeMillis() + 3000L;
+                  //           for(k = this.players.size() - 1; k>=0; k--) {
+                    //            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)64, 0, 0, false);
+                   //             GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)65, 0, 0, false);
+                  //         }   
+                    //        }
+                       for (byte j = 0; j < p.c.get().ItemBody.length; j++) {
+                                Item item = p.c.get().ItemBody[j];
+                                if (item != null && item.id == 825) {
+                                 for(k = this.players.size() - 1; k>=0; k--) {;
+                                GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)61, 0, 0, false);
+                            }   
+                            }
+                       }
+                       for (byte j = 0; j < p.c.get().ItemBody.length; j++) {
+                                Item item = p.c.get().ItemBody[j];
+                                if (item != null && item.id == 826) {
+                                 for(k = this.players.size() - 1; k>=0; k--) {;
+                                GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)62, 0, 1, false);
+                            }   
+
+                            }
+                        }
+                      for (byte j = 0; j < p.c.get().ItemBody.length; j++) {
+                                Item item = p.c.get().ItemBody[j];
+                                if (item != null && item.id == 834) {
+                                 for(k = this.players.size() - 1; k>=0; k--) {;
+                                GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)74, 1000, 1, true);
+                            } 
                                 }
-                                break;
-                            }
-                            case 2: {
-                                for(k = this.players.size() - 1; k>=0; k--) {
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)22, 1, 1, false);
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)23, 1, 1, false);
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)24, 1, 1, false);
+                      }
+                        if(p.c.isGiftTDB == 0) {
+                            switch (p.c.rankTDB) {
+                                case 1: {
+                                    for(k = this.players.size() - 1; k>=0; k--) {
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)35, 1, 1, false);
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)22, 1, 1, false);
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)23, 1, 1, false);
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)24, 1, 1, false);
+                                    }
+                                    break;
                                 }
-                                break;
-                            }
-                            case 3: {
-                                for(k = this.players.size() - 1; k>=0; k--) {
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)22, 1, 1, false);
-                                    GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)23, 1, 1, false);
+                                case 2: {
+                                    for(k = this.players.size() - 1; k>=0; k--) {
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)22, 1, 1, false);
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)23, 1, 1, false);
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)24, 1, 1, false);
+                                    }
+                                    break;
                                 }
-                                break;
-                            }
-                            default: {
-                                break;
-                            }
-                        }
-                    }
-
-                    if (p.c.get().isGoiRong) {
-                        for(k = 0; k < this.players.size(); k++) {
-                            GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)21, 1, 1, false);
-                        }
-                        p.c.get().timeEffGoiRong -= 500L;
-                        if (p.c.get().timeEffGoiRong <= 0L) {
-                            p.c.get().isGoiRong = false;
-                        }
-                    }
-
-                    if (p.c.buNhin != null && p.c.buNhin.timeRemove <= System.currentTimeMillis()) {
-                        p.c.buNhin = null;
-                    }
-
-                    if (p.c.get().mobMe != null && p.c.get().mobMe.timeFight <= System.currentTimeMillis()) {
-                        this.loadMobMeAtk(p.c);
-                    }
-
-                    for(l = 0; l < p.c.ItemBag.length; l++) {
-                        if (p.c.ItemBag[l] != null && p.c.ItemBag[l].isExpires && System.currentTimeMillis() >= p.c.ItemBag[l].expires) {
-                            p.c.removeItemBag(l, p.c.ItemBag[l].quantity);
-                        }
-                    }
-
-                    for(l = 0; l < p.c.get().ItemBody.length; l++) {
-                        if (p.c.get().ItemBody[l] != null && p.c.get().ItemBody[l].isExpires && System.currentTimeMillis() >= p.c.get().ItemBody[l].expires) {
-                            p.c.removeItemBody(l);
-                        }
-                    }
-
-                    if(p.c.isHuman && p.c.clone != null) {
-                        for(l = 0; l < p.c.clone.ItemBody.length; l++) {
-                            if (p.c.clone.ItemBody[l] != null && p.c.clone.ItemBody[l].isExpires && System.currentTimeMillis() >= p.c.clone.ItemBody[l].expires) {
-                                p.c.clone.removeItemBody(l);
+                                case 3: {
+                                    for(k = this.players.size() - 1; k>=0; k--) {
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)22, 1, 1, false);
+                                        GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)23, 1, 1, false);
+                                    }
+                                    break;
+                                }
+                                default: {
+                                    break;
+                                }
                             }
                         }
-                    }
 
-                    for(l = 0; l < p.c.ItemBox.length; l++) {
-                        if (p.c.ItemBox[l] != null && p.c.ItemBox[l].isExpires && System.currentTimeMillis() >= p.c.ItemBox[l].expires) {
-                            p.c.removeItemBox(l);
-                        }
-                    }
-
-                    if (this.map.LangCo() && !p.c.isTest && (p.c.isDie || p.c.expdown > 0L)) {
-                        this.DieReturn(p);
-                    }
-                    /*if (this.map.mapTuTien()&& !p.c.isTest && (p.c.isDie || p.c.expdown > 0L)) {
-                        this.DieReturn(p);
-                    }*/
-                    if (p.c.get().isDie && p.c.isTest) {
-                        p.liveFromDead();
-                        Char player = this.getNinja(p.c.testCharID);
-                        if (player != null) {
-                            player.testCharID = -9999;
-                            player.isTest = false;
-                        }
-
-                        p.c.testCharID = -9999;
-                        p.c.isTest = false;
-                    }
-
-                    if (System.currentTimeMillis() > p.c.deleyRequestClan) {
-                        p.c.requestclan = -1;
-                    }
-
-                    if (p.c.clone != null && p.c.clone.islive && p.c.get().isHuman){
-                        if (Math.abs(p.c.x - p.c.clone.x) > 80 || Math.abs(p.c.y - p.c.clone.y) > 30) {
-                            p.c.clone.move((short)Util.nextInt(p.c.x - 35, p.c.x + 35), p.c.y);
-                        }
-                        if(p.c.clone.nclass == 6) {
-                            for(short idSk : p.c.clone.getWinBuffSkills()) {
-                                UseSkill.useSkillCloneBuff(p.c.clone, idSk);
+                        if (p.c.get().isGoiRong) {
+                            for(k = 0; k < this.players.size(); k++) {
+                                GameCanvas.addEffect((this.players.get(k)).conn, (byte)0, p.c.get().id, (short)21, 1, 1, false);
+                            }
+                            p.c.get().timeEffGoiRong -= 500L;
+                            if (p.c.get().timeEffGoiRong <= 0L) {
+                                p.c.get().isGoiRong = false;
                             }
                         }
-                    }
 
-                    if (p.c.clone != null && (!p.c.clone.islive || System.currentTimeMillis() > p.c.timeRemoveClone)) {
-                        p.c.clone.off();
-                    }
+                        if (p.c.buNhin != null && p.c.buNhin.timeRemove <= System.currentTimeMillis()) {
+                            p.c.buNhin = null;
+                        }
 
-                    if (p.c.get().isDie) {
-                        p.exitNhanBan(false);
+                        if (p.c.get().mobMe != null && p.c.get().mobMe.timeFight <= System.currentTimeMillis()) {
+                            this.loadMobMeAtk(p.c);
+                        }
+                        if (p.c.isHuman && !p.c.isDie && p.c.clone.islive && p.c.clone.timeFight <= System.currentTimeMillis()) {
+                            this.loadCloneAtk(p);
+                        }
+                        for(l = 0; l < p.c.ItemBag.length; l++) {
+                            if (p.c.ItemBag[l] != null && p.c.ItemBag[l].isExpires && System.currentTimeMillis() >= p.c.ItemBag[l].expires) {
+                                p.c.removeItemBag(l, p.c.ItemBag[l].quantity);
+                            }
+                        }
+
+                        for(l = 0; l < p.c.get().ItemBody.length; l++) {
+                            if (p.c.get().ItemBody[l] != null && p.c.get().ItemBody[l].isExpires && System.currentTimeMillis() >= p.c.get().ItemBody[l].expires) {
+                                p.c.removeItemBody(l);
+                            }
+                        }
+
+                        if(p.c.isHuman && p.c.clone != null) {
+                            for(l = 0; l < p.c.clone.ItemBody.length; l++) {
+                                if (p.c.clone.ItemBody[l] != null && p.c.clone.ItemBody[l].isExpires && System.currentTimeMillis() >= p.c.clone.ItemBody[l].expires) {
+                                    p.c.clone.removeItemBody(l);
+                                }
+                            }
+                        }
+
+                        for(l = 0; l < p.c.ItemBox.length; l++) {
+                            if (p.c.ItemBox[l] != null && p.c.ItemBox[l].isExpires && System.currentTimeMillis() >= p.c.ItemBox[l].expires) {
+                                p.c.removeItemBox(l);
+                            }
+                        }
+
+                        if (this.map.LangCo() && !p.c.isTest && (p.c.isDie || p.c.expdown > 0L)) {
+                            this.DieReturn(p);
+                        }
+                        /*if (this.map.mapTuTien()&& !p.c.isTest && (p.c.isDie || p.c.expdown > 0L)) {
+                            this.DieReturn(p);
+                        }*/
+                        if (p.c.get().isDie && p.c.isTest) {
+                            p.liveFromDead();
+                            Char player = this.getNinja(p.c.testCharID);
+                            if (player != null) {
+                                player.testCharID = -9999;
+                                player.isTest = false;
+                            }
+
+                            p.c.testCharID = -9999;
+                            p.c.isTest = false;
+                        }
+
+                        if (System.currentTimeMillis() > p.c.deleyRequestClan) {
+                            p.c.requestclan = -1;
+                        }
+
+                        if (p.c.clone != null && p.c.clone.islive && p.c.get().isHuman){
+                            if (Math.abs(p.c.x - p.c.clone.x) > 80 || Math.abs(p.c.y - p.c.clone.y) > 30) {
+                                p.c.clone.move((short)Util.nextInt(p.c.x - 35, p.c.x + 35), p.c.y);
+                            }
+                            if(p.c.clone.nclass == 6) {
+                                for(short idSk : p.c.clone.getWinBuffSkills()) {
+                                    UseSkill.useSkillCloneBuff(p.c.clone, idSk);
+                                }
+                            }
+                        }
+
+                        if (p.c.clone != null && (!p.c.clone.islive || System.currentTimeMillis() > p.c.timeRemoveClone)) {
+                            p.c.clone.off();
+                        }
+
+                        if (p.c.get().isDie) {
+                            p.exitNhanBan(false);
+                        }
                     }
                 }
             }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -3629,6 +3637,63 @@ public class TileMap {
     }
 
     public void close() {
+    }
+    
+    public void loadCloneAtk(Player p) throws IOException {
+        int status = p.c.clone.status;
+        int range = 0;
+        int lan = 200;
+        int maxFight = 5;
+        if (status == 0) { 
+            return;
+        }
+        if (status == 1) {
+            range = 100;
+        }
+        if (status == 2) {
+            range = 300;
+        }
+        if (status == 3) {
+            p.c.clone.off();
+            p.removeEffect(13);
+            p.c.clone.status = 0;
+            return;
+        }
+        p.c.clone.timeFight = System.currentTimeMillis() + 500L;
+        final Mob[] arMob = new Mob[10];
+        if (arMob[0] == null) {
+            for (final Mob mob : this.mobs) {
+                if (!mob.isDie && Math.abs(mob.x - p.c.x) <= range && Math.abs(mob.y - p.c.y) <= range) {
+                    arMob[0] = mob;
+                }
+                byte n = 1;
+                for (final Mob mob2 : this.mobs) {
+                    if (!mob2.isDie && mob.id != mob2.id && Math.abs(mob.x - mob2.x) <= lan && Math.abs(mob2.x - p.c.x) <= range && Math.abs(mob2.y - p.c.y) <= range) {
+                        if (Math.abs(mob.y - mob2.y) > lan) {
+                            continue;
+                        }
+                        if (maxFight <= n) {
+                            break;
+                        }
+                        arMob[n] = mob2;
+                        ++n;
+                    }
+                }
+            }
+        }
+        if (arMob[0] != null) {
+            for (int j = 0; j < this.players.size(); ++j) {
+//                p.c.clone.move((short)util.nextInt(arMob[0].x - 35, arMob[0].x + 35), arMob[0].y);
+                Service.PlayerAttack(this.players.get(j), arMob, p.c.clone);
+            }
+            for (byte k = 0; k < arMob.length; ++k) {
+                if (arMob[k] != null) {
+                    int dame = Util.nextInt(p.c.get().dameMin(), p.c.get().dameMax()) * p.c.clone.percendame / 100;
+                    arMob[k].updateHP(-dame, p.c.id, false);
+                    this.attachedMob(dame, arMob[k].id, false);
+                }
+            }
+        }
     }
 
 }

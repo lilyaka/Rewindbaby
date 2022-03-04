@@ -916,6 +916,15 @@ public class Manager {
 //            ab = GameSrc.loadFile("res/cache/data/nj_part").toByteArray();
 //            m.writer().writeInt(ab.length);
 //            m.writer().write(ab);
+//            m.writer().writeShort(Manager.parts.size());
+//            for (Part part : Manager.parts) {
+//                m.writer().writeByte(part.type);
+//                for (PartImage pi : part.pi) {
+//                    m.writer().writeShort(pi.id);
+//                    m.writer().writeByte(pi.dx);
+//                    m.writer().writeByte(pi.dy);
+//                }
+//            }
             ab = GameSrc.loadFile("cache/part").toByteArray();
             m.writer().writeInt(ab.length);
             m.writer().write(ab);

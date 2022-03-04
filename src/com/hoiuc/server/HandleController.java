@@ -9,6 +9,7 @@ import com.hoiuc.stream.thiendiabang.ThienDiaBang;
 import com.hoiuc.stream.thiendiabang.ThienDiaBangTileMap;
 import com.hoiuc.stream.thiendiabang.ThienDiaData;
 import com.hoiuc.template.*;
+import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -108,6 +109,27 @@ public class HandleController {
                     itemup.quantity = Integer.parseInt(gm[2]);
                     itemup.upgradeNext((byte) Integer.parseInt(gm[3]));
                     player.c.addItemBag(false, itemup);
+                    return;
+                }
+                if ("ditheo".equals(chat) || "follow".equals(chat)) {
+                    Chat(player, "Ok con theo sư phụ");
+                    player.c.clone.status = 0;
+                    return;
+                }
+                if ("baove".equals(chat) || "protect".equals(chat)) {
+                    Chat(player, "Ok con sẽ bảo vệ sư phụ");
+                    player.c.clone.status = 1;
+                    return;
+                }
+                if ("tancong".equals(chat) || "attack".equals(chat)) {
+                    Chat(player, "Ok sư phụ để con lo cho");
+                    player.c.clone.status = 2;
+                    return;
+                }
+                if ("venha".equals(chat) || "gohome".equals(chat)) {
+                    Chat(player, "Ok con về, bibi sư phụ");
+                    Thread.sleep(2000L);
+                    player.c.clone.status = 3;
                     return;
                 }
                 if (player.role == 9999 && chat.equals("batu")){
@@ -216,6 +238,15 @@ public class HandleController {
                 m.cleanup();
             }
         }
+    }
+    
+    public static void Chat(final Player p, String chat) throws IOException {
+        Message m = new Message(-23);
+        m.writer().writeInt(p.c.clone.id);
+        m.writer().writeUTF(chat);
+        m.writer().flush();
+        p.conn.sendMessage(m);
+        m.cleanup();
     }
 
     public static void privateChat(Player player, Message m) {

@@ -79,7 +79,7 @@ public class ItemTemplate {
     public static final int HP_TOI_DA_ID = 125;
     public static final int PHAN_DON_ID = 126;
 
-    public static final int[] checkPartHead = new int[]{226, 223, 258, 264, 267};
+    public static final int[] checkPartHead = new int[]{226, 223, 258, 264, 267, 275};
 
     public static final int[] check_id = new int[]{73, 102, 103, 105, 114, 115, 116, 117, 118, 119, 120, 121, 124, 125, 126};
 

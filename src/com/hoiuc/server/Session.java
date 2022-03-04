@@ -267,10 +267,10 @@ public class Session {
                 server.manager.getPackMessage(p);
                 HandleController.selectNinja(p, null);
 //                System.out.println("Login - IP: " + this.ipv4 + " - Session id: " + this.id + " - Username: " + p.username);
-//                server.manager.sendData(p);
-//                server.manager.sendItem(p);
-//                server.manager.sendSkill(p);
-//                server.manager.sendMap(p);
+                server.manager.sendData(p);
+                server.manager.sendItem(p);
+                server.manager.sendSkill(p);
+                server.manager.sendMap(p);
             } else {
                 if(!(Util.CheckString(passw, "^[a-zA-Z0-9]+$"))){
                     return;
