@@ -37,6 +37,10 @@ public class Menu {
         p.conn.sendMessage(mss);
         mss.cleanup();
     }
+    
+    public void test(){
+        System.out.println("a");
+    }
 
     public static void doMenuArray(Player p, String[] menu) {
         Message m = null;
