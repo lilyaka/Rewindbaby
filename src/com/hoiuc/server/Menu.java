@@ -104,6 +104,9 @@ public class Menu {
                         Menu.doMenuArray(p, new String[]{"Bánh Chưng","Bánh Tét","Lì xì","Làm Pháo","Top diệt chuột", "Hướng dẫn"});
                         break;
                     }
+                    case 5: {
+                        Menu.doMenuArray(p, new String[]{"Làm Hoa Hồng Đỏ","Làm Hoa Hồng Vàng","Làm Hoa Hồng Xanh","Làm Giỏ Hoa","Tặng Hoa Hồng Đỏ","Tặng Hoa Hồng Vàng","Tặng Hoa Hồng Xanh","Tặng Giỏ Hoa","Kết Hoa"});
+                    }
                     default: {
                         break;
                     }
@@ -4664,6 +4667,55 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                         }
                     }
                     break;
+                }
+                // 8/3
+                case 5: {
+                    if (p.c.isNhanban) {
+                        Service.chatNPC(p, (short) npcid, Language.NOT_FOR_PHAN_THAN);
+                        return;
+                    }
+                    switch (menuId) {
+                        case 0:
+                            Service.sendInputDialog(p, (short) 119, "Nhập số hoa muốn làm");
+                            break;
+                        
+                        case 1: 
+                            Service.sendInputDialog(p, (short) 120, "Nhập số hoa muốn làm");
+                            break;
+                        
+                        case 2: 
+                            Service.sendInputDialog(p, (short) 121, "Nhập số hoa muốn làmt");
+                            break;
+                        
+               
+                        case 3: 
+                            Service.sendInputDialog(p, (short) 122, "Nhập số hoa muốn làm");
+                            break;
+                  
+                            case 4: 
+                                Service.sendInputDialog(p, (short) 123, "Nhập tên nhân vật");
+                            break;
+                            
+                            case 5: 
+                                Service.sendInputDialog(p, (short) 124, "Nhập tên nhân vật");
+                            break;
+                             
+                            case 6: 
+                                Service.sendInputDialog(p, (short) 125, "Nhập tên nhân vật");
+                            break;
+                             
+                            case 7: 
+                                Service.sendInputDialog(p, (short) 118, "Nhập tên nhân vật");
+                            break;
+                             
+                       
+                           case 8: {
+                                Server.manager.sendTB(p, "Hướng dẫn", "Cách ghép hoa: \n  - Bó hoa hồng đỏ = 8 Hoa hồng đỏ + 1 Giấy màu + 1 Ruy băng + 1 Khung tre\n" +
+                                    " - Bó hoa hồng vàng = 8 Hoa hồng vàng + 1 Giấy màu + 1 Ruy băng + 1 Khung tre\n" +
+                                    " - Bó hoa hồng xanh = 8 Hoa hồng xanh + 1 Giấy màu + 1 Ruy băng + 1 Khung tre\n" +
+                                    " - Giỏ hoa = 8 Hoa hồng đỏ + 8 Hoa hồng vàng + 8 Hoa hồng xanh + 1 Giấy màu + 1 Ruy băng + 1 Khung tre\n");
+                           }
+                    }
                 }
                 default: {
                     Service.chatNPC(p, (short) npcid, "Chức năng này đang cập nhật!");

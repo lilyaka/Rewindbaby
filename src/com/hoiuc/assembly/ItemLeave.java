@@ -12,6 +12,7 @@ public class ItemLeave {
     public static short[] arrItemSuKienNoel = new short[] {666, 667, 668 };
     public static short[] arrItemLv90 = new short[] { 618,619,620,621,622,623,624,625,626,627,628,629,630,631, 632,633,634,635,636,637 };
     public static short[] arrItemSuKienTet = new short[] {638, 639, 641,642 };
+    public static short[] arrItem8thang3 = new short[] {386,387,388};
     
     public static short[] arrItemBOSS = new short[] { 8,8,8,8,8,9,9,9,9,9,275,276,277,278,443,443,443,485,485,524,454,454,456,456,455,455,455,455,455,829};
     public static short[] arrItemBOSSTuanLoc = new short[] { 8,8,9,9,775, 477, 477, 478, 673};
@@ -95,6 +96,12 @@ public class ItemLeave {
                 case 4:{
                     if(per == 0) {
                         im = place.LeaveItem(arrItemSuKienTet[Util.nextInt(arrItemSuKienTet.length)], mob3.x, mob3.y, mob3.templates.type, false);
+                    }
+                    break;
+                }
+                case 5: {
+                    if(per == 0) {
+                        im = place.LeaveItem(arrItem8thang3[Util.nextInt(arrItem8thang3.length)], mob3.x, mob3.y, mob3.templates.type, false);
                     }
                     break;
                 }

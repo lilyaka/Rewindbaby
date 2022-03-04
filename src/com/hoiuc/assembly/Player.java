@@ -93,6 +93,94 @@ public class Player extends User{
         }
         
     }
+    // tạo hàm 
+public void tanghoaxanh()  throws IOException {
+        this.updateExp(5000000L);
+       this.c.removeItemBags(391, 1);
+       this.c.diemhoaxanh++;
+        Char userGF = Client.gI().getNinja(nameUS);
+        if(c.getBagNull() == 0) {
+            this.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+            return;
+        }else {
+            short[] arId = new short[]{12,12,12,8,9,8,9,275,276,277,278,275,7,8,9,436,437,438,682,384,385,383,382,381,222,223,224,225,226,227,228,251, 308,309,548,275,276,277,278,539,540,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,289,290,291,289,290,291,289,290,291,276,277,278,548,12,548,381,382,381,382,381,682,682,682,228,227,226,225,224,223,222,283,436,438,437,436,437,419,403,419,403,407,407,12,254,255,256,12,254,255,256};
+         short idI = arId[Util.nextInt(arId.length)];
+         Item itemup = ItemTemplate.itemDefault(idI);
+        itemup.isLock = false;
+        itemup.isExpires = true;
+        itemup.expires = Util.TimeDay(7);
+        c.addItemBag(true, itemup);
+      userGF.p.sendAddchatYellow("Bạn đã nhận được hoa từ " + c.name + "");
+       
+        
+    }
+    }
+// tạo hàm 
+   public void tanghoavang()  throws IOException {
+        this.updateExp(5000000L);
+        this.c.diemhoavang++;
+       this.c.removeItemBags(390, 1);
+        Char userGF = Client.gI().getNinja(nameUS);
+        if(c.getBagNull() == 0) {
+            this.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+            return;
+        }else {
+            short[] arId = new short[]{12,12,12,8,9,8,9,275,276,277,278,275,7,8,9,436,437,438,682,384,385,383,382,381,222,223,224,225,226,227,228,251, 308,309,548,275,276,277,278,539,540,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,289,290,291,289,290,291,289,290,291,276,277,278,548,12,548,381,382,381,382,381,682,682,682,228,227,226,225,224,223,222,283,436,438,437,436,437,419,403,419,403,407,407,12,254,255,256,12,254,255,256};
+         short idI = arId[Util.nextInt(arId.length)];
+         Item itemup = ItemTemplate.itemDefault(idI);
+        itemup.isLock = false;
+        itemup.isExpires = true;
+        itemup.expires = Util.TimeDay(7);
+        c.addItemBag(true, itemup);
+      userGF.p.sendAddchatYellow("Bạn đã nhận được hoa từ " + c.name + "");
+       
+        
+    }
+    }
+// tạo hàm 
+    public void tanghoado()  throws IOException {
+  
+        this.updateExp(5000000L);
+       this.c.removeItemBags(389, 1);
+       this.c.diemhoado++;
+        Char userGF = Client.gI().getNinja(nameUS);
+        if(c.getBagNull() == 0) {
+            this.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+            return;
+        }else {
+            short[] arId = new short[]{12,12,12,8,9,8,9,275,276,277,278,275,7,8,9,436,437,438,682,384,385,383,382,381,222,223,224,225,226,227,228,251, 308,309,548,275,276,277,278,539,540,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,289,290,291,289,290,291,289,290,291,276,277,278,548,12,548,381,382,381,382,381,682,682,682,228,227,226,225,224,223,222,283,436,438,437,436,437,419,403,419,403,407,407,12,254,255,256,12,254,255,256};
+         short idI = arId[Util.nextInt(arId.length)];
+         Item itemup = ItemTemplate.itemDefault(idI);
+        itemup.isLock = false;
+        itemup.isExpires = true;
+        itemup.expires = Util.TimeDay(7);
+        c.addItemBag(true, itemup);
+      userGF.p.sendAddchatYellow("Bạn đã nhận được hoa từ " + c.name + "");
+       
+        
+    }
+    }
+// tạo hàm
+public void tanggiohoa()  throws IOException {
+        this.updateExp(10000000L);
+       this.c.removeItemBags(392, 1);
+        Char userGF = Client.gI().getNinja(nameUS);
+        if(c.getBagNull() == 0) {
+            this.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+            return;
+        }else {
+            short[] arId = new short[]{12,12,12,8,9,8,9,275,276,277,278,275,7,8,9,436,437,438,682,384,385,383,382,381,222,223,224,225,226,227,228,251, 308,309,548,275,276,277,278,539,540,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,289,290,291,289,290,291,289,290,291,276,277,278,548,12,548,381,382,381,382,381,682,682,682,228,227,226,225,224,223,222,283,436,438,437,436,437,419,403,419,403,407,407,12,254,255,256,12,254,255,256};
+         short idI = arId[Util.nextInt(arId.length)];
+         Item itemup = ItemTemplate.itemDefault(idI);
+        itemup.isLock = false;
+        itemup.isExpires = true;
+        itemup.expires = Util.TimeDay(7);
+        c.addItemBag(true, itemup);
+      userGF.p.sendAddchatYellow("Bạn đã nhận được hoa từ " + c.name + "");
+       userGF.p.updateExp(10000000L);
+        
+    }
+    }
     public void hisgd (String name1 ,String name2, String itemsend,int xusend, String itemadd, int xuadd){
         try {
             Calendar calender = Calendar.getInstance();

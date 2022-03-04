@@ -57,6 +57,254 @@ public class Draw {
                         p.sendAddchatYellow("Vị trí người này không thể đi tới");
                         break;
                     }
+                               case 118:
+                    p.nameUS = str;
+                    Char a18 = Client.gI().getNinja(str);
+                   if(a18 != null && a18.id == p.c.id) {
+                        p.conn.sendMessageLog("Không thể tặng hoa cho chính mình");
+                        return;
+                    }
+                   if(a18 == null) {
+                       p.sendAddchatYellow("Nhân vật này không tồn tại hoặc không online.");
+                        return;
+                    }
+                    if(a18.gender !=0) {
+                        p.conn.sendMessageLog("Chỉ có thể tặng hoa cho nhận vật nữ");
+                        return;
+                    }
+                    
+                        
+                     if(p.c.quantityItemyTotal(392) < 1  ) {
+                         p.conn.sendMessageLog("Bạn không có đủ giỏ hoa");
+                    return;
+                     }
+                     
+                     
+                    if (a18 != null  ) {
+                        p.tanggiohoa();
+    
+                    break;
+                   } else {
+                        p.sendAddchatYellow("Nhân vật này không tồn tại hoặc không online.");
+                    }
+                    break;
+                    
+                    case 119: {
+                        String check = str.replaceAll("\\s+", "");
+                        if(!Util.isNumericInt(str) || check.equals("") || !Util.isNumericInt(str)) {
+                            Service.chatNPC(p, (short)33, "Giá trị tiền cược nhập vào không đúng");
+                            break;
+                        }
+                        long soluong = Integer.parseInt(str);
+                        if (soluong <= 0) {
+                        p.lockAcc();
+                        }
+                        if (p.c.quantityItemyTotal(386) >= 8*soluong && p.c.quantityItemyTotal(393) >= 1*soluong && p.c.quantityItemyTotal(394) >= 1*soluong && p.c.quantityItemyTotal(395) >= 1*soluong) {
+                           
+                            if (p.c.getBagNull() == 0) {
+                                p.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+                            } else {
+                                p.c.removeItemBags(386, (int)(8*soluong));
+                                p.c.removeItemBags(393, (int)(1*soluong));
+                                p.c.removeItemBags(394, (int)(1*soluong));
+                                p.c.removeItemBags(395, (int)(1*soluong));
+                               
+                                Item it = ItemTemplate.itemDefault(389);
+                                it.quantity = (int)(1*soluong);
+                                p.c.addItemBag(true, it);
+                            }
+                            return;
+                        } else {
+                            Service.chatNPC(p, (short) 33, "Hành trang của con không có đủ nguyên liệu");
+                        }
+                        break;
+                    }
+                case 120: {
+                        String check = str.replaceAll("\\s+", "");
+                        if(!Util.isNumericInt(str) || check.equals("") || !Util.isNumericInt(str)) {
+                            Service.chatNPC(p, (short)33, "Giá trị tiền cược nhập vào không đúng");
+                            break;
+                        }
+                        long soluong = Integer.parseInt(str);
+                        if (soluong <= 0) {
+                        p.lockAcc();
+                        }
+                        if (p.c.quantityItemyTotal(387) >= 8*soluong && p.c.quantityItemyTotal(393) >= 1*soluong && p.c.quantityItemyTotal(394) >= 1*soluong && p.c.quantityItemyTotal(395) >= 1*soluong) {
+                           
+                            if (p.c.getBagNull() == 0) {
+                                p.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+                            } else {
+                                p.c.removeItemBags(387, (int)(8*soluong));
+                                p.c.removeItemBags(393, (int)(1*soluong));
+                                p.c.removeItemBags(394, (int)(1*soluong));
+                                p.c.removeItemBags(395, (int)(1*soluong));
+                               
+                                Item it = ItemTemplate.itemDefault(390);
+                                it.quantity = (int)(1*soluong);
+                                p.c.addItemBag(true, it);
+                            }
+                            return;
+                        } else {
+                            Service.chatNPC(p, (short) 33, "Hành trang của con không có đủ nguyên liệu");
+                        }
+                        break;
+                    }
+                case 121: {
+                        String check = str.replaceAll("\\s+", "");
+                        if(!Util.isNumericInt(str) || check.equals("") || !Util.isNumericInt(str)) {
+                            Service.chatNPC(p, (short)33, "Giá trị tiền cược nhập vào không đúng");
+                            break;
+                        }
+                        long soluong = Integer.parseInt(str);
+                        if (soluong <= 0) {
+                        p.lockAcc();
+                        }
+                        if (p.c.quantityItemyTotal(388) >= 8*soluong && p.c.quantityItemyTotal(393) >= 1*soluong && p.c.quantityItemyTotal(394) >= 1*soluong && p.c.quantityItemyTotal(395) >= 1*soluong) {
+                           
+                            if (p.c.getBagNull() == 0) {
+                                p.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+                            } else {
+                                p.c.removeItemBags(388, (int)(8*soluong));
+                                p.c.removeItemBags(393, (int)(1*soluong));
+                                p.c.removeItemBags(394, (int)(1*soluong));
+                                p.c.removeItemBags(395, (int)(1*soluong));
+                               
+                                Item it = ItemTemplate.itemDefault(391);
+                                it.quantity = (int)(1*soluong);
+                                p.c.addItemBag(true, it);
+                            }
+                            return;
+                        } else {
+                            Service.chatNPC(p, (short) 33, "Hành trang của con không có đủ nguyên liệu");
+                        }
+                        break;
+                    }
+                case 122: {
+                        String check = str.replaceAll("\\s+", "");
+                        if(!Util.isNumericInt(str) || check.equals("") || !Util.isNumericInt(str)) {
+                            Service.chatNPC(p, (short)33, "Giá trị tiền cược nhập vào không đúng");
+                            break;
+                        }
+                        long soluong = Integer.parseInt(str);
+                        if (soluong <= 0) {
+                        p.lockAcc();
+                        }
+                        if (p.c.quantityItemyTotal(386) >= 8*soluong && p.c.quantityItemyTotal(387) >= 8*soluong &&p.c.quantityItemyTotal(388) >= 8*soluong&& p.c.quantityItemyTotal(393) >= 1*soluong && p.c.quantityItemyTotal(394) >= 1*soluong && p.c.quantityItemyTotal(395) >= 1*soluong) {
+                           
+                            if (p.c.getBagNull() == 0) {
+                                p.conn.sendMessageLog("Hành trang không đủ chỗ trống");
+                            } else {
+                                 p.c.removeItemBags(386, (int)(8*soluong));
+                                  p.c.removeItemBags(387, (int)(8*soluong));
+                                p.c.removeItemBags(388, (int)(8*soluong));
+                                p.c.removeItemBags(393, (int)(1*soluong));
+                                p.c.removeItemBags(394, (int)(1*soluong));
+                                p.c.removeItemBags(395, (int)(1*soluong));
+                               
+                                Item it = ItemTemplate.itemDefault(392);
+                                it.quantity = (int)(1*soluong);
+                                p.c.addItemBag(true, it);
+                            }
+                            return;
+                        } else {
+                            Service.chatNPC(p, (short) 33, "Hành trang của con không có đủ nguyên liệu");
+                        }
+                        break;
+                    }
+                
+case 123:
+                    p.nameUS = str;
+                    Char a19 = Client.gI().getNinja(str);
+                   if(a19 != null && a19.id == p.c.id) {
+                        p.conn.sendMessageLog("Không thể tặng hoa cho chính mình");
+                        return;
+                    }
+                   if(a19 == null) {
+                       p.sendAddchatYellow("Nhân vật này không tồn tại hoặc không online.");
+                        return;
+                    }
+                    if(a19.gender !=0) {
+                        p.conn.sendMessageLog("Chỉ có thể tặng hoa cho nhận vật nữ");
+                        return;
+                    }
+                    
+                        
+                     if(p.c.quantityItemyTotal(389) < 1  ) {
+                          p.sendAddchatYellow("Bạn không có đủ giỏ hoa hồng đỏ");
+                    return;
+                     }
+                     
+                     
+                    if (a19 != null  ) {
+                        p.tanghoado();
+    
+                    break;
+                   } else {
+                        p.sendAddchatYellow("Nhân vật này không tồn tại hoặc không online.");
+                    }
+                    break;
+                    case 124:
+                    p.nameUS = str;
+                    Char a20 = Client.gI().getNinja(str);
+                   if(a20 != null && a20.id == p.c.id) {
+                        p.conn.sendMessageLog("Không thể tặng hoa cho chính mình");
+                        return;
+                    }
+                   if(a20 == null) {
+                       p.sendAddchatYellow("Nhân vật này không tồn tại hoặc không online.");
+                        return;
+                    }
+                    if(a20.gender !=0) {
+                        p.conn.sendMessageLog("Chỉ có thể tặng hoa cho nhận vật nữ");
+                        return;
+                    }
+                    
+                        
+                     if(p.c.quantityItemyTotal(390) < 1  ) {
+                         p.sendAddchatYellow("Bạn không có đủ giỏ hoa hồng vàng");
+                    return;
+                     }
+                     
+                     
+                    if (a20 != null  ) {
+                        p.tanghoavang();
+    
+                    break;
+                   } else {
+                        p.sendAddchatYellow("Nhân vật này không tồn tại hoặc không online.");
+                    }
+                    break;
+                    case 125:
+                    p.nameUS = str;
+                    Char a21 = Client.gI().getNinja(str);
+                   if(a21 != null && a21.id == p.c.id) {
+                        p.conn.sendMessageLog("Không thể tặng hoa cho chính mình");
+                        return;
+                    }
+                   if(a21 == null) {
+                       p.sendAddchatYellow("Nhân vật này không tồn tại hoặc không online.");
+                        return;
+                    }
+                    if(a21.gender !=0) {
+                        p.conn.sendMessageLog("Chỉ có thể tặng hoa cho nhận vật nữ");
+                        return;
+                    }
+                    
+                        
+                     if(p.c.quantityItemyTotal(391) < 1  ) {
+                         p.conn.sendMessageLog("Bạn không có đủ giỏ hoa hồng xanh");
+                    return;
+                     }
+                     
+                     
+                    if (a21 != null  ) {
+                        p.tanghoaxanh();
+    
+                    break;
+                   } else {
+                        p.sendAddchatYellow("Nhân vật này không tồn tại hoặc không online.");
+                    }
+                    break;
                     case 2: {
                         Char temp = Client.gI().getNinja(str);
                         if(temp != null) {

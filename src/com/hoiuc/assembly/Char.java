@@ -101,6 +101,9 @@ public class Char extends Body {
     public int pointNgocboi = 0;
     public int pointGiay = 0;
     public int pointPhu = 0;
+     public short diemhoado =0;
+         public short diemhoavang =0;
+          public short diemhoaxanh =0;
     public int countTaskHangNgay = 0;
     public int countTaskTaThu = 0;
     public int countTaskDanhVong = 20;
@@ -648,6 +651,9 @@ public class Char extends Body {
                     nja.luongTop = red.getInt("luongTN");
                     nja.expCS = red.getLong("expCS");
                     nja.chuyenSinh = red.getByte("chuyenSinh");
+                     nja.diemhoado = red.getShort("diemhoado");
+                     nja.diemhoavang = red.getShort("diemhoado");
+                     nja.diemhoaxanh = red.getShort("diemhoaxanh");
                     JSONArray jar = (JSONArray)JSONValue.parse(red.getString("skill"));
                     JSONObject job;
                     Skill skill;
@@ -1367,7 +1373,7 @@ public class Char extends Body {
                 jarr.clear();
                 jarr.add(this.clan.clanName);
                 jarr.add(this.clan.pointClan);
-                sqlSET = sqlSET + ",`timeRemoveClone` = "+this.timeRemoveClone+  ",`isHangDong6x` = "+this.isHangDong6x+ ",`ldgtID` = "+this.ldgtID+",`pointBossTL` = "+this.pointBossTL+ ",`maxPointCT` = "+this.isTakePoint+",`clan`='" + jarr.toJSONString() + "',`denbu`=" + this.denbu + ",`newlogin`='" + Util.toDateString(this.newlogin) + "',`ddClan`=" + this.ddClan + ",`caveID`=" + this.caveID + ",`nCave`=" + this.nCave + ",`pointCave`=" + this.pointCave + ",`useCave`=" + this.useCave + ",`bagCaveMax`=" + this.bagCaveMax + ",`itemIDCaveMax`=" + this.itemIDCaveMax + ",`saveBXH`=" + this.saveBXH + ",`exptype`=" + this.exptype + ",`luongTN`=" + this.luongTop + ",`expCS`=" + this.expCS + ",`chuyenSinh`=" + this.chuyenSinh +""; //",`exptutien`=" + this.exptutien + ",`leveltutien`=" + this.leveltutien +
+                sqlSET = sqlSET + ",`timeRemoveClone` = "+this.timeRemoveClone+  ",`isHangDong6x` = "+this.isHangDong6x+ ",`ldgtID` = "+this.ldgtID+",`pointBossTL` = "+this.pointBossTL+ ",`maxPointCT` = "+this.isTakePoint+",`clan`='" + jarr.toJSONString() + "',`denbu`=" + this.denbu + ",`newlogin`='" + Util.toDateString(this.newlogin) + "',`ddClan`=" + this.ddClan + ",`caveID`=" + this.caveID + ",`nCave`=" + this.nCave + ",`pointCave`=" + this.pointCave + ",`useCave`=" + this.useCave + ",`bagCaveMax`=" + this.bagCaveMax + ",`itemIDCaveMax`=" + this.itemIDCaveMax + ",`saveBXH`=" + this.saveBXH + ",`exptype`=" + this.exptype + ",`luongTN`=" + this.luongTop + ",`expCS`=" + this.expCS + ",`chuyenSinh`=" + this.chuyenSinh + ",`diemhoado`=" + this.diemhoado+ ",`diemhoavang`=" + this.diemhoavang+ ",`diemhoaxanh`=" + this.diemhoaxanh +""; //",`exptutien`=" + this.exptutien + ",`leveltutien`=" + this.leveltutien +
                 SQLManager.stat.executeUpdate("UPDATE `ninja` SET " + sqlSET + " WHERE `id`=" + this.id + " LIMIT 1;");
                 if (jarr != null && !jarr.isEmpty()) {
                     jarr.clear();

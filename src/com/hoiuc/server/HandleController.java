@@ -209,6 +209,13 @@ public class HandleController {
                 else if(chat.equals("expcs")) {
                     player.conn.sendMessageLog("exp chuyển sinh: " + player.c.expCS);
                 }
+                else if (chat.equals("pointhoa")&& Server.manager.event == 5){
+                String diemtanghoa = "- Điểm hoa đỏ của bạn là : " + player.c.diemhoado + "\n" +
+                            "-  Điểm hoa vàng của bạn là : " + player.c.diemhoavang + "\n" +
+                            "- Điểm hoa xanh của bạn là : " + player.c.diemhoaxanh;
+                                    Server.manager.sendTB(player, "Điểm Hoa", diemtanghoa);
+                           
+                       }  
                 else if (chat.equals("nvdv") && !player.c.isNhanban) {
                     if (player.c.isTaskDanhVong == 1) {
                         String nv = "NHIỆM VỤ LẦN NÀY: \n" + String.format(DanhVongTemplate.nameNV[player.c.taskDanhVong[0]], player.c.taskDanhVong[1], player.c.taskDanhVong[2]) + "\n\n- Số lần nhận nhiệm vụ còn lại là: " + player.c.countTaskDanhVong;
