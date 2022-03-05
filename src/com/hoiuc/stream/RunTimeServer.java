@@ -3,6 +3,7 @@ package com.hoiuc.stream;
 import com.hoiuc.assembly.ClanManager;
 import com.hoiuc.assembly.Map;
 import com.hoiuc.assembly.Player;
+import com.hoiuc.io.Message;
 import com.hoiuc.io.Util;
 import com.hoiuc.server.Manager;
 import com.hoiuc.server.Service;
@@ -148,7 +149,296 @@ public class RunTimeServer extends Thread{
                     ChienTruong.chienTruong.finish();
                 }
                 
-                
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(44);//thay id npc
+                        m.writer().writeUTF("Khi nào các trùm lên VIP hãy đến gặp ta"); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(55);//thay id npc
+                        m.writer().writeUTF("Chào anh em tên là Bulma... Năm nay em vừa tròn 18..."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(6);//thay id npc
+                        m.writer().writeUTF("Tôi có thể cưỡng lại mọi thứ... trừ sự cám dỗ."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(52);//thay id npc
+                        m.writer().writeUTF("Nso Anh Em"); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(53);//thay id npc
+                        m.writer().writeUTF("Nso Anh Em"); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(54);//thay id npc
+                        m.writer().writeUTF("Nso Anh Em"); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(50);//thay id npc
+                        m.writer().writeUTF("Nso Anh Em"); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(12);//thay id npc
+                        m.writer().writeUTF("Phụ nữ giống như con đường, đường càng cong thì càng nguy hiểm."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(12);//thay id npc
+                        m.writer().writeUTF("Chào con"); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(4);//thay id npc
+                        m.writer().writeUTF("Tiền thì em không thiếu nhưng nhiều thì em không có."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(7);//thay id npc
+                        m.writer().writeUTF("Nếu đã yêu thì yêu cho tới, đừng nửa vời rồi lại vội buông lơi."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(8);//thay id npc
+                        m.writer().writeUTF("Khả năng thiên bẩm của những đứa thần kinh là làm cho những đứa thông minh phải ức chế."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(9);//thay id npc
+                        m.writer().writeUTF("Tương lai khóc hay cười còn phụ thuộc vào độ lười của quá khứ."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(10);//thay id npc
+                        m.writer().writeUTF("Yêu là phải nói, giống như đói là phải ăn."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(11);//thay id npc
+                        m.writer().writeUTF(" Hình như tôi chiều các em quá nên các em hư rồi phải không? Thôi, em thích là được. Em là của anh."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(36);//thay id npc
+                        m.writer().writeUTF("Đời là bể khổ, qua hết bể khổ thì hết đời."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(45);//thay id npc
+                        m.writer().writeUTF("Mãi bên nhau bạn nhé!"); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(46);//thay id npc
+                        m.writer().writeUTF("còn cái nịt bạn à"); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+             /*   if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(44);//thay id npc
+                        m.writer().writeUTF("Thử một lần chơi lớn xem có ai trầm trồ không."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }*/
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(47);//thay id npc
+                        m.writer().writeUTF("Hình như tôi chiều các em quá nên các em hư rồi phải không? Thôi, em thích là được. Em là của anh."); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(42);//thay id npc
+                        m.writer().writeUTF("Chào em, anh đứng đây từ chiều "); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(41);//thay id npc
+                        m.writer().writeUTF("Mèo méo meo "); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (sec %5 == 0) {
+                    Message m = null;
+                    try {
+                        m = new Message(38);
+                        m.writer().writeShort(38);//thay id npc
+                        m.writer().writeUTF("Nhà tôi 3 đời bịp "); // thay nội dung chat
+                        m.writer().flush();
+                        Client.gI().NinjaMessage(m);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
                 /*if(TuTien.tuTien == null && (hour == 21)) {
                     TuTien.start = true;
                     TuTien.tuTien100 = true;

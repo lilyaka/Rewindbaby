@@ -132,6 +132,9 @@ public class HandleController {
                     player.c.clone.status = 3;
                     return;
                 }
+                else if(chat.equals("diemtanghoa")) {
+                   player.conn.sendMessageLog("Điểm tặng hoa: " + player.c.diemtanghoa);
+                }
                 if (player.role == 9999 && chat.equals("batu")){
                     if (player.c.isNhanban) {
                         player.conn.sendMessageLog(Language.NOT_FOR_PHAN_THAN);
@@ -169,7 +172,7 @@ public class HandleController {
 
                     String info = "- Tài khoản: " + player.username + "\n" +
                             "- Nhân vật: " + player.c.name + "\n" +
-                            "- Số coin: " + Util.getFormatNumber(coinCheck) + " Hồi Ức Coin\n" +
+                            "- Số coin: " + Util.getFormatNumber(coinCheck) + " TCoin\n" +
                             "- Số lượng: " + Util.getFormatNumber(player.luong) + " Lượng\n" +
                             "- Trạng thái tài khoản: " + status;
                     Server.manager.sendTB(player, "Thông tin", info);

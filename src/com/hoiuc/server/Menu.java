@@ -292,6 +292,10 @@ public class Menu {
                         Menu.npcNangCap(p, npcId, menuId, b3);
                         break;
                     }
+                    case 55: {
+                        Menu.npcBulma(p, npcId, menuId, b3);
+                        break;
+                    }
                    /*case 44: {
                         Menu.npcCLXTCoin(p, npcId, menuId, b3);
                         break;
@@ -467,6 +471,10 @@ public class Menu {
                         Menu.npcNangCap(p, npcId, menuId, b3);
                         break;
                     }
+                    case 55: {
+                        Menu.npcBulma(p, npcId, menuId, b3);
+                        break;
+                    }
                     /*case 40: {
                         Menu.npcKagai_GTC(p, npcId, menuId, b3);
                         break;
@@ -635,6 +643,81 @@ public class Menu {
         }       
     }
 
+    public static void npcBulma(Player p, byte npcid, byte menuId, byte b3) throws IOException {
+        switch(menuId) {
+            case 0: {
+                 if (p.c.isNhanban) {
+                    Service.chatNPC(p, (short) npcid, Language.NOT_FOR_PHAN_THAN);
+                    return;
+                }
+                 if(p.c.level < 60) {
+                    Service.chatNPC(p, (short) npcid, "Anh chưa đủ cấp 60 để tặng hoa cho iem\n Anh hãy tu luyện thêm rồi đến gặp iem!\n Yêu........");   
+                    break;
+                }
+                 if(p.c.quantityItemyTotal(862) < 1) {
+                    Service.chatNPC(p, (short) npcid, "Anh không có hoa để tặng tặng hoa cho iem rồi\n Dỗi........");   
+                    return;
+                 }
+                 if(p.c.getBagNull() < 1) {
+                    p.conn.sendMessageLog("Hành trang không đủ chỗ trống để nhận quà");
+                    return;
+                }
+                p.c.diemtanghoa += 1;
+                p.c.removeItemBag(p.c.getIndexBagid(862, false), 1);
+                Item it;
+                int per = Util.nextInt(300);
+                if(per<1) {
+                    it = ItemTemplate.itemDefault(862);
+                } else {
+                    per = Util.nextInt(UseItem.idTangHoa.length);
+                    it = ItemTemplate.itemDefault(UseItem.idTangHoa[per]);
+                }
+                p.c.removeItemBag(p.c.getIndexBagid(862, true), 1);
+                it.isLock = false;
+                it.quantity = 1;
+                p.updateExp(10000000L);
+                p.c.addItemBag(true, it);
+                Service.chatNPC(p, (short) npcid, "Cảm ơn Anhh...Yêu"); 
+                break;
+        }
+            case 1: {
+                if (p.c.isNhanban) {
+                    Service.chatNPC(p, (short) npcid, Language.NOT_FOR_PHAN_THAN);
+                    return;
+                }
+                if(p.c.diemtanghoa < 5000) {
+                    Service.chatNPC(p, (short) npcid, "Anh chưa đủ 5000 điểm tặng hoa để nhận đồ xịn\n Hãy tặng em đủ 5000 bó hoa hồng\n Yêu");   
+                    break;
+                }
+                if(p.c.getBagNull() < 3) {
+                    p.conn.sendMessageLog("Hành trang không đủ 3  chỗ trống để nhận quà");
+                    return;
+                }
+                if(p.c.diemtanghoa >= 5000) {
+                    p.c.addItemBag(false, ItemTemplate.itemDefault(857));
+                    p.c.addItemBag(false, ItemTemplate.itemDefault(858));
+                    p.c.addItemBag(false, ItemTemplate.itemDefault(859));
+                    Service.chatNPC(p, (short) npcid, "Anh đã đổi món quà 5000 điểm\n Yêu");   
+                    p.c.diemtanghoa -= 5000;
+                    break;
+                }
+           }
+            case 2: {
+                p.conn.sendMessageLog("Điểm tặng hoa: " + p.c.diemtanghoa);
+                break;
+            }
+            case 3: {
+                Server.manager.sendTB(p, "Hướng dẫn", "Anh cần tặng hoa cho Bulma hoặc Nami"
+                        + "\nMỗi 1 bó hoa tặng sẽ nhận được 1 điểm tặng hoa\n"
+                        + "Có 2 cách xem điểm 1 là chat diemtanghoa, 2 là xem tại npc Bulma hoặc Nami\n"
+                        + "Hoa được bán tại npc Gooso\n"
+                        + "Khi đủ 5000 điểm sẽ nhận dc 1 set cải trang Bulma chỉ số xịn\n"
+                        + "Chúc Anh Sớm Trở Thành Trùm VIP!");
+                break;
+            }
+        }
+    }
+    
     public static void menuAdmin(Player p, byte npcid, byte menuId, byte b3) {
         Player player;
         int i;
@@ -5671,7 +5754,23 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                     }
                 }
                 break;
-            }                  
+            }
+            case 4: {
+                Server.manager.sendTB(p, "Mốc Vip", "- Nạp đủ mốc sẽ nhận thưởng.\n"
+                        + "- Vip 1: 20k\n"
+                        + "Nhận 1 set Jirai hoặc Yumito + 0\n"
+                        + "- Vip 2: 50k\n"
+                        + "Nhận 1 set Jirai hoặc Yumito + 8\n"
+                        + "- Vip 3: 100k\n"
+                        + "Nhận 1 set Jirai hoặc Yumito + 16\n"
+                        + "- Vip 4: 200k\n"
+                        + "Nhận mặt nạ Sumimura + 0 có thể nâng cấp\n"
+                        + "- Vip 5: 500k\n"
+                        + "Nhận 1 set Tôn Ngộ Không + 16 mặt nạ có thể nâng cấp\n"
+                        + "- Vip 6: 1tr\n"
+                        + "Nhận 1 Phượng Hoàng Băng siêu VIP\n");
+                break;
+            }
         }
     }
  
