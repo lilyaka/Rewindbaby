@@ -201,7 +201,7 @@ public class UseItem {
                         for (i = 0; i < 4; ++i) {
                             op = -1;
                             do {
-                                op = Util.nextInt(UseItem.arrOp.length);
+                                op = (int) Util.nextInt(UseItem.arrOp.length);
                                 for (Option option : item.options) {
                                     if (UseItem.arrOp[op] == option.id) {
                                         op = -1;
@@ -512,10 +512,10 @@ public class UseItem {
                             p.sendAddchatYellow(Language.NOT_FOR_PHAN_THAN);
                             return;
                         }
-                        int per = Util.nextInt(UseItem.idItemPhucNangNhanGia.length);
+                        int per = (int) Util.nextInt(UseItem.idItemPhucNangNhanGia.length);
                         p.c.removeItemBag(index, 1);
                         if (UseItem.idItemPhucNangNhanGia[per] == -1) {
-                            long yenran = Util.nextInt(100000, 150000);
+                            long yenran = (long) Util.nextInt(100000, 150000);
                             p.c.upyenMessage(yenran);
                             p.sendAddchatYellow("Bạn nhận được " + yenran + " yên.");
                         } else {
@@ -738,7 +738,7 @@ public class UseItem {
                             p.sendAddchatYellow(Language.NOT_FOR_PHAN_THAN);
                             return;
                         }
-                        int per = Util.nextInt(UseItem.idItemTuiQuaGiaToc.length);
+                        int per = (int) Util.nextInt(UseItem.idItemTuiQuaGiaToc.length);
                         p.c.addItemBag(true, ItemTemplate.itemDefault(UseItem.idItemTuiQuaGiaToc[per]));
                         p.c.removeItemBag(index, 1);
                         break;
@@ -810,13 +810,13 @@ public class UseItem {
                         }
                         p.c.removeItemBag(index, 1);
                         if (Util.nextInt(3) == 0) {
-                            int num = Util.nextInt(200000, 250000);
+                            int num = (int) Util.nextInt(200000, 250000);
                             p.c.upyenMessage(num);
                             p.sendAddchatYellow("Bạn nhận được " + num + " yên");
                         } else if (Util.nextInt(150) == 0) {
-                            p.c.addItemBag(false, ItemTemplate.itemDefault(GameSrc.arrNgocRong[Util.nextInt(GameSrc.arrNgocRong.length)], false));
+                            p.c.addItemBag(false, ItemTemplate.itemDefault(GameSrc.arrNgocRong[(int)Util.nextInt(GameSrc.arrNgocRong.length)], false));
                         } else {
-                            short idI = UseItem.idItemRuongMayMan[Util.nextInt(UseItem.idItemRuongMayMan.length)];
+                            short idI = UseItem.idItemRuongMayMan[(int)Util.nextInt(UseItem.idItemRuongMayMan.length)];
                             ItemTemplate data2 = ItemTemplate.ItemTemplateId(idI);
                             Item itemup;
                             if (data2.type < 10) {
@@ -834,7 +834,7 @@ public class UseItem {
                             int idOp2;
                             for (Option Option : itemup.options) {
                                 idOp2 = Option.id;
-                                Option.param = Util.nextInt(item.getOptionShopMin(idOp2, Option.param), Option.param);
+                                Option.param = (int) Util.nextInt(item.getOptionShopMin(idOp2, Option.param), Option.param);
                             }
                             p.c.addItemBag(true, itemup);
                         }
@@ -861,11 +861,11 @@ public class UseItem {
                             return;
                         }
                         if (Util.nextInt(3) == 0) {
-                            int num = Util.nextInt(400000, 500000);
+                            int num = (int) Util.nextInt(400000, 500000);
                             p.c.upyenMessage(num);
                             p.sendAddchatYellow("Bạn nhận được " + num + " yên");
                         } else if (Util.nextInt(150) == 0) {
-                            p.c.addItemBag(false, ItemTemplate.itemDefault(GameSrc.arrNgocRong[Util.nextInt(GameSrc.arrNgocRong.length)], false));
+                            p.c.addItemBag(false, ItemTemplate.itemDefault(GameSrc.arrNgocRong[(int)Util.nextInt(GameSrc.arrNgocRong.length)], false));
                         } else if (Util.nextInt(300) == 1) {
                             p.c.addItemBag(true, ItemTemplate.itemDefault(28, false));
                         } else if (Util.nextInt(300) == 0) {
@@ -873,7 +873,7 @@ public class UseItem {
                         } else if (Util.nextInt(130) == 99) {
                             p.c.addItemBag(false, ItemTemplate.itemDefault(539, false));
                         } else {
-                            short idI = UseItem.idItemRuongTinhXao[Util.nextInt(UseItem.idItemRuongTinhXao.length)];
+                            short idI = UseItem.idItemRuongTinhXao[(int)Util.nextInt(UseItem.idItemRuongTinhXao.length)];
                             ItemTemplate data2 = ItemTemplate.ItemTemplateId(idI);
                             Item itemup;
                             if (data2.type < 10) {
@@ -890,7 +890,7 @@ public class UseItem {
                             itemup.isLock = item.isLock;
                             for (Option Option : itemup.options) {
                                 int idOp2 = Option.id;
-                                Option.param = Util.nextInt(item.getOptionShopMin(idOp2, Option.param), Option.param);
+                                Option.param = (int)Util.nextInt(item.getOptionShopMin(idOp2, Option.param), Option.param);
                             }
                             p.c.addItemBag(true, itemup);
                         }
@@ -933,7 +933,7 @@ public class UseItem {
                         if (Util.nextInt(10) < 3) {
                             p.updateExp(100000L);
                         } else {
-                            short idI = UseItem.idItemHopBanhThuong[Util.nextInt(UseItem.idItemHopBanhThuong.length)];
+                            short idI = UseItem.idItemHopBanhThuong[(int)Util.nextInt(UseItem.idItemHopBanhThuong.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             itemup.isLock = item.isLock;
                             p.c.addItemBag(true, itemup);
@@ -955,7 +955,7 @@ public class UseItem {
                             return;
                         }
                         p.c.removeItemBag(index, 1);
-                        int perRuong = Util.nextInt(200);
+                        int perRuong = (int) Util.nextInt(200);
                         p.updateExp(1000000L);
                         if (Util.nextInt(10) < 3) {
                             p.updateExp(1500000L);
@@ -966,7 +966,7 @@ public class UseItem {
                             Manager.chatKTG("Người chơi " + p.c.name + " sử dụng " + data.name + " đã nhận được " + ItemTemplate.ItemTemplateId(384).name);
                             p.c.addItemBag(true, ItemTemplate.itemDefault(384, false));
                         } else {
-                            short idI = UseItem.idItemHopBanhThuongHang[Util.nextInt(UseItem.idItemHopBanhThuongHang.length)];
+                            short idI = UseItem.idItemHopBanhThuongHang[(int)Util.nextInt(UseItem.idItemHopBanhThuongHang.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             itemup.isLock = item.isLock;
                             p.c.addItemBag(true, itemup);
@@ -1028,22 +1028,22 @@ public class UseItem {
                         if (Util.nextInt(2) == 0) {
                             if (p.c.gender == 0) {
                                 if (p.c.get().level < 50 && item.id != 384 && item.id != 385) {
-                                    idI2 = (new short[]{171, 161, 151, 141, 131})[Util.nextInt(5)];
+                                    idI2 = (new short[]{171, 161, 151, 141, 131})[(int)Util.nextInt(5)];
                                 } else if (p.c.get().level < 60 && item.id != 385) {
-                                    idI2 = (new short[]{137, 163, 153, 143, 133})[Util.nextInt(5)];
+                                    idI2 = (new short[]{137, 163, 153, 143, 133})[(int)Util.nextInt(5)];
                                 } else if (p.c.get().level < 70) {
-                                    idI2 = (new short[]{330, 329, 328, 327, 326})[Util.nextInt(5)];
+                                    idI2 = (new short[]{330, 329, 328, 327, 326})[(int)Util.nextInt(5)];
                                 } else {
-                                    idI2 = (new short[]{368, 367, 366, 365, 364})[Util.nextInt(5)];
+                                    idI2 = (new short[]{368, 367, 366, 365, 364})[(int)Util.nextInt(5)];
                                 }
                             } else if (p.c.get().level < 50 && item.id != 384 && item.id != 385) {
-                                idI2 = (new short[]{170, 160, 102, 140, 130})[Util.nextInt(5)];
+                                idI2 = (new short[]{170, 160, 102, 140, 130})[(int)Util.nextInt(5)];
                             } else if (p.c.get().level < 60 && item.id != 385) {
-                                idI2 = (new short[]{172, 162, 103, 142, 132})[Util.nextInt(5)];
+                                idI2 = (new short[]{172, 162, 103, 142, 132})[(int)Util.nextInt(5)];
                             } else if (p.c.get().level < 70) {
-                                idI2 = (new short[]{325, 323, 333, 319, 317})[Util.nextInt(5)];
+                                idI2 = (new short[]{325, 323, 333, 319, 317})[(int)Util.nextInt(5)];
                             } else {
-                                idI2 = (new short[]{363, 361, 359, 357, 355})[Util.nextInt(5)];
+                                idI2 = (new short[]{363, 361, 359, 357, 355})[(int)Util.nextInt(5)];
                             }
                         } else if (Util.nextInt(2) == 1) {
                             if (p.c.get().nclass == 1 || p.c.get().nclass == 2) {
@@ -1063,13 +1063,13 @@ public class UseItem {
                                 idI2 = (new short[]{369, 370, 371, 372, 373, 374})[p.c.get().nclass - 1];
                             }
                         } else if (p.c.get().level < 50 && item.id != 384 && item.id != 385) {
-                            idI2 = (new short[]{192, 187, 182, 177})[Util.nextInt(4)];
+                            idI2 = (new short[]{192, 187, 182, 177})[(int)Util.nextInt(4)];
                         } else if (p.c.get().level < 60 && item.id != 385) {
-                            idI2 = (new short[]{193, 188, 183, 178})[Util.nextInt(4)];
+                            idI2 = (new short[]{193, 188, 183, 178})[(int)Util.nextInt(4)];
                         } else if (p.c.get().level < 70) {
-                            idI2 = (new short[]{324, 322, 320, 318})[Util.nextInt(4)];
+                            idI2 = (new short[]{324, 322, 320, 318})[(int)Util.nextInt(4)];
                         } else {
-                            idI2 = (new short[]{362, 360, 358, 356})[Util.nextInt(4)];
+                            idI2 = (new short[]{362, 360, 358, 356})[(int)Util.nextInt(4)];
                         }
                         ItemTemplate data2 = ItemTemplate.ItemTemplateId(idI2);
                         Item itemup;
@@ -1116,7 +1116,7 @@ public class UseItem {
                         if (Util.nextInt(10) != 0) {
                             p.updateExp(3000000L);
                         } else {
-                            short idI = UseItem.idItemDieuGiay[Util.nextInt(UseItem.idItemDieuGiay.length)];
+                            short idI = UseItem.idItemDieuGiay[(int)Util.nextInt(UseItem.idItemDieuGiay.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             itemup.isLock = item.isLock;
                             p.c.addItemBag(true, itemup);
@@ -1139,7 +1139,7 @@ public class UseItem {
                         }
                         p.c.removeItemBag(index, 1);
                         p.updateExp(2000000L);
-                        int perRuong = Util.nextInt(200);
+                        int perRuong = (int) Util.nextInt(200);
                         if (Util.nextInt(10) != 0) {
                             p.updateExp(5000000L);
                         } else if (perRuong == 50) {
@@ -1148,7 +1148,7 @@ public class UseItem {
                         } else if (perRuong <= 1) {
                             p.c.addItemBag(true, ItemTemplate.itemDefault(384, false));
                         } else {
-                            short idI = UseItem.idItemDieuVai[Util.nextInt(UseItem.idItemDieuVai.length)];
+                            short idI = UseItem.idItemDieuVai[(int)Util.nextInt(UseItem.idItemDieuVai.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             itemup.isLock = item.isLock;
                             p.c.addItemBag(true, itemup);
@@ -1169,14 +1169,14 @@ public class UseItem {
                                 p.sendAddchatYellow("Yêu cầu gia tộc phải đạt cấp 5");
                                 return;
                             }
-                            p.upExpClan(Util.nextInt(100, 200));
+                            p.upExpClan((int) Util.nextInt(100, 200));
                             p.c.removeItemBag(index, 1);
                         } else if (item.id == 437) {
                             if (clan.level < 10) {
                                 p.sendAddchatYellow("Yêu cầu gia tộc phải đạt cấp 10");
                                 return;
                             }
-                            p.upExpClan(Util.nextInt(300, 800));
+                            p.upExpClan((int) Util.nextInt(300, 800));
                             p.c.removeItemBag(index, 1);
                         } else {
                             if (item.id != 438) {
@@ -1186,7 +1186,7 @@ public class UseItem {
                                 p.sendAddchatYellow("Yêu cầu gia tộc phải đạt cấp 15");
                                 return;
                             }
-                            p.upExpClan(Util.nextInt(1000, 2000));
+                            p.upExpClan((int) Util.nextInt(1000, 2000));
                             p.c.removeItemBag(index, 1);
                         }
                         break;
@@ -1238,7 +1238,7 @@ public class UseItem {
                             }
                         }
                         else {
-                            short idI = UseItem.idItemBanhChocolate[Util.nextInt(UseItem.idItemBanhChocolate.length)];
+                            short idI = UseItem.idItemBanhChocolate[(int)Util.nextInt(UseItem.idItemBanhChocolate.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             itemup.isLock = item.isLock;
                             p.c.addItemBag(true, itemup);
@@ -1269,8 +1269,8 @@ public class UseItem {
                             p.updateExp(1000000L);
                         }
 
-                        int perRuong = Util.nextInt(2500);
-                        int rhb = Util.nextInt(16500);
+                        int perRuong = (int) Util.nextInt(2500);
+                        int rhb = (int) Util.nextInt(16500);
                         if (Util.nextInt(10) < 3) {
                             if (p.status == 1) {
                                 p.updateExp(1000000L);
@@ -1326,12 +1326,12 @@ public class UseItem {
                             p.c.addItemBag(false, itemUp);
                             break;
                         } else if (Util.nextInt(150) <= 1) {
-                            Item itemup = ItemTemplate.itemDefault(Util.nextInt(652,655));
+                            Item itemup = ItemTemplate.itemDefault((int) Util.nextInt(652,655));
                             itemup.isLock = false;
                             p.c.addItemBag(false, itemup);
                             break;
                         } else {
-                            short idI = UseItem.idItemBanhDauTay[Util.nextInt(UseItem.idItemBanhDauTay.length)];
+                            short idI = UseItem.idItemBanhDauTay[(int)Util.nextInt(UseItem.idItemBanhDauTay.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             if (idI == 781 || idI == 742 || idI == 523) {
                                 itemup.quantity = 1;
@@ -1504,7 +1504,7 @@ public class UseItem {
 
                         p.updateExp(20000000);
                         short[] arId = new short[]{12,12,12,8,9,8,9,275,276,277,278,289,290,291,289,290,291,289,290,291,535,535,536,536,535,536,275,276,277,278,548,12,548,381,382,381,382,381,682,682,682,228,227,226,225,224,223,222,283,436,438,437,436,437,419,403,419,403,407,407,12,254,255,256,12,254,255,256,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,7,8,9,436,437,438,682,384,829,745,382,381,222,223,224,225,226,227,228,251, 308,309,548,275,276,277,278,539,540};
-                        short idI = arId[Util.nextInt(arId.length)];
+                        short idI = arId[(int)Util.nextInt(arId.length)];
                         Item itemup = ItemTemplate.itemDefault(idI);
                         itemup.isLock = false;
                         p.c.removeItemBag(index, 1);
@@ -1535,7 +1535,7 @@ public class UseItem {
                         }else {
                             arId = new short[]{760, 761, 762, 763, 764, 765, 766, 767, 768};
                         }
-                        idI = arId[Util.nextInt(arId.length)];
+                        idI = arId[(int)Util.nextInt(arId.length)];
                         Item itemup = ItemTemplate.itemDefault(idI);
                         itemup.isLock = false;
                         p.c.removeItemBag(index, 1);
@@ -1572,7 +1572,7 @@ public class UseItem {
                         }else {
                             arId = new short[]{760, 761, 762, 763, 764, 765, 766, 767, 768};
                         }
-                        idI = arId[Util.nextInt(arId.length)];
+                        idI = arId[(int)Util.nextInt(arId.length)];
                         Item itemup = ItemTemplate.itemDefault(idI);
                         itemup.isLock = false;
                         p.c.removeItemBag(index, 1);
@@ -1591,7 +1591,7 @@ public class UseItem {
                     }
                     p.updateExp(5000000);
                     short[] arId = new short[]{12,12,12,8,9,8,9,275,276,277,278,275,289,290,291,289,290,291,289,290,291,535,535,535,536,536,536,276,277,278,548,12,548,381,382,381,382,381,682,682,682,228,227,226,225,224,223,222,283,436,438,437,436,437,419,403,419,403,407,407,12,254,255,256,12,254,255,256,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,7,8,9,436,437,438,682,829,745,383,382,381,222,223,224,225,226,227,228,251, 308,309,548,275,276,277,278,539,540};
-                            short idI = arId[Util.nextInt(arId.length)];
+                            short idI = arId[(int)Util.nextInt(arId.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             itemup.isLock = false;
                             p.c.removeItemBag(index, 1);
@@ -1610,7 +1610,7 @@ public class UseItem {
                     }
                     p.updateExp(15000000);
                     short[] arId = new short[]{12,12,12,8,9,8,9,275,276,277,278,289,290,291,289,290,291,289,290,291,275,535,535,536,536,535,536,276,277,278,548,12,548,381,382,381,382,381,682,682,682,228,227,226,225,224,223,222,283,436,438,437,436,437,419,403,419,403,407,407,12,254,255,256,12,254,255,256,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,7,8,9,436,437,438,682,829,745,383,382,381,222,223,224,225,226,227,228,251, 308,309,548,275,276,277,278,539,540};
-                            short idI = arId[Util.nextInt(arId.length)];
+                            short idI = arId[(int)Util.nextInt(arId.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             itemup.isLock = false;
                             p.c.removeItemBag(index, 1);
@@ -1628,11 +1628,11 @@ public class UseItem {
 
                         p.c.removeItemBag(index, 1);
                         if (Util.nextInt(3) == 0) {
-                            int num = Util.nextInt(800000, 12000000);
+                            int num = (int) Util.nextInt(800000, 12000000);
                             p.c.upyenMessage(num);
                             p.sendAddchatYellow("Bạn nhận được " + num + " yên");
                         } else if (Util.nextInt(130) <= 2) {
-                            p.c.addItemBag(false, ItemTemplate.itemDefault(GameSrc.arrNgocRong[Util.nextInt(GameSrc.arrNgocRong.length)], false));
+                            p.c.addItemBag(false, ItemTemplate.itemDefault(GameSrc.arrNgocRong[(int)Util.nextInt(GameSrc.arrNgocRong.length)], false));
                         } else if (Util.nextInt(800) == 1) {
                             p.c.addItemBag(true, ItemTemplate.itemDefault(28, false));
                         } else if (Util.nextInt(300) == 0) {
@@ -1644,13 +1644,13 @@ public class UseItem {
                                 itemupNew.expires = -1l;
                             } else {
                                 itemupNew.isExpires = true;
-                                itemupNew.expires = Util.TimeDay(GameSrc.ArrdayLuck[Util.nextInt(GameSrc.ArrdayLuck.length)]);;
+                                itemupNew.expires = Util.TimeDay(GameSrc.ArrdayLuck[(int)Util.nextInt(GameSrc.ArrdayLuck.length)]);;
                             }
                             p.c.addItemBag(true, itemupNew);
                         } else if (Util.nextInt(12000) == 0) {
                             p.c.addItemBag(true, ItemTemplate.itemDefault(797, false));
                         } else {
-                            short idI = UseItem.idItemRuongMaQuai[Util.nextInt(UseItem.idItemRuongMaQuai.length)];
+                            short idI = UseItem.idItemRuongMaQuai[(int)Util.nextInt(UseItem.idItemRuongMaQuai.length)];
                             ItemTemplate data2 = ItemTemplate.ItemTemplateId(idI);
                             Item itemup;
                             if (data2.type < 10) {
@@ -1668,7 +1668,7 @@ public class UseItem {
                             int idOp2;
                             for (Option Option : itemup.options) {
                                 idOp2 = Option.id;
-                                Option.param = Util.nextInt(item.getOptionShopMin(idOp2, Option.param), Option.param);
+                                Option.param = (int)Util.nextInt(item.getOptionShopMin(idOp2, Option.param), Option.param);
                             }
                             p.c.addItemBag(true, itemup);
                         }
@@ -1708,12 +1708,12 @@ public class UseItem {
                                 p.updateExp(3000000L);
                             }
                         } else if (Util.nextInt(160) <= 1) {
-                            Item itemup = ItemTemplate.itemDefault(Util.nextInt(654,655));
+                            Item itemup = ItemTemplate.itemDefault((int) Util.nextInt(654,655));
                             itemup.isLock = false;
                             p.c.addItemBag(false, itemup);
                             break;
                         }else {
-                            short idI = UseItem.idItemBanhChocolate[Util.nextInt(UseItem.idItemBanhChocolate.length)];
+                            short idI = UseItem.idItemBanhChocolate[(int)Util.nextInt(UseItem.idItemBanhChocolate.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             itemup.isLock = item.isLock;
                             p.c.addItemBag(true, itemup);
@@ -1745,9 +1745,9 @@ public class UseItem {
                             p.updateExp(2000000L);
                         }
 
-                        int perRuong = Util.nextInt(2000);
-                        int rhb = Util.nextInt(15000);
-                        int phuonghoang = Util.nextInt(10000); 
+                        int perRuong = (int) Util.nextInt(2000);
+                        int rhb = (int) Util.nextInt(15000);
+                        int phuonghoang = (int) Util.nextInt(10000); 
                         if (Util.nextInt(10) < 3) {
                             if (p.status == 1) {
                                 p.updateExp(1500000L);
@@ -1759,7 +1759,7 @@ public class UseItem {
                             }
                             break;
                         } else if (Util.nextInt(160) <= 1) {
-                            Item itemup = ItemTemplate.itemDefault(Util.nextInt(652,653));
+                            Item itemup = ItemTemplate.itemDefault((int) Util.nextInt(652,653));
                             itemup.isLock = false;
                             p.c.addItemBag(false, itemup);
                             break;
@@ -1808,7 +1808,7 @@ public class UseItem {
                             p.c.addItemBag(false, itemUp);
                             return;
                         } else {
-                            short idI = UseItem.idItemBanhDauTay[Util.nextInt(UseItem.idItemBanhDauTay.length)];
+                            short idI = UseItem.idItemBanhDauTay[(int)Util.nextInt(UseItem.idItemBanhDauTay.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             if (idI == 781 || idI == 742 || idI == 523 || idI == 828) {
                                 itemup.quantity = 1;
@@ -1831,11 +1831,11 @@ public class UseItem {
                         }
                         p.c.removeItemBag(index, 1);
 
-                        int perRuong = Util.nextInt(2000);
-                        int rhb = Util.nextInt(15000);
+                        int perRuong = (int) Util.nextInt(2000);
+                        int rhb = (int) Util.nextInt(15000);
                         if (Util.nextInt(10) < 3) {
                         } else if (Util.nextInt(160) <= 1) {
-                            Item itemup = ItemTemplate.itemDefault(Util.nextInt(652,653));
+                            Item itemup = ItemTemplate.itemDefault((int) Util.nextInt(652,653));
                             itemup.isLock = false;
                             p.c.addItemBag(false, itemup);
                             break;
@@ -1884,7 +1884,7 @@ public class UseItem {
                             p.c.addItemBag(false, itemUp);
                             return;
                         } else {
-                            short idI = UseItem.idItemHomBlackFriday[Util.nextInt(UseItem.idItemHomBlackFriday.length)];
+                            short idI = UseItem.idItemHomBlackFriday[(int)Util.nextInt(UseItem.idItemHomBlackFriday.length)];
                             Item itemup = ItemTemplate.itemDefault(idI);
                             if (idI == 781 || idI == 742 || idI == 523 || idI == 828) {
                                 itemup.quantity = 1;
@@ -2038,7 +2038,7 @@ public class UseItem {
                     }
                     //Thông linh thảo
                     case 778:{
-                        if (p.updateXpMounts(Util.nextInt(500, 1000), (byte) 3)) {
+                        if (p.updateXpMounts((int)Util.nextInt(500, 1000), (byte) 3)) {
                             p.c.removeItemBag(index, 1);
                         }
                         break;
@@ -2090,11 +2090,11 @@ public class UseItem {
                             return;
                         }                       
                         Item itemup = ItemTemplate.itemDefault(832);                       
-                        Option op = new Option(6, Util.nextInt(10000, 70000));
+                        Option op = new Option(6, (int) Util.nextInt(10000, 70000));
                         itemup.options.add(op);
-                        op = new Option(133, Util.nextInt(1, 15));
+                        op = new Option(133, (int) Util.nextInt(1, 15));
                         itemup.options.add(op);
-                        op = new Option(134, Util.nextInt(1, 15));
+                        op = new Option(134, (int) Util.nextInt(1, 15));
                         itemup.options.add(op);
                         if(item.isLock){
                             itemup.isLock = true;

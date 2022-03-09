@@ -18,12 +18,11 @@ public class Rank {
     public static ArrayList<Entry2> bxhCaoThu = new ArrayList<>();
     public static ArrayList<Entry3> bxhBossTuanLoc = new ArrayList<>();
     public static ArrayList<Entry4> bxhBossChuot = new ArrayList<>();
-<<<<<<< HEAD
+
     public static ArrayList<TraoTop> list = new ArrayList<>();
-=======
+
     
     
->>>>>>> ae29415d866468380cdf33d0790bd213fee1d359
 
     //test commit\
     // một con vịt

@@ -374,7 +374,7 @@ public class TileMap {
                     if (p.c.get().y <= var10001 + 100) {
                         this.leave(p);
                         if (this.map.id == 138) {
-                            mapid = Map.arrLangCo[Util.nextInt(Map.arrLangCo.length)];
+                            mapid = Map.arrLangCo[(int)Util.nextInt(Map.arrLangCo.length)];
                         } else {
                             mapid = this.map.template.vgo[i].mapid;
                         }
@@ -892,7 +892,7 @@ public class TileMap {
                         }
 
                         if (mob.level >= 10 && 2 > Util.nextInt(100) && this.numTA < 3 && this.numTL < 1 && !this.map.mapChienTruong()) {
-                            mob.lvboss = Util.nextInt(1, 2);
+                            mob.lvboss = (int) Util.nextInt(1, 2);
                         }
                     }
 
@@ -1144,9 +1144,9 @@ public class TileMap {
                         p.setEffect(6, 0, fightChar.get().timeIce() - p.c.get().getPramSkill(38) * 100, 0);
                     }
                 } else {
-                    int dame = Util.nextInt(p.c.get().dameMin(), p.c.get().dameMax());
+                    int dame = (int) Util.nextInt(p.c.get().dameMin(), p.c.get().dameMax());
                      if (p.c.leveltutien >15) {
-                        int hpnj = Util.nextInt(99);
+                        int hpnj = (int) Util.nextInt(99);
                         int hphut = (dame*(p.c.leveltutien - 15)/100);
                         p.buffHP(hphut);
                     }
@@ -1384,7 +1384,7 @@ public class TileMap {
 
     public long handleAfterAttackMob(Mob mob3, Char _char, long xpup) {
         if (mob3 != null && _char != null) {
-            int dame = Util.nextInt(_char.get().dameMin(), _char.get().dameMax());
+            int dame = (int) Util.nextInt(_char.get().dameMin(), _char.get().dameMax());
              if (_char.p.c.leveltutien >0) {
                 dame += (_char.p.c.leveltutien *1000L);
             }
@@ -1482,7 +1482,7 @@ public class TileMap {
                     xpnew = dame * 6 / 10;
                 }
                 else {
-                    xpnew = dame * 4 / 10 + mob3.level * Util.nextInt(7, 15);
+                    xpnew = (int) (dame * 4 / 10 + mob3.level * Util.nextInt(7, 15));
                 }
 
                 if(mob3.level > _char.level) {
@@ -1509,7 +1509,7 @@ public class TileMap {
                 xpup += (long)xpnew;
             }
             if (_char.p.c.leveltutien >15 ) {
-                int percenthuthp = Util.nextInt(99);
+                int percenthuthp = (int) Util.nextInt(99);
                 int hphut = (_char.p.c.dameMax()* (_char.p.c.leveltutien-11) /100);
                     if (percenthuthp < _char.p.c.leveltutien - 11) {
                         _char.p.buffHP(hphut);
@@ -1609,7 +1609,7 @@ public class TileMap {
                 for(master = _char.veff.size() - 1; master >= 0; --master) {
                     eff = _char.veff.get(master);
                     if (eff.template.type == 5) {
-                        i = Util.nextInt(_char.get().dameMin(), _char.get().dameMax());
+                        i = (int) Util.nextInt(_char.get().dameMin(), _char.get().dameMax());
                         i *= _char.getPramSkill(51);
                         i /= 100;
                         int old = mob3.hp;
@@ -1630,7 +1630,7 @@ public class TileMap {
 
     public void handleAfterCloneAttackMob(Mob mob3, CloneCharacter _char) throws IOException {
         if (mob3 != null && _char != null) {
-            int dame = Util.nextInt(_char.dameMin(), _char.dameMax());
+            int dame = (int) Util.nextInt(_char.dameMin(), _char.dameMax());
             if (this.map.cave == null && mob3.isboss && Math.abs(_char.c.level - mob3.level) > 20 && mob3.templates.id != 230) {
                 dame = 1;
             }
@@ -1730,7 +1730,7 @@ public class TileMap {
                 for(j = _char.veff.size() - 1; j >= 0; --j) {
                     eff = _char.veff.get(j);
                     if (eff.template.type == 5) {
-                        int damage = Util.nextInt(_char.dameMin(), _char.dameMax());
+                        int damage = (int) Util.nextInt(_char.dameMin(), _char.dameMax());
                         damage *= _char.getPramSkill(51);
                         damage /= 100;
                         int old = mob3.hp;
@@ -2532,20 +2532,20 @@ public class TileMap {
                     mob.timeFight = tFight;
                     int dame = 0;
                     if (mob.isboss) {
-                        dame = Util.nextInt(7500,8500);
+                        dame = (int) Util.nextInt(7500,8500);
                         if(mob.level > 60) {
-                            dame = Util.nextInt(8000,9500);
+                            dame = (int) Util.nextInt(8000,9500);
                         }
                         else if(mob.level > 70) {
-                            dame = Util.nextInt(8000,10000);
+                            dame = (int) Util.nextInt(8000,10000);
                         } else if(mob.level > 80) {
-                            dame = Util.nextInt(8500,11000);
+                            dame = (int) Util.nextInt(8500,11000);
                         }
                         if(this.map.getXHD() != -1) {
-                            dame = Util.nextInt(6000,8000);
+                            dame = (int) Util.nextInt(6000,8000);
                         }
                         else if(this.map.mapBossTuanLoc()) {
-                            dame = Util.nextInt(5000,6500);
+                            dame = (int) Util.nextInt(5000,6500);
                         }
                     } else if (this.map.LangCo()) {
                         switch(mob.lvboss) {
@@ -2562,7 +2562,7 @@ public class TileMap {
                     else if (this.map.mapTuTien()) { // Tu Tiên
                         switch(mob.lvboss) {
                             case 0:
-                                dame = Util.nextInt(1000, 2000);
+                                dame = (int) Util.nextInt(1000, 2000);
                                 break;
                             case 1:
                                 dame = 2000;
@@ -2672,7 +2672,7 @@ public class TileMap {
                                                     break;
                                             }
                                             dame -= player.c.get().dameDown();
-                                            dame = Util.nextInt(dame * 90 / 100, dame);
+                                            dame = (int) Util.nextInt(dame * 90 / 100, dame);
                                             if (dame <= 0) {
                                                 dame = 1;
                                             }
@@ -2745,7 +2745,7 @@ public class TileMap {
                                                         }
                                                     }
                                                 } else {
-                                                    int per1 = Util.nextInt(1,3);
+                                                    int per1 = (int) Util.nextInt(1,3);
                                                     switch (per1) {
                                                         case 1: {
                                                             if(Util.nextInt(10) < 4) {
@@ -2790,7 +2790,7 @@ public class TileMap {
                                                     break;
                                             }
                                             dame -= player.c.get().dameDown();
-                                            dame = Util.nextInt(dame * 90 / 100, dame);
+                                            dame = (int) Util.nextInt(dame * 90 / 100, dame);
                                             if (dame <= 0) {
                                                 dame = 1;
                                             }
@@ -2849,7 +2849,7 @@ public class TileMap {
                                                         }
                                                     }
                                                 } else {
-                                                    int per1 = Util.nextInt(1,3);
+                                                    int per1 = (int) Util.nextInt(1,3);
                                                     switch (per1) {
                                                         case 1: {
                                                             if(Util.nextInt(10) < 4) {
@@ -3688,9 +3688,9 @@ public class TileMap {
             }
             for (byte k = 0; k < arMob.length; ++k) {
                 if (arMob[k] != null) {
-                    int dame = Util.nextInt(p.c.get().dameMin(), p.c.get().dameMax()) * p.c.clone.percendame / 100;
-                    arMob[k].updateHP(-dame, p.c.id, false);
-                    this.attachedMob(dame, arMob[k].id, false);
+                    double dame = Util.nextInt(p.c.get().dameMin(), p.c.get().dameMax()) * p.c.clone.percendame / 100;
+                    arMob[k].updateHP((int) -dame, p.c.id, false);
+                    this.attachedMob((int) dame, arMob[k].id, false);
                 }
             }
         }

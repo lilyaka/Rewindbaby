@@ -494,7 +494,7 @@ public class GameSrc {
                         Item item = sell.clone();
                         item.quantity = num;
                         for (short i = 0; i < item.options.size(); ++i) {
-                            item.options.get(i).param = Util.nextInt(item.getOptionShopMin(item.options.get(i).id, item.options.get(i).param), item.options.get(i).param);
+                            item.options.get(i).param = (int) Util.nextInt(item.getOptionShopMin(item.options.get(i).id, item.options.get(i).param), item.options.get(i).param);
                         }
                         clan.addItem(item);
                         clan.updateCoin(-buycoin);
@@ -548,7 +548,7 @@ public class GameSrc {
                     Option option;
                     for (Option Option : sell.options) {
                         idOp = Option.id;
-                        par = Util.nextInt(item.getOptionShopMin(idOp, Option.param), Option.param);
+                        par = (int) Util.nextInt(item.getOptionShopMin(idOp, Option.param), Option.param);
                         option = new Option(idOp, par);
                         item.options.add(option);
                     }
@@ -996,7 +996,7 @@ public class GameSrc {
             }
 
             p.c.removeItemBags(340, 1);
-            short id = GameSrc.ArridLuck[Util.nextInt(GameSrc.ArridLuck.length)];
+            short id = GameSrc.ArridLuck[(int)Util.nextInt(GameSrc.ArridLuck.length)];
             switch (id) {
                 case -1: {
                     if(p.c.gender == 1) {
@@ -1049,7 +1049,7 @@ public class GameSrc {
             }
             if (id == 523 || id == 419) {
                 item.isExpires = true;
-                item.expires = Util.TimeDay(GameSrc.ArrdayLuck[Util.nextInt(GameSrc.ArrdayLuck.length)]);
+                item.expires = Util.TimeDay(GameSrc.ArrdayLuck[(int)Util.nextInt(GameSrc.ArrdayLuck.length)]);
             }
             if (data.type != 19) {
                 if(item.id == 733 || item.id == 734 || item.id == 760 || item.id == 761 || (item.id >= 737 && item.id <= 741) || (item.id >= 764 && item.id <= 768) ) {
@@ -1072,7 +1072,7 @@ public class GameSrc {
                     m.writer().writeShort(id);
                 }
                 else {
-                    m.writer().writeShort(GameSrc.ArridLuck[Util.nextInt(GameSrc.ArridLuck.length)]);
+                    m.writer().writeShort(GameSrc.ArridLuck[(int)Util.nextInt(GameSrc.ArridLuck.length)]);
                 }
             }
             m.writer().flush();
@@ -1352,13 +1352,13 @@ public class GameSrc {
                     break;
                 }
                 case 1: {
-                    item.options.add(new Option(87, Util.nextInt(250, 400)));
-                    item.options.add(new Option(87 + item.sys, Util.nextInt(350, 600)));
+                    item.options.add(new Option(87, (int) Util.nextInt(250, 400)));
+                    item.options.add(new Option(87 + item.sys, (int) Util.nextInt(350, 600)));
                     break;
                 }
                 case 2: {
-                    item.options.add(new Option(80, Util.nextInt(20, 50)));
-                    item.options.add(new Option(91, Util.nextInt(9, 11)));
+                    item.options.add(new Option(80, (int) Util.nextInt(20, 50)));
+                    item.options.add(new Option(91, (int) Util.nextInt(9, 11)));
                     break;
                 }
                 case 3: {
@@ -1367,8 +1367,8 @@ public class GameSrc {
                     break;
                 }
                 case 4: {
-                    item.options.add(new Option(86, Util.nextInt(80, 124)));
-                    item.options.add(new Option(94, Util.nextInt(80, 124)));
+                    item.options.add(new Option(86, (int) Util.nextInt(80, 124)));
+                    item.options.add(new Option(94, (int) Util.nextInt(80, 124)));
                     break;
                 }
                 case 5: {
@@ -1381,12 +1381,12 @@ public class GameSrc {
                     else if (item.sys == 3) {
                         item.options.add(new Option(97, 5));
                     }
-                    item.options.add(new Option(92, Util.nextInt(9, 11)));
+                    item.options.add(new Option(92, (int) Util.nextInt(9, 11)));
                     break;
                 }
                 case 6: {
-                    item.options.add(new Option(83, Util.nextInt(350, 600)));
-                    item.options.add(new Option(82, Util.nextInt(350, 600)));
+                    item.options.add(new Option(83, (int) Util.nextInt(350, 600)));
+                    item.options.add(new Option(82, (int) Util.nextInt(350, 600)));
                     break;
                 }
                 case 7: {
@@ -1399,17 +1399,17 @@ public class GameSrc {
                     else if (item.sys == 3) {
                         item.options.add(new Option(97, 5));
                     }
-                    item.options.add(new Option(87 + item.sys, Util.nextInt(350, 600)));
+                    item.options.add(new Option(87 + item.sys, (int) Util.nextInt(350, 600)));
                     break;
                 }
                 case 8: {
-                    item.options.add(new Option(82, Util.nextInt(350, 600)));
-                    item.options.add(new Option(84, Util.nextInt(90, 100)));
+                    item.options.add(new Option(82, (int) Util.nextInt(350, 600)));
+                    item.options.add(new Option(84, (int) Util.nextInt(90, 100)));
                     break;
                 }
                 case 9: {
-                    item.options.add(new Option(84, Util.nextInt(90, 100)));
-                    item.options.add(new Option(83, Util.nextInt(350, 600)));
+                    item.options.add(new Option(84, (int) Util.nextInt(90, 100)));
+                    item.options.add(new Option(83, (int) Util.nextInt(350, 600)));
                     break;
                 }
                 default: {

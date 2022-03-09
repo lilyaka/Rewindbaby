@@ -1130,7 +1130,7 @@ public class Char extends Body {
 
     public short getCSkill() {
         if (this.isBot) {
-            final int randomIndex = Util.nextInt(0, this.getSkills().size());
+            final int randomIndex = (int) Util.nextInt(0, this.getSkills().size());
             return this.getSkills().get(randomIndex % this.getSkills().size()).id;
         }
         return super.getCSkill();

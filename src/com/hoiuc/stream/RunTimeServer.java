@@ -508,7 +508,7 @@ public class RunTimeServer extends Thread{
                             for (k = 0; k < this.mapBossVDMQ.length; ++k) {
                                 map = Manager.getMapid(this.mapBossVDMQ[k]);
                                 if (map != null) {
-                                    map.refreshBoss(Util.nextInt(15, 28));
+                                    map.refreshBoss((int) Util.nextInt(15, 28));
                                     if(k==0) {
                                         textchat = textchat + " " + map.template.name;
                                     } else {
@@ -528,33 +528,33 @@ public class RunTimeServer extends Thread{
                         if (!this.isRefreshBoss[j]) {
                             String textchat = "Thần thú đã xuất hiện tại:";
                             for (k = 0; k < Util.nextInt(1, 2); ++k) {
-                                map = Manager.getMapid(this.mapBoss75[Util.nextInt(this.mapBoss75.length)]);
+                                map = Manager.getMapid(this.mapBoss75[(int)Util.nextInt(this.mapBoss75.length)]);
                                 if (map != null) {
-                                    map.refreshBoss(Util.nextInt(15, 28));
+                                    map.refreshBoss((int)Util.nextInt(15, 28));
                                     textchat = textchat + " " + map.template.name;
                                     this.isRefreshBoss[j] = true;
                                 }
                             }
                             for (k = 0; k < Util.nextInt(1, 2); ++k) {
-                                map = Manager.getMapid(this.mapBoss65[Util.nextInt(this.mapBoss65.length)]);
+                                map = Manager.getMapid(this.mapBoss65[(int)Util.nextInt(this.mapBoss65.length)]);
                                 if (map != null) {
-                                    map.refreshBoss(Util.nextInt(15, 28));
+                                    map.refreshBoss((int)Util.nextInt(15, 28));
                                     textchat = textchat + ", " + map.template.name;
                                     this.isRefreshBoss[j] = true;
                                 }
                             }
                             for (k = 0; k < Util.nextInt(1, 2); ++k) {
-                                map = Manager.getMapid(this.mapBoss55[Util.nextInt(this.mapBoss55.length)]);
+                                map = Manager.getMapid(this.mapBoss55[(int)Util.nextInt(this.mapBoss55.length)]);
                                 if (map != null) {
-                                    map.refreshBoss(Util.nextInt(15, 28));
+                                    map.refreshBoss((int)Util.nextInt(15, 28));
                                     textchat = textchat + ", " + map.template.name;
                                     this.isRefreshBoss[j] = true;
                                 }
                             }
                             for (k = 0; k < Util.nextInt(1, 2); ++k) {
-                                map = Manager.getMapid(this.mapBoss45[Util.nextInt(this.mapBoss45.length)]);
+                                map = Manager.getMapid(this.mapBoss45[(int)Util.nextInt(this.mapBoss45.length)]);
                                 if (map != null) {
-                                    map.refreshBoss(Util.nextInt(15, 28));
+                                    map.refreshBoss((int)Util.nextInt(15, 28));
                                     textchat = textchat + ", " + map.template.name;
                                     this.isRefreshBoss[j] = true;
                                 }
@@ -582,7 +582,7 @@ public class RunTimeServer extends Thread{
                                 for (byte j1 = 0; j1 < mapBossSKTet.length; j1++) {
                                     map = Manager.getMapid(mapBossSKTet[j1]);
                                     if (map != null) {
-                                        int khu = Util.nextInt(15,30);
+                                        int khu = (int) Util.nextInt(15,30);
                                         map.refreshBossTet(khu);
                                         System.out.println("khu" + khu);
                                         textchat += ", "+map.template.name;

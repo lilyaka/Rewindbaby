@@ -72,36 +72,36 @@ public class ItemLeave {
 
     public static void leaveItemSuKien(TileMap place, Mob mob3, int master) {
         ItemMap im = null;
-        int per = Util.nextInt(5);
+        long per = Util.nextInt(5);
         try {
             switch (Server.manager.event) {
                 case 1: {
                     if(per == 0) {
-                        im = place.LeaveItem(arrItemSuKienHe[Util.nextInt(arrItemSuKienHe.length)], mob3.x, mob3.y, mob3.templates.type, false);
+                        im = place.LeaveItem(arrItemSuKienHe[(int)Util.nextInt(arrItemSuKienHe.length)], mob3.x, mob3.y, mob3.templates.type, false);
                     }
                     break;
                 }
                 case 2: {
                     if(per < 2) {
-                        im = place.LeaveItem(arrItemSuKienTrungThu[Util.nextInt(arrItemSuKienTrungThu.length)], mob3.x, mob3.y, mob3.templates.type, false);
+                        im = place.LeaveItem(arrItemSuKienTrungThu[(int)Util.nextInt(arrItemSuKienTrungThu.length)], mob3.x, mob3.y, mob3.templates.type, false);
                     }
                     break;
                 }
                 case 3:{
                     if(per == 0) {
-                        im = place.LeaveItem(arrItemSuKienNoel[Util.nextInt(arrItemSuKienNoel.length)], mob3.x, mob3.y, mob3.templates.type, false);
+                        im = place.LeaveItem(arrItemSuKienNoel[(int)Util.nextInt(arrItemSuKienNoel.length)], mob3.x, mob3.y, mob3.templates.type, false);
                     }
                     break;
                 }
                 case 4:{
                     if(per == 0) {
-                        im = place.LeaveItem(arrItemSuKienTet[Util.nextInt(arrItemSuKienTet.length)], mob3.x, mob3.y, mob3.templates.type, false);
+                        im = place.LeaveItem(arrItemSuKienTet[(int)Util.nextInt(arrItemSuKienTet.length)], mob3.x, mob3.y, mob3.templates.type, false);
                     }
                     break;
                 }
                 case 5: {
                     if(per == 0) {
-                        im = place.LeaveItem(arrItem8thang3[Util.nextInt(arrItem8thang3.length)], mob3.x, mob3.y, mob3.templates.type, false);
+                        im = place.LeaveItem(arrItem8thang3[(int)Util.nextInt(arrItem8thang3.length)], mob3.x, mob3.y, mob3.templates.type, false);
                     }
                     break;
                 }
@@ -121,7 +121,7 @@ public class ItemLeave {
 
     public static void leaveItemOrther(TileMap place, Mob mob3, int master) {
         ItemMap im = null;
-        int percent = Util.nextInt(arrItemOrther.length);
+        int percent = (int)Util.nextInt(arrItemOrther.length);
         try {
             if(arrItemOrther[percent] != -1) {
                 switch (arrItemOrther[percent]) {
@@ -223,7 +223,7 @@ public class ItemLeave {
         ItemMap im = null;
         try {
             if(mob3.templates.id == 81) {
-                int per = Util.nextInt(10);
+                int per = (int)Util.nextInt(10);
                 if(per < 4) {
                     im = place.LeaveItem((short) 261, mob3.x, mob3.y, mob3.templates.type, mob3.isboss);
                     if(im != null) {
@@ -251,8 +251,8 @@ public class ItemLeave {
     public static void leaveTrangBiThuCuoiVDMQ(TileMap place, Mob mob3, int master) {
         ItemMap im = null;
         try {
-            int perCentTB = Util.nextInt(100);
-            int perCentArr = Util.nextInt(arrTrangBiXeSoi.length);
+            int perCentTB = (int)Util.nextInt(100);
+            int perCentArr = (int)Util.nextInt(arrTrangBiXeSoi.length);
             if(perCentTB<1) {
                 im = place.LeaveItem((short) arrTrangBiXeSoi[perCentArr], mob3.x, mob3.y, mob3.templates.type, false);
                 im.item.quantity = 1;
@@ -265,12 +265,12 @@ public class ItemLeave {
     public static void leaveTrangBiThuCuoiLangCo(TileMap place, Mob mob3, int master) {
         ItemMap im = null;
         try {
-            int perCentTB = Util.nextInt(650);
+            double perCentTB = Util.nextInt(650);
             if(perCentTB == 0) {
                 im = place.LeaveItem((short) 524, mob3.x, mob3.y, mob3.templates.type, false);
             } else if(perCentTB==1) {
-                int perCentArr = Util.nextInt(arrTrangBiXeSoi.length);
-                im = place.LeaveItem(arrTrangBiXeSoi[perCentArr], mob3.x, mob3.y, mob3.templates.type, false);
+                double perCentArr = Util.nextInt(arrTrangBiXeSoi.length);
+                im = place.LeaveItem(arrTrangBiXeSoi[(int)perCentArr], mob3.x, mob3.y, mob3.templates.type, false);
             } else if(perCentTB >=5 && perCentTB <10) {
                 im = place.LeaveItem((short) 545, mob3.x, mob3.y, mob3.templates.type, false);
             }
@@ -300,9 +300,9 @@ public class ItemLeave {
     public static void leaveEXPLangCo(TileMap place, Mob mob3, int master) {
         ItemMap im = null;
         try {
-            int perCentEXP = Util.nextInt(150);
+            double perCentEXP = Util.nextInt(150);
             if(perCentEXP<7) {
-                im = place.LeaveItem((short) arrExpXeSoi[Util.nextInt(arrExpXeSoi.length)], mob3.x, mob3.y, mob3.templates.type, false);
+                im = place.LeaveItem((short) arrExpXeSoi[(int)Util.nextInt(arrExpXeSoi.length)], mob3.x, mob3.y, mob3.templates.type, false);
             }
         } catch (Exception e) {e.printStackTrace();}
         if(im != null) {
@@ -315,9 +315,9 @@ public class ItemLeave {
     public static void leaveEXPVDMQ(TileMap place, Mob mob3, int master) {
         ItemMap im = null;
         try {
-            int perCentEXP = Util.nextInt(375);
+            double perCentEXP = Util.nextInt(375);
             if(perCentEXP<5) {
-                im = place.LeaveItem(arrExpXeSoi[Util.nextInt(arrExpXeSoi.length)], mob3.x, mob3.y, mob3.templates.type, false);
+                im = place.LeaveItem(arrExpXeSoi[(int)Util.nextInt(arrExpXeSoi.length)], mob3.x, mob3.y, mob3.templates.type, false);
             }
         } catch (Exception e) {e.printStackTrace();}
         if(im != null) {
@@ -330,7 +330,7 @@ public class ItemLeave {
     public static void leaveTTTLangCo(TileMap place, Mob mob3, int master) {
         ItemMap im = null;
         try {
-            int perCentTTT = Util.nextInt(410);
+            double perCentTTT = Util.nextInt(410);
             if(perCentTTT>=100 && perCentTTT <= 105) {
                 //Tinh thạch sơ
                 im = place.LeaveItem((short)455, mob3.x, mob3.y,mob3.templates.type, false);
@@ -357,15 +357,15 @@ public class ItemLeave {
         short idI = 0;
         ItemMap im = null;
         try {
-            int perCentTTT = Util.nextInt(410);
+            double perCentTTT = Util.nextInt(410);
             if(perCentTTT>=100 && perCentTTT <= 105) {
                 //Tinh thạch sơ
                 arId = new short[]{445, 843};
-                idI = arId[Util.nextInt(arId.length)];
+                idI = arId[(int)Util.nextInt(arId.length)];
                 im = place.LeaveItem(idI, mob3.x, mob3.y,mob3.templates.type, false);
             } else if(perCentTTT>=190 && perCentTTT <= 194) {
                 arId = new short[]{226, 227, 228, 456};
-                idI = arId[Util.nextInt(arId.length)];
+                idI = arId[(int)Util.nextInt(arId.length)];
                 im = place.LeaveItem(idI, mob3.x, mob3.y,mob3.templates.type, false);
             }  else if(perCentTTT <= 1) {
                 //Chuyển tinh thạch
@@ -373,7 +373,7 @@ public class ItemLeave {
             } else if(Util.nextInt(2000)==1999) {
                 //tinh thạch cao
                 arId = new short[]{222, 223, 224, 838, 840, 789};
-                idI = arId[Util.nextInt(arId.length)];
+                idI = arId[(int)Util.nextInt(arId.length)];
                 im = place.LeaveItem(idI, mob3.x, mob3.y,mob3.templates.type, false);
             }
         } catch (Exception e) {e.printStackTrace();}
@@ -412,13 +412,13 @@ public class ItemLeave {
                 im.master = master;
             }
 
-            im = place.LeaveItem((short) arrExpXeSoi[Util.nextInt(arrExpXeSoi.length)], mob3.x, mob3.y, mob3.templates.type, false);
+            im = place.LeaveItem((short) arrExpXeSoi[(int)Util.nextInt(arrExpXeSoi.length)], mob3.x, mob3.y, mob3.templates.type, false);
             if(im != null) {
                 im.item.isLock = false;
                 im.item.quantity = 1;
                 im.master = master;
             }
-            im = place.LeaveItem((short) arrExpXeSoi[Util.nextInt(arrExpXeSoi.length)], mob3.x, mob3.y, mob3.templates.type, false);
+            im = place.LeaveItem((short) arrExpXeSoi[(int)Util.nextInt(arrExpXeSoi.length)], mob3.x, mob3.y, mob3.templates.type, false);
             if(im != null) {
                 im.item.isLock = false;
                 im.item.quantity = 1;
@@ -431,7 +431,7 @@ public class ItemLeave {
     public static void leaveTTTVDMQ(TileMap place, Mob mob3, int master) {
         ItemMap im = null;
         try {
-            int perCentTTT = Util.nextInt(2850);
+            int perCentTTT = (int) Util.nextInt(2850);
             if(perCentTTT>=100 && perCentTTT <= 115) {
                 //tinh thạch sơ
                 im = place.LeaveItem((short)455, mob3.x, mob3.y,mob3.templates.type, false);
@@ -499,7 +499,7 @@ public class ItemLeave {
                     im.master = master;
                 }
             }
-            switch (Util.nextInt(1,4)) {
+            switch ((int)Util.nextInt(1,4)) {
                 case 1: {
                     for(i=0; i<arrSVC6x.length; i++) {
                         im = place.LeaveItem( arrSVC6x[i], mob3.x, mob3.y, mob3.templates.type, true);

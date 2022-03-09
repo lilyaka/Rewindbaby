@@ -201,11 +201,11 @@ public class Item {
                 itemOption = this.options.get(i);
                 if (itemOption.id == 133 || itemOption.id == 134) {
                     Option option = itemOption;
-                    option.param = Util.nextInt(1, 12);
+                    option.param = (int) Util.nextInt(1, 12);
                 }
                 if (itemOption.id == 6) {
                     Option option2 = itemOption;
-                    option2.param = Util.nextInt(10000, 68000);
+                    option2.param = (int) Util.nextInt(10000, 68000);
                 }
             }
         }

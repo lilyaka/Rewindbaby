@@ -623,7 +623,7 @@ public class Menu {
                            p.conn.sendMessageLog("Hành trang không đủ chỗ trống");
                            return;
                 }   short[] arId = new short[]{12,12,12,8,9,8,9,275,276,277,278,275,276,277,278,548,12,548,381,382,381,382,381,682,682,682,228,227,226,225,224,223,222,283,436,438,437,436,437,419,403,419,403,407,407,12,254,255,256,12,254,255,256,7,8,9,436,437,438,682,383,382,381,222,223,224,225,226,227,228,251, 308,309,548,275,276,277,278,539,540,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,674,695,696,697,698,699,674,700,701,702,703,704,733,734,735,736,737,738,739,674,740,741,760,761,762,674,763,764,765,766,767,768,289,290,291,289,290,291,289,290,291};
-                        short idI = arId[Util.nextInt(arId.length)];
+                        short idI = arId[(int)Util.nextInt(arId.length)];
                         Item itemup = ItemTemplate.itemDefault(idI);
                        itemup.isLock = false;
                        itemup.isExpires = true;
@@ -665,11 +665,11 @@ public class Menu {
                 p.c.diemtanghoa += 1;
                 p.c.removeItemBag(p.c.getIndexBagid(862, false), 1);
                 Item it;
-                int per = Util.nextInt(300);
+                int per = (int) Util.nextInt(300);
                 if(per<1) {
                     it = ItemTemplate.itemDefault(862);
                 } else {
-                    per = Util.nextInt(UseItem.idTangHoa.length);
+                    per = (int) Util.nextInt(UseItem.idTangHoa.length);
                     it = ItemTemplate.itemDefault(UseItem.idTangHoa[per]);
                 }
                 p.c.removeItemBag(p.c.getIndexBagid(862, true), 1);
@@ -1497,7 +1497,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 0: {
                         if (p.c.xu > 10000000) {
                             p.c.upxuMessage(-10000000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.c.upxuMessage(19000000);
                                 Manager.chatKTG("Về Chẵn con nghiện " + p.c.name + " vừa hốt 20.000.000 xu của Casino nhân phẩm tốt");
@@ -1514,7 +1514,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 1: {
                         if (p.c.xu > 10000000) {
                             p.c.upxuMessage(-10000000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.c.upxuMessage(19000000);
                                 Manager.chatKTG("Về Lẻ con nghiện " + p.c.name + " vừa hốt 20.000.000 xu của Casino nhân phẩm tốt");
@@ -1536,7 +1536,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 0: {
                         if (p.c.xu > 50000000) {
                             p.c.upxuMessage(-50000000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.c.upxuMessage(90000000);
                                 Manager.chatKTG("Về Chẵn con nghiện " + p.c.name + " vừa hốt 100.000.000 xu của Casino nhân phẩm tốt");
@@ -1553,7 +1553,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 1: {
                         if (p.c.xu > 50000000) {
                             p.c.upxuMessage(-50000000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.c.upxuMessage(90000000);
                                 Manager.chatKTG("Về Lẻ con nghiện " + p.c.name + " vừa hốt 100.000.000 xu của Casino nhân phẩm tốt");
@@ -1575,7 +1575,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 0: {
                         if (p.c.xu > 100000000) {
                             p.c.upxuMessage(-100000000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.c.upxuMessage(190000000);
                                 Manager.chatKTG("Về Chẵn con nghiện " + p.c.name + " vừa hốt 200.000.000 xu của Casino Luộc nhân phẩm tốt");
@@ -1592,7 +1592,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 1: {
                         if (p.c.xu > 100000000) {
                             p.c.upxuMessage(-100000000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.c.upxuMessage(190000000);
                                 Manager.chatKTG("Về Lẻ con nghiện " + p.c.name + " vừa hốt 200.000.000 xu của Casino Luộc nhân phẩm tốt");
@@ -1614,7 +1614,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 0: {
                         if (p.luong > 10000) {
                             p.upluongMessage(-10000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.upluongMessage(19000);
                                 Manager.chatKTG("Về Chẵn con nghiện " + p.c.name + " vừa hốt 20.000 lượng của Casino Luộc nhân phẩm tốt");
@@ -1631,7 +1631,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 1: {
                         if (p.luong > 10000) {
                             p.upluongMessage(-10000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.upluongMessage(19000);
                                 Manager.chatKTG("Về Lẻ con nghiện " + p.c.name + " vừa hốt 19.000 lượng của Casino Luộc nhân phẩm tốt");
@@ -1653,7 +1653,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 0: {
                         if (p.luong > 50000) {
                             p.upluongMessage(-50000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.upluongMessage(90000);
                                 Manager.chatKTG("Về Chẵn con nghiện " + p.c.name + " vừa hốt 100.000 lượng của Casino Luộc nhân phẩm tốt");
@@ -1670,7 +1670,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 1: {
                         if (p.luong > 50000) {
                             p.upluongMessage(-50000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.upluongMessage(90000);
                                 Manager.chatKTG("Về Lẻ con nghiện " + p.c.name + " vừa hốt 100.000 lượng của Casino Luộc nhân phẩm tốt");
@@ -1692,7 +1692,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 0: {
                         if (p.luong > 100000) {
                             p.upluongMessage(-100000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.upluongMessage(190000);
                                 Manager.chatKTG("Về Chẵn con nghiện " + p.c.name + " vừa hốt 200.000 lượng của Casino Luộc nhân phẩm tốt");
@@ -1709,7 +1709,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                     case 1: {
                         if (p.luong > 100000) {
                             p.upluongMessage(-100000);
-                            int x = Util.nextInt(2);
+                            int x = (int) Util.nextInt(2);
                             if (x == 1) {
                                 p.upluongMessage(190000);
                                 Manager.chatKTG("Về Lẻ con nghiện " + p.c.name + " vừa hốt 200.000 lượng của Casino Luộc nhân phẩm tốt");
@@ -1737,7 +1737,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                             Service.chatNPC(p, (short) npcid, "Cần 10000 lượng");
                             break;
                         } else {
-                            int tl = Util.nextInt(3);
+                            int tl = (int) Util.nextInt(3);
                             if (tl != 1) {
                                 Service.chatNPC(p, (short) npcid, "Số con đen như bản mặt con vậy");
                                 p.upluongMessage(-10000);
@@ -1761,7 +1761,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                             Service.chatNPC(p, (short) npcid, "Cần 10000 lượng");
                             break;
                         } else {
-                            int tl = Util.nextInt(3);
+                            int tl = (int) Util.nextInt(3);
                             if (tl != 1) {
                                 Service.chatNPC(p, (short) npcid, "Số con đen như bản mặt con vậy");
                                 p.upluongMessage(-10000);
@@ -1785,7 +1785,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                             Service.chatNPC(p, (short) npcid, "Cần 10000 lượng");
                             break;
                         } else {
-                            int tl = Util.nextInt(3);
+                            int tl = (int) Util.nextInt(3);
                             if (tl != 1) {
                                 Service.chatNPC(p, (short) npcid, "Số con đen như bản mặt con vậy");
                                 p.upluongMessage(-10000);
@@ -1809,7 +1809,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                             Service.chatNPC(p, (short) npcid, "Cần 10000 lượng");
                             break;
                         } else {
-                            int tl = Util.nextInt(3);
+                            int tl = (int) Util.nextInt(3);
                             if (tl != 1) {
                                 Service.chatNPC(p, (short) npcid, "Số con đen như bản mặt con vậy");
                                 p.upluongMessage(-10000);
@@ -1833,7 +1833,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                             Service.chatNPC(p, (short) npcid, "Cần 10000 lượng");
                             break;
                         } else {
-                            int tl = Util.nextInt(3);
+                            int tl = (int) Util.nextInt(3);
                             if (tl != 1) {
                                 Service.chatNPC(p, (short) npcid, "Số con đen như bản mặt con vậy");
                                 p.upluongMessage(-10000);
@@ -1857,7 +1857,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                             Service.chatNPC(p, (short) npcid, "Cần 10000 lượng");
                             break;
                         } else {
-                            int tl = Util.nextInt(3);
+                            int tl = (int) Util.nextInt(3);
                             if (tl != 1) {
                                 Service.chatNPC(p, (short) npcid, "Số con đen như bản mặt con vậy");
                                 p.upluongMessage(-10000);
@@ -2160,7 +2160,7 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                         }
 
                         p.c.addItemBag(true, item);
-                        int type = Util.nextInt(10);
+                        int type = (int) Util.nextInt(10);
 
                         if (p.c.avgPointDanhVong(p.c.getPointDanhVong(type))) {
                             for (int i = 0; i < 10; i++) {
@@ -2177,14 +2177,14 @@ static void npccasino(Player p, byte npcid, byte menuId, byte b3) throws IOExcep
                             itemUp.isLock = true;
                             itemUp.isExpires = false;
                             itemUp.expires = -1L;
-                            itemUp.quantity = Util.nextInt(1,2);
+                            itemUp.quantity = (int) Util.nextInt(1,2);
                             p.c.addItemBag(true, itemUp);
                         } else {
                             Item itemUp = ItemTemplate.itemDefault(p.c.gender == 1 ? 740 : 767, true);
                             itemUp.isLock = true;
                             itemUp.isExpires = false;
                             itemUp.expires = -1L;
-                            itemUp.quantity = Util.nextInt(1,2);
+                            itemUp.quantity = (int) Util.nextInt(1,2);
                             p.c.addItemBag(true, itemUp);
                         }
 
@@ -3565,7 +3565,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                             Service.chatNPC(p, (short) npcid, "Con Cần có 1 Thỏi bạc");
                             break;
                         }
-                            int tl = Util.nextInt(3);
+                            int tl = (int) Util.nextInt(3);
                             if (tl != 1) {
                                 Service.chatNPC(p, (short) npcid, "Đã đổi 1 thỏi bạc ra 200tr xu");
                                 p.c.removeItemBags(247, 1);
@@ -3646,7 +3646,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                             if (map != null) {
                                 p.c.taskHangNgay[0] = 0;
                                 p.c.taskHangNgay[1] = 0;
-                                p.c.taskHangNgay[2] = Util.nextInt(10, 25);
+                                p.c.taskHangNgay[2] = (int) Util.nextInt(10, 25);
                                 p.c.taskHangNgay[3] = mob.id;
                                 p.c.taskHangNgay[4] = map.id;
                                 p.c.isTaskHangNgay = 1;
@@ -3701,7 +3701,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                         p.c.isTaskHangNgay = 0;
                         p.c.taskHangNgay = new int[]{-1, -1, -1, -1, -1, 0, p.c.countTaskHangNgay};
                         Service.clearTaskOrder(p.c, (byte)0);
-                        long luongUp = Util.nextInt(500, 1000);
+                        long luongUp = (long) Util.nextInt(500, 1000);
                         if(p.vip < 1){
                             p.c.upxuMessage(10000L);
                             p.upluongMessage(luongUp/2);
@@ -3717,14 +3717,14 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                             itemUp.isLock = true;
                             itemUp.isExpires = false;
                             itemUp.expires = -1L;
-                            itemUp.quantity = Util.nextInt(2,3);
+                            itemUp.quantity = (int) Util.nextInt(2,3);
                             p.c.addItemBag(true, itemUp);
                         } else {
                             Item itemUp = ItemTemplate.itemDefault(p.c.gender == 1 ? 734 : 761, true);
                             itemUp.isLock = true;
                             itemUp.isExpires = false;
                             itemUp.expires = -1L;
-                            itemUp.quantity = Util.nextInt(2,3);
+                            itemUp.quantity = (int) Util.nextInt(2,3);
                             p.c.addItemBag(true, itemUp);
                         }
 
@@ -3846,7 +3846,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                             p.c.pointUydanh += 3;
                         }
                         Item item = ItemTemplate.itemDefault(251, false);
-                        item.quantity = Util.nextInt(3, 4);
+                        item.quantity = (int) Util.nextInt(3, 4);
                         item.isLock = false;
                         p.c.addItemBag(true, item);
 
@@ -3855,14 +3855,14 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                             itemUp.isLock = true;
                             itemUp.isExpires = false;
                             itemUp.expires = -1L;
-                            itemUp.quantity = Util.nextInt(20,30);
+                            itemUp.quantity = (int) Util.nextInt(20,30);
                             p.c.addItemBag(true, itemUp);
                         } else {
                             Item itemUp = ItemTemplate.itemDefault(p.c.gender == 1 ? 738 : 765, true);
                             itemUp.isLock = true;
                             itemUp.isExpires = false;
                             itemUp.expires = -1L;
-                            itemUp.quantity = Util.nextInt(20,30);
+                            itemUp.quantity = (int) Util.nextInt(20,30);
                             p.c.addItemBag(true, itemUp);
                         }
 
@@ -4834,10 +4834,10 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                 }
                 p.c.isNhanQuaNoel = 0;
                 p.c.pointNoel++;
-                int random = Util.nextInt(0,2);
+                int random = (int) Util.nextInt(0,2);
                 switch (random) {
                     case 0: {
-                        int yen = Util.nextInt(500000,1000000);
+                        int yen = (int) Util.nextInt(500000,1000000);
                         if(p.status == 1) {
                             yen /= 2;
                             p.c.yenTN += yen;
@@ -4847,7 +4847,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                         break;
                     }
                     case 1: {
-                        int xu = Util.nextInt(100000,300000);
+                        int xu = (int) Util.nextInt(100000,300000);
                         if(p.status == 1) {
                             xu /= 2;
                             p.c.xuTN += xu;
@@ -4857,7 +4857,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                         break;
                     }
                     case 2: {
-                        int luong = Util.nextInt(50,150);
+                        int luong = (int) Util.nextInt(50,150);
                         if(p.status == 1) {
                             luong /= 2;
                             p.c.luongTN += luong;
@@ -4891,13 +4891,13 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                 p.c.pointNoel += 10;
                 p.c.removeItemBag(p.c.getIndexBagid(673, false), 1);
                 Item it;
-                int per = Util.nextInt(300);
+                int per = (int) Util.nextInt(300);
                 if(per<1) {
                     it = ItemTemplate.itemDefault(383);
                 } else if (per >= 1 && per <= 3) {
                     it = ItemTemplate.itemDefault(775);
                 } else {
-                    per = Util.nextInt(UseItem.idItemCayThong.length);
+                    per = (int) Util.nextInt(UseItem.idItemCayThong.length);
                     it = ItemTemplate.itemDefault(UseItem.idItemCayThong[per]);
                 }
                 it.isLock = false;

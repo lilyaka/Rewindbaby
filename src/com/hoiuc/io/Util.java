@@ -147,18 +147,18 @@ public class Util {
         return str.replaceAll("['\"\\\\]", "\\\\$0");
     }
 
-    public static int nextInt(int x1, int x2) {
-        int to = x2;
-        int from = x1;
+    public static double nextInt(double x1, double x2) {
+        double to = x2;
+        double from = x1;
         if (x2 < x1) {
             to = x1;
             from = x2;
         }
-        return from + Util.rand.nextInt(to + 1 - from);
+        return from + Util.rand.nextInt((int) (to + 1 - from));
     }
 
-    public static int nextInt(int max) {
-        return Util.rand.nextInt(max);
+    public static long nextInt(double max) {
+        return Util.rand.nextInt((int) max);
     }
 
     protected static String getStrTime(long time) {
@@ -303,5 +303,5 @@ public class Util {
             return "";
         }
     }
-    
+
 }

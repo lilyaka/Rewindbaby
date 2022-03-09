@@ -117,7 +117,7 @@ public class UseSkill {
             }
             //Gốc cây
             case 22: {
-                int per = Util.nextInt(0,1);
+                int per = (int) Util.nextInt(0,1);
                 BuNhin buNhin = new BuNhin(p.c.name,(short)(per==1?p.c.x+30:p.c.x-30),p.c.y, System.currentTimeMillis()+p.c.getPramSkill(49)*1000, p.c.id, p.c.get().getMaxHP(), p.c.get().Miss());
                 if(p.c.tileMap != null) {
                     p.c.tileMap.buNhins.add(buNhin);

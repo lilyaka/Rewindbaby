@@ -821,9 +821,9 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 6);
-                                        int y = Util.nextInt(1, 6);
-                                        int z = Util.nextInt(1, 6);
+                                        double x = Util.nextInt(1, 6);
+                                        double y = Util.nextInt(1, 6);
+                                        double z = Util.nextInt(1, 6);
                                             if (4 <= (x+y+z) && (x+y+z) <= 10) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z
                                                                 +"\nTổng là : " + (x+y+z)
@@ -887,9 +887,9 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 6);
-                                        int y = Util.nextInt(1, 6);
-                                        int z = Util.nextInt(1, 6);
+                                        double x = Util.nextInt(1, 6);
+                                        double y = Util.nextInt(1, 6);
+                                        double z = Util.nextInt(1, 6);
                                             if (4 > (x+y+z) || (x+y+z) > 10) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z
                                                                 +"\nTổng là : " + (x+y+z)
@@ -952,9 +952,9 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 6);
-                                        int y = Util.nextInt(1, 6);
-                                        int z = Util.nextInt(1, 6);
+                                        double x = Util.nextInt(1, 6);
+                                        double y = Util.nextInt(1, 6);
+                                        double z = Util.nextInt(1, 6);
                                             if (4 <= (x+y+z) && (x+y+z) <= 10) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z
                                                                 +"\nTổng là : " + (x+y+z)
@@ -1009,9 +1009,9 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 6);
-                                        int y = Util.nextInt(1, 6);
-                                        int z = Util.nextInt(1, 6);
+                                        double x = Util.nextInt(1, 6);
+                                        double y = Util.nextInt(1, 6);
+                                        double z = Util.nextInt(1, 6);
                                             if (4 > (x+y+z) || (x+y+z) > 10) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z
                                                                 +"\nTổng là : " + (x+y+z)
@@ -1068,10 +1068,10 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 9);
-                                        int y = Util.nextInt(1, 9);
-                                        int z = Util.nextInt(1, 9);
-                                        int t = Util.nextInt(1, 9);
+                                        double x = Util.nextInt(1, 9);
+                                        double y = Util.nextInt(1, 9);
+                                        double z = Util.nextInt(1, 9);
+                                        double t = Util.nextInt(1, 9);
                                             if ( (x+y+z+t) %2 != 0 ) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z+" "+t
                                                                 +"\nTổng là : " + (x+y+z+t)
@@ -1119,10 +1119,10 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 9);
-                                        int y = Util.nextInt(1, 9);
-                                        int z = Util.nextInt(1, 9);
-                                        int t = Util.nextInt(1, 9);
+                                        double x = Util.nextInt(1, 9);
+                                        double y = Util.nextInt(1, 9);
+                                        double z = Util.nextInt(1, 9);
+                                        double t = Util.nextInt(1, 9);
                                             if ( (x+y+z+t) %2 == 0 ) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z+" "+t
                                                                 +"\nTổng là : " + (x+y+z+t)
@@ -1201,10 +1201,10 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 9);
-                                        int y = Util.nextInt(1, 9);
-                                        int z = Util.nextInt(1, 9);
-                                        int t = Util.nextInt(1, 9);
+                                        double x = Util.nextInt(1, 9);
+                                        double y = Util.nextInt(1, 9);
+                                        double z = Util.nextInt(1, 9);
+                                        double t = Util.nextInt(1, 9);
                                             if ( (x+y+z+t) %2 != 0 ) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z+" "+t
                                                                 +"\nTổng là : " + (x+y+z+t)
@@ -1257,10 +1257,10 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 9);
-                                        int y = Util.nextInt(1, 9);
-                                        int z = Util.nextInt(1, 9);
-                                        int t = Util.nextInt(1, 9);
+                                        double x = Util.nextInt(1, 9);
+                                        double y = Util.nextInt(1, 9);
+                                        double z = Util.nextInt(1, 9);
+                                        double t = Util.nextInt(1, 9);
                                             if ( (x+y+z+t) %2 == 0 ) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z+" "+t
                                                                 +"\nTổng là : " + (x+y+z+t)
@@ -1312,9 +1312,9 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 6);
-                                        int y = Util.nextInt(1, 6);
-                                        int z = Util.nextInt(1, 6);
+                                        double x = Util.nextInt(1, 6);
+                                        double y = Util.nextInt(1, 6);
+                                        double z = Util.nextInt(1, 6);
                                             if (4 <= (x+y+z) && (x+y+z) <= 10) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z
                                                                 +"\nTổng là : " + (x+y+z)
@@ -1369,9 +1369,9 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 6);
-                                        int y = Util.nextInt(1, 6);
-                                        int z = Util.nextInt(1, 6);
+                                        double x = Util.nextInt(1, 6);
+                                        double y = Util.nextInt(1, 6);
+                                        double z = Util.nextInt(1, 6);
                                             if (4 > (x+y+z) || (x+y+z) > 10) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z
                                                                 +"\nTổng là : " + (x+y+z)
@@ -1428,10 +1428,10 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 9);
-                                        int y = Util.nextInt(1, 9);
-                                        int z = Util.nextInt(1, 9);
-                                        int t = Util.nextInt(1, 9);
+                                        double x = Util.nextInt(1, 9);
+                                        double y = Util.nextInt(1, 9);
+                                        double z = Util.nextInt(1, 9);
+                                        double t = Util.nextInt(1, 9);
                                             if ( (x+y+z+t) %2 != 0 ) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z+" "+t
                                                                 +"\nTổng là : " + (x+y+z+t)
@@ -1479,10 +1479,10 @@ case 123:
                                         TimeSeconds--;
                                         Thread.sleep(1000);
                                     }
-                                        int x = Util.nextInt(1, 9);
-                                        int y = Util.nextInt(1, 9);
-                                        int z = Util.nextInt(1, 9);
-                                        int t = Util.nextInt(1, 9);
+                                        double x = Util.nextInt(1, 9);
+                                        double y = Util.nextInt(1, 9);
+                                        double z = Util.nextInt(1, 9);
+                                        double t = Util.nextInt(1, 9);
                                             if ( (x+y+z+t) %2 == 0 ) {
                                                 Server.manager.sendTB(p, "Kết quả", "Số hệ thống quay ra : "+ x +" "+y+" "+z+" "+t
                                                                 +"\nTổng là : " + (x+y+z+t)

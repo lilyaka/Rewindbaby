@@ -17,7 +17,7 @@ public class DanhVongTemplate {
             "- Tiêu diệt %d/%d thủ lĩnh không lệch quá 10 cấp độ"};
 
     public static int randomNVDV() {
-        int ren = Util.nextInt(1,3);
+        int ren = (int) Util.nextInt(1,3);
         switch (ren) {
             case 1: {
                 return 7;
@@ -27,7 +27,7 @@ public class DanhVongTemplate {
             }
             case 3:
             default: {
-                return Util.nextInt(DanhVongTemplate.typeNV.length);
+                return (int)Util.nextInt(DanhVongTemplate.typeNV.length);
             }
         }
     }
@@ -37,15 +37,15 @@ public class DanhVongTemplate {
             if (type == 9) {
                 return 1;
             } else {
-                return (type != 6 && type != 7) ? 0 : Util.nextInt(20, 30);
+                return (int) ((type != 6 && type != 7) ? 0 : Util.nextInt(20, 30));
             }
         } else {
-            return Util.nextInt(1, 3);
+            return (int) Util.nextInt(1, 3);
         }
     }
 
     public static int randomDaDanhVong() {
-        int percent = Util.nextInt(101);
+        int percent = (int) Util.nextInt(101);
         if (percent < 50) {
             return 695;
         } else if (percent >= 50 && percent < 75) {

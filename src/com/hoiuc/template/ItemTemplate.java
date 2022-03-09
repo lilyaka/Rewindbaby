@@ -12,6 +12,10 @@ import java.util.*;
 import java.util.Map;
 
 public class ItemTemplate {
+
+    public static Item itemDefault(double nextInt, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     public short id;
     public byte type;
     public byte nclass;
@@ -740,50 +744,50 @@ public class ItemTemplate {
 
         if (id == HUYET_NGOC) {
             item.options.add(VU_KHI_OPTION);
-            item.options.add(new Option(73, random ? Util.nextInt((int)(0.8D * (double)MAX_TAN_CONG), MAX_TAN_CONG) : MAX_TAN_CONG));
-            item.options.add(new Option(114, -(random ? Util.nextInt((int)(0.8D * (double)CHI_MANG), CHI_MANG) : CHI_MANG)));
+            item.options.add(new Option(73, (int) (random ? Util.nextInt((int)(0.8D * (double)MAX_TAN_CONG), MAX_TAN_CONG) : MAX_TAN_CONG)));
+            item.options.add(new Option(114, (int) -(random ? Util.nextInt((int)(0.8D * (double)CHI_MANG), CHI_MANG) : CHI_MANG)));
             item.options.add(TRANG_BI_OPTION);
-            item.options.add(new Option(124, random ? Util.nextInt((int)(0.8D * (double)GIAM_TRU_ST), GIAM_TRU_ST) : GIAM_TRU_ST));
-            item.options.add(new Option(73, -(random ? Util.nextInt((int)(0.6D * (double)MAX_TAN_CONG), MAX_TAN_CONG) : MAX_TAN_CONG)));
+            item.options.add(new Option(124, (int) (random ? Util.nextInt((int)(0.8D * (double)GIAM_TRU_ST), GIAM_TRU_ST) : GIAM_TRU_ST)));
+            item.options.add(new Option(73, (int) -(random ? Util.nextInt((int)(0.6D * (double)MAX_TAN_CONG), MAX_TAN_CONG) : MAX_TAN_CONG)));
             item.options.add(TRANG_SUC_OPTION);
-            item.options.add(new Option(115, random ? Util.nextInt((int)(0.8D * (double)NE_DON), NE_DON) : NE_DON));
-            item.options.add(new Option(119, -(random ? Util.nextInt((int)(0.8D * (double)MOI_GIAY_HOI_PHUC_MP), MOI_GIAY_HOI_PHUC_MP) : MOI_GIAY_HOI_PHUC_MP)));
+            item.options.add(new Option(115, (int) (random ? Util.nextInt((int)(0.8D * (double)NE_DON), NE_DON) : NE_DON)));
+            item.options.add(new Option(119, (int) -(random ? Util.nextInt((int)(0.8D * (double)MOI_GIAY_HOI_PHUC_MP), MOI_GIAY_HOI_PHUC_MP) : MOI_GIAY_HOI_PHUC_MP)));
         }
 
         if (id == HUYEN_TINH_NGOC) {
             item.options.add(VU_KHI_OPTION);
-            item.options.add(new Option(102, random ? Util.nextInt((int)(0.8D * (double)MAX_ST_QUAI), MAX_ST_QUAI) : MAX_ST_QUAI));
-            item.options.add(new Option(115, -(random ? Util.nextInt((int)(0.8D * (double)NE_DON), NE_DON) : NE_DON)));
+            item.options.add(new Option(102, (int) (random ? Util.nextInt((int)(0.8D * (double)MAX_ST_QUAI), MAX_ST_QUAI) : MAX_ST_QUAI)));
+            item.options.add(new Option(115, (int) -(random ? Util.nextInt((int)(0.8D * (double)NE_DON), NE_DON) : NE_DON)));
             item.options.add(TRANG_BI_OPTION);
-            item.options.add(new Option(126, random ? Util.nextInt((int)(0.8D * (double)PHAN_DON), PHAN_DON) : PHAN_DON));
-            item.options.add(new Option(105, -(random ? Util.nextInt((int)(0.6D * (double)ST_CHI_MANG), ST_CHI_MANG) : ST_CHI_MANG)));
+            item.options.add(new Option(126, (int) (random ? Util.nextInt((int)(0.8D * (double)PHAN_DON), PHAN_DON) : PHAN_DON)));
+            item.options.add(new Option(105, (int) -(random ? Util.nextInt((int)(0.6D * (double)ST_CHI_MANG), ST_CHI_MANG) : ST_CHI_MANG)));
             item.options.add(TRANG_SUC_OPTION);
-            item.options.add(new Option(114, random ? Util.nextInt((int)(0.8D * (double)CHI_MANG), CHI_MANG) : CHI_MANG));
-            item.options.add(new Option(118, -(random ? Util.nextInt((int)(0.8D * (double)KHANG_TAT_CA), KHANG_TAT_CA) : KHANG_TAT_CA)));
+            item.options.add(new Option(114, (int) (random ? Util.nextInt((int)(0.8D * (double)CHI_MANG), CHI_MANG) : CHI_MANG)));
+            item.options.add(new Option(118, (int) -(random ? Util.nextInt((int)(0.8D * (double)KHANG_TAT_CA), KHANG_TAT_CA) : KHANG_TAT_CA)));
         }
 
         if (id == LAM_TINH_NGOC) {
             item.options.add(VU_KHI_OPTION);
-            item.options.add(new Option(103, random ? Util.nextInt((int)(0.8D * (double)MAX_ST_NGUOI), MAX_ST_NGUOI) : MAX_ST_NGUOI));
-            item.options.add(new Option(125, -(random ? Util.nextInt((int)(0.8D * (double)HP_TOI_DA), HP_TOI_DA) : HP_TOI_DA)));
+            item.options.add(new Option(103, (int) (random ? Util.nextInt((int)(0.8D * (double)MAX_ST_NGUOI), MAX_ST_NGUOI) : MAX_ST_NGUOI)));
+            item.options.add(new Option(125, (int) -(random ? Util.nextInt((int)(0.8D * (double)HP_TOI_DA), HP_TOI_DA) : HP_TOI_DA)));
             item.options.add(TRANG_BI_OPTION);
-            item.options.add(new Option(121, random ? Util.nextInt((int)(0.8D * (double)KHANG_ST_CHI_MANG), KHANG_ST_CHI_MANG) : KHANG_ST_CHI_MANG));
-            item.options.add(new Option(120, -(random ? Util.nextInt((int)(0.8D * (double)MOI_GIAY_HOI_PHUC_HP), MOI_GIAY_HOI_PHUC_HP) : MOI_GIAY_HOI_PHUC_HP)));
+            item.options.add(new Option(121, (int) (random ? Util.nextInt((int)(0.8D * (double)KHANG_ST_CHI_MANG), KHANG_ST_CHI_MANG) : KHANG_ST_CHI_MANG)));
+            item.options.add(new Option(120, (int) -(random ? Util.nextInt((int)(0.8D * (double)MOI_GIAY_HOI_PHUC_HP), MOI_GIAY_HOI_PHUC_HP) : MOI_GIAY_HOI_PHUC_HP)));
             item.options.add(TRANG_SUC_OPTION);
-            item.options.add(new Option(116, random ? Util.nextInt((int)(0.8D * (double)CHINH_XAC), CHINH_XAC) : CHINH_XAC));
-            item.options.add(new Option(126, -(random ? Util.nextInt((int)(0.8D * (double)PHAN_DON), PHAN_DON) : PHAN_DON)));
+            item.options.add(new Option(116, (int) (random ? Util.nextInt((int)(0.8D * (double)CHINH_XAC), CHINH_XAC) : CHINH_XAC)));
+            item.options.add(new Option(126, (int) -(random ? Util.nextInt((int)(0.8D * (double)PHAN_DON), PHAN_DON) : PHAN_DON)));
         }
 
         if (id == LUC_NGOC) {
             item.options.add(VU_KHI_OPTION);
-            item.options.add(new Option(105, random ? Util.nextInt((int)(0.8D * (double)ST_CHI_MANG), ST_CHI_MANG) : ST_CHI_MANG));
-            item.options.add(new Option(116, -(random ? Util.nextInt((int)(0.8D * (double)CHINH_XAC), CHINH_XAC) : CHINH_XAC)));
+            item.options.add(new Option(105, (int) (random ? Util.nextInt((int)(0.8D * (double)ST_CHI_MANG), ST_CHI_MANG) : ST_CHI_MANG)));
+            item.options.add(new Option(116, (int) -(random ? Util.nextInt((int)(0.8D * (double)CHINH_XAC), CHINH_XAC) : CHINH_XAC)));
             item.options.add(TRANG_BI_OPTION);
-            item.options.add(new Option(125, random ? Util.nextInt((int)(0.8D * (double)HP_TOI_DA), HP_TOI_DA) : HP_TOI_DA));
-            item.options.add(new Option(117, -(random ? Util.nextInt((int)(0.8D * (double)MP_TOI_DA), MP_TOI_DA) : MP_TOI_DA)));
+            item.options.add(new Option(125, (int) (random ? Util.nextInt((int)(0.8D * (double)HP_TOI_DA), HP_TOI_DA) : HP_TOI_DA)));
+            item.options.add(new Option(117, (int) -(random ? Util.nextInt((int)(0.8D * (double)MP_TOI_DA), MP_TOI_DA) : MP_TOI_DA)));
             item.options.add(TRANG_SUC_OPTION);
-            item.options.add(new Option(117, random ? Util.nextInt((int)(0.8D * (double)MP_TOI_DA), MP_TOI_DA) : MP_TOI_DA));
-            item.options.add(new Option(124, -(random ? Util.nextInt((int)(0.8D * (double)GIAM_TRU_ST), GIAM_TRU_ST) : GIAM_TRU_ST)));
+            item.options.add(new Option(117, (int) (random ? Util.nextInt((int)(0.8D * (double)MP_TOI_DA), MP_TOI_DA) : MP_TOI_DA)));
+            item.options.add(new Option(124, (int) -(random ? Util.nextInt((int)(0.8D * (double)GIAM_TRU_ST), GIAM_TRU_ST) : GIAM_TRU_ST)));
         }
 
         item.setUpgrade((byte)upgrade);

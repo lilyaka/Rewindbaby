@@ -2518,7 +2518,7 @@ public static void submitTrade(Player player) {
                     //vòng xoay v1
                     case 6:{
                         player.upluongMessage(-77000);
-                        long luongUp = Util.nextInt(107000, 177000);
+                        long luongUp = (long) Util.nextInt(107000, 177000);
                         player.upluongMessage(luongUp);
                         player.conn.sendMessageLog("Bạn nhận được: "+ luongUp + " lượng");
                         player.vxLuong = 1;
@@ -2527,7 +2527,7 @@ public static void submitTrade(Player player) {
                     //vòng xoay v2
                     case 7:{
                         player.upluongMessage(-277000);
-                        long luongUp = Util.nextInt(377000, 577000);
+                        long luongUp = (long) Util.nextInt(377000, 577000);
                         player.upluongMessage(luongUp);
                         player.conn.sendMessageLog("Bạn nhận được: "+ luongUp + " lượng");
                         player.vxLuong = 2;
@@ -2539,7 +2539,7 @@ public static void submitTrade(Player player) {
                     }
                     case 9:{
                         player.upluongMessage(-777000);
-                        long luongUp = Util.nextInt(977000, 1777000);
+                        long luongUp = (long) Util.nextInt(977000, 1777000);
                         player.upluongMessage(luongUp);
                         player.conn.sendMessageLog("Bạn nhận được: "+ luongUp + " lượng");
                         player.vxLuong = 3;
@@ -2547,7 +2547,7 @@ public static void submitTrade(Player player) {
                     }
                     case 10:{
                         player.upluongMessage(-2077000);
-                        long luongUp = Util.nextInt(2777000, 4377000);
+                        long luongUp = (long) Util.nextInt(2777000, 4377000);
                         player.upluongMessage(luongUp);
                         player.conn.sendMessageLog("Bạn nhận được: "+ luongUp + " lượng");
                         player.vxLuong = 4;
@@ -2555,7 +2555,7 @@ public static void submitTrade(Player player) {
                     }
                     case 11:{
                         player.upluongMessage(-5077000);
-                        long luongUp = Util.nextInt(6777000, 7777000);
+                        long luongUp = (long) Util.nextInt(6777000, 7777000);
                         player.upluongMessage(luongUp);
                         player.conn.sendMessageLog("Bạn nhận được: "+ luongUp + " lượng");
                         player.vxLuong = 5;
@@ -2563,7 +2563,7 @@ public static void submitTrade(Player player) {
                     }
                     case 12:{
                         player.upluongMessage(-10777000);
-                        long luongUp = Util.nextInt(17777000, 27777000);
+                        long luongUp = (long) Util.nextInt(17777000, 27777000);
                         player.upluongMessage(luongUp);
                         player.conn.sendMessageLog("Bạn nhận được: "+ luongUp + " lượng");
                         player.vxLuong = 6;

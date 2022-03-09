@@ -345,7 +345,7 @@ public class Mob {
                 if (Server.manager.event != 0) {
                     ItemLeave.leaveItemSuKien(this.tileMap, this, master);
                 }
-                switch (Util.nextInt(1, 2)) {
+                switch ((int)Util.nextInt(1, 2)) {
                     case 1: {
                         if(this.lvboss == 0 && Util.nextInt(10) < 1) {
                             ItemLeave.leaveYen(this.tileMap, this, master);
@@ -362,12 +362,12 @@ public class Mob {
             }
 
             if (this.tileMap.map.mapTuTien()){
-                ItemLeave.randomLeave(this.tileMap, this, master, Util.nextInt(1, 3), 2);
+                ItemLeave.randomLeave(this.tileMap, this, master, (int) Util.nextInt(1, 3), 2);
             }
             if (this.tileMap.map.VDMQ() && (_char.get().getEffId(40) != null || _char.get().getEffId(41) != null) && Math.abs(this.level - _char.get().level) <= 10) {
-                ItemLeave.randomLeave(this.tileMap, this, master, Util.nextInt(1, 2), 0);
+                ItemLeave.randomLeave(this.tileMap, this, master, (int) Util.nextInt(1, 2), 0);
             } else if (this.tileMap.map.LangCo()) {
-                ItemLeave.randomLeave(this.tileMap, this, master, Util.nextInt(1, 3), 1);
+                ItemLeave.randomLeave(this.tileMap, this, master, (int) Util.nextInt(1, 3), 1);
                 _char.p.upluongMessage(1);
                 if(this.lvboss == 2) {
                     ItemLeave.leaveTTTT(this.tileMap, this, master);                  

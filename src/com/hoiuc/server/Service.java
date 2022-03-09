@@ -346,7 +346,7 @@ public class Service {
                 } else if (ChienTruong.pointBachGia < ChienTruong.pointHacGia) {
                     ChienTruong.pheWin = 1;
                 } else {
-                    ChienTruong.pheWin = Util.nextInt(0,1);
+                    ChienTruong.pheWin = (int) Util.nextInt(0,1);
                 }
             }
             if(ChienTruong.pheWin == 0) {

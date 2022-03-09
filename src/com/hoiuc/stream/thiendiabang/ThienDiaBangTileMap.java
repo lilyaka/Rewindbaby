@@ -31,7 +31,7 @@ public class ThienDiaBangTileMap {
     public ArrayList<Party> aParty = new ArrayList();
     public ArrayList<BuNhin> buNhins = new ArrayList();
     public Object LOCK = new Object();
-    public long Delay = System.currentTimeMillis() + Util.nextInt(11000,15000);
+    public long Delay = (long) (System.currentTimeMillis() + Util.nextInt(11000,15000));
     public boolean isUseSkill = false;
     private short MOVE_LIMIT = 80;
     private short RESET_LIMIT = 90;
@@ -218,7 +218,7 @@ public class ThienDiaBangTileMap {
                         p.setEffect(6, 0, fightChar.get().timeIce() - p.c.get().getPramSkill(38) * 100, 0);
                     }
                 } else {
-                    int dame = Util.nextInt(p.c.get().dameMin(), p.c.get().dameMax());
+                    int dame = (int) Util.nextInt(p.c.get().dameMin(), p.c.get().dameMax());
                     switch(fightChar.c.get().Sys()) {
                         case 1: {
                             dame += dame * p.c.get().getPramSkill(54) / 100;
@@ -485,7 +485,7 @@ public class ThienDiaBangTileMap {
                 for (short idSk : p.c.idSkillBot) {
                     UseSkill.useSkillBot(p, idSk);
                 }
-                Delay = System.currentTimeMillis() + Util.nextInt(3000, 6000);
+                Delay = (long) (System.currentTimeMillis() + Util.nextInt(3000, 6000));
             } else {
                 isUseSkill = false;
             }

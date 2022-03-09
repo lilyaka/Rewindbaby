@@ -133,7 +133,7 @@ public class Lucky extends Thread{
             }
         }
         if (p == null) {
-            p = this.players.get(Util.nextInt(this.players.size()));
+            p = this.players.get((int) Util.nextInt(this.players.size()));
         }
         long xuwin = this.totalxu;
         if (this.numplayers > 1) {

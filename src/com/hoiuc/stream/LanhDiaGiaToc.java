@@ -343,9 +343,9 @@ public class LanhDiaGiaToc {
             Item itemup = ItemTemplate.itemDefault(262);
             itemup.quantity = 1;
             if(quantity == 2) {
-                itemup.quantity = Util.nextInt(10,20);
+                itemup.quantity = (int) Util.nextInt(10,20);
             } else if (quantity == 3) {
-                itemup.quantity = Util.nextInt(30,50);
+                itemup.quantity = (int) Util.nextInt(30,50);
             }
             itemup.isExpires = false;
             itemup.isLock = true;
