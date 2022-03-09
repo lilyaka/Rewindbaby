@@ -18,7 +18,11 @@ public class Rank {
     public static ArrayList<Entry2> bxhCaoThu = new ArrayList<>();
     public static ArrayList<Entry3> bxhBossTuanLoc = new ArrayList<>();
     public static ArrayList<Entry4> bxhBossChuot = new ArrayList<>();
+    
+    
 
+    //test commit
+    
     public static void updateCaoThu() {
         Rank.bxhCaoThu.clear();
         ResultSet red = null;
