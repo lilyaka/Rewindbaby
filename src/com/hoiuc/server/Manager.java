@@ -26,6 +26,7 @@ import java.util.*;
 public class Manager {
     public static int baseWhiteListId = 0;
     public static HashMap<Integer, String> whiteList;
+    public static boolean topSuKien;
     public int os;
     public int post;
     public String host;
@@ -59,6 +60,9 @@ public class Manager {
     public static SkillOptionTemplates[] sOptionTemplates;
     public static int[] idMapLoad = new int[]{4, 5, 7, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 24, 28, 29, 30, 31, 33, 34, 35, 36, 37, 39, 40, 41, 42, 46, 47, 48, 49, 50, 51, 52, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68};
 
+    //số lượng client tối đa;
+    public static int max_connect_socket = 6;
+    
     public Manager() {
         npcs = new ArrayList();
         parts = new ArrayList();
@@ -241,6 +245,11 @@ public class Manager {
             max_level_up = Integer.parseInt((String)configMap.get("max-level-up"));
         } else {
             max_level_up = 130;
+        }
+        if (configMap.containsKey("top-sv")) {
+            this.topSuKien = Boolean.parseBoolean((String)configMap.get("top-sv"));
+        } else {
+            Util.setDebug(false);
         }
     }
 

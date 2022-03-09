@@ -98,6 +98,7 @@ public void tanghoaxanh()  throws IOException {
         this.updateExp(5000000L);
        this.c.removeItemBags(391, 1);
        this.c.diemhoaxanh++;
+           this.c.diemhoa++;
         Char userGF = Client.gI().getNinja(nameUS);
         if(c.getBagNull() == 0) {
             this.conn.sendMessageLog("Hành trang không đủ chỗ trống");
@@ -119,6 +120,7 @@ public void tanghoaxanh()  throws IOException {
    public void tanghoavang()  throws IOException {
         this.updateExp(5000000L);
         this.c.diemhoavang++;
+            this.c.diemhoa++;
        this.c.removeItemBags(390, 1);
         Char userGF = Client.gI().getNinja(nameUS);
         if(c.getBagNull() == 0) {
@@ -139,10 +141,10 @@ public void tanghoaxanh()  throws IOException {
     }
 // tạo hàm 
     public void tanghoado()  throws IOException {
-  
         this.updateExp(5000000L);
        this.c.removeItemBags(389, 1);
        this.c.diemhoado++;
+           this.c.diemhoa++;
         Char userGF = Client.gI().getNinja(nameUS);
         if(c.getBagNull() == 0) {
             this.conn.sendMessageLog("Hành trang không đủ chỗ trống");
@@ -164,6 +166,7 @@ public void tanghoaxanh()  throws IOException {
 public void tanggiohoa()  throws IOException {
         this.updateExp(10000000L);
        this.c.removeItemBags(392, 1);
+           this.c.diemhoa++;
         Char userGF = Client.gI().getNinja(nameUS);
         if(c.getBagNull() == 0) {
             this.conn.sendMessageLog("Hành trang không đủ chỗ trống");

@@ -472,7 +472,7 @@ public class RunTimeServer extends Thread{
                     TuTien.tuTien.finish();
                 }
                 
-                if(sec == 10) {                                  
+                if(sec == 15) {                                  
                     synchronized (Client.gI().conns) {
                         for (i = 0; i < Client.gI().conns.size(); ++i) {
                             Session conn = (Session) Client.gI().conns.get(i);
@@ -487,7 +487,7 @@ public class RunTimeServer extends Thread{
                                 }
                             }
                         }
-                  //      System.out.println(" Clear clone login");
+                        System.out.println(" Clear clone login");
                     }                      
                 }
                 if((min == 58 || min == 30)&& sec == 0) {

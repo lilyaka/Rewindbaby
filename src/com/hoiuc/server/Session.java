@@ -12,7 +12,6 @@ import java.io.DataOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Session {
     private static int baseId = 0;
@@ -44,7 +43,7 @@ public class Session {
     private Server server = Server.gI();
     public String ipv4 = null;
     public boolean login;
-    public int idSer;
+    //public int idSer;
     private Session.Sender sender;
     private Thread collectorThread;
     protected Thread sendThread;
@@ -54,6 +53,7 @@ public class Session {
 
     public Session(Socket socket, IMessageHandler handler) {
         try {
+            this.ipv4 = null;
             this.id = baseId++;
             this.socket = socket;
             this.dis = new DataInputStream(this.socket.getInputStream());
@@ -68,33 +68,6 @@ public class Session {
 
         }
     }
-    public static boolean check(String ip){
-        boolean b = false;
-        List<Ip> list = Util.ReadIp();
-        for (Ip o : list) {
-            if(o.getName().equals(ip)){
-                b = true;
-                break;
-            }else{
-                b = false;
-            }
-        }
-        return b;
-    }
-    public static boolean check1(String ip){
-        boolean b = false;
-        List<Ip> list = Util.ReadIp1();
-        for (Ip o : list) {
-            if(o.getName().equals(ip)){
-                b = true;
-                break;
-            }else{
-                b = false;
-            }
-        }
-        return b;
-    }
-
 
     public void run() {
         this.sendThread.start();
@@ -267,10 +240,10 @@ public class Session {
                 server.manager.getPackMessage(p);
                 HandleController.selectNinja(p, null);
 //                System.out.println("Login - IP: " + this.ipv4 + " - Session id: " + this.id + " - Username: " + p.username);
-//                server.manager.sendData(p);
-//                server.manager.sendItem(p);
-//                server.manager.sendSkill(p);
-//                server.manager.sendMap(p);
+                server.manager.sendData(p);
+                server.manager.sendItem(p);
+                server.manager.sendSkill(p);
+                server.manager.sendMap(p);
             } else {
                 if(!(Util.CheckString(passw, "^[a-zA-Z0-9]+$"))){
                     return;
@@ -288,7 +261,17 @@ public class Session {
     }
 
     public void disconnect() {
+        if (!this.connected) {
+            for (int jj = 0; jj < Server.arrayListIP.size(); jj++) {
+                if (Server.arrayListIP.get(jj).equals(this.ipv4)) {
+                    Server.arrayListIP.remove(jj);
+                    break;
+                }
+            }
+            return;
+        }
         if (this.connected) {
+            this.server.count_connect--;
             if (this.messageHandler != null) {
                 this.messageHandler.onDisconnected(this);
             }
@@ -298,7 +281,6 @@ public class Session {
                 this.LOCK.notify();
             }
         }
-
     }
 
     public void closeMessage() {
@@ -375,17 +357,10 @@ public class Session {
                     if (Session.this.connected && Session.this.dis != null) {
                         message = this.readMessage();
                         if (message != null && Session.this != null) {
-                            if(!login && !(message.getCommand() == -27  || message.getCommand() == -29)){
-                                if(!check(Session.this.clientIpAddress)&&(!check1(Session.this.clientIpAddress))){
-                                    Util.WriteIp(Session.this.clientIpAddress);
-                                    Session.this.socket.close();
-                                }
-                            }else{
-                                Util.Debug("Session: " + Session.this.id + " do message " + message.getCommand() + " size " + message.reader().available());
-                                Session.this.messageHandler.processMessage(Session.this, message);
-                                message.cleanup();
-                                continue;
-                            }
+                            Util.Debug("Session: " + Session.this.id + " do message " + message.getCommand() + " size " + message.reader().available());
+                            Session.this.messageHandler.processMessage(Session.this, message);
+                            message.cleanup();
+                            continue;
                         }
                     }
                 } catch (Exception var2) {

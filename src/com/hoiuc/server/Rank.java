@@ -5,6 +5,7 @@ import com.hoiuc.io.SQLManager;
 import com.hoiuc.io.Util;
 import com.hoiuc.stream.Server;
 import com.hoiuc.template.ItemTemplate;
+import com.hoiuc.template.TraoTop;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,12 +13,12 @@ import java.util.ArrayList;
 import java.util.Timer;
 
 public class Rank {
-    public static ArrayList<Entry>[] bangXH = new ArrayList[5];
+    public static ArrayList<Entry>[] bangXH = new ArrayList[6];
     public static Timer t = new Timer(true);
-
     public static ArrayList<Entry2> bxhCaoThu = new ArrayList<>();
     public static ArrayList<Entry3> bxhBossTuanLoc = new ArrayList<>();
     public static ArrayList<Entry4> bxhBossChuot = new ArrayList<>();
+    public static ArrayList<TraoTop> list = new ArrayList<>();
 
     public static void updateCaoThu() {
         Rank.bxhCaoThu.clear();
@@ -302,7 +303,7 @@ public class Rank {
                 ResultSet red = null;
                 try {
                     int i = 1;
-                    red = SQLManager.stat.executeQuery("SELECT `name`,`luongTN` FROM `ninja` WHERE (`luongTN` > 0) ORDER BY `luongTN` DESC LIMIT 10;");
+                    red = SQLManager.stat.executeQuery("SELECT `name`,`luongTN` FROM `ninja` WHERE (`luongTN` > 0) ORDER BY `luongTN` DESC LIMIT 20;");
                     while (red.next()) {
                         String name = red.getString("name");
                         int sk = red.getInt("luongTN");
@@ -312,6 +313,39 @@ public class Rank {
                         bXHE.index = i;
                         bXHE.nXH[0] = sk;
                         bxh.add(bXHE);
+                        i++;
+                    }
+                }
+                catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    if(red != null) {
+                        try {
+                            red.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                break;
+            }
+            case 5: {
+                ResultSet red = null;
+                try {
+                    int i = 1;
+                    red = SQLManager.stat.executeQuery("SELECT `name`,`diemhoa` FROM `ninja` WHERE (`diemhoa` > 0) ORDER BY `diemhoa` DESC LIMIT 10;");
+                    String name;
+                    int point;
+                    Entry bXHH;
+                    while (red.next()) {
+                        name = red.getString("name");
+                        point = red.getInt("diemhoa");
+                        bXHH = new Entry();
+                        bXHH.nXH = new long[1];
+                        bXHH.name = name;
+                        bXHH.index = i;
+                        bXHH.nXH[0] = point;
+                        bxh.add(bXHH);
                         i++;
                     }
                 }
@@ -401,6 +435,17 @@ public class Rank {
                 } else {
                     for (Entry bxh : bangXH[type]) {
                         str += bxh.index + ". " + bxh.name + " đã tiêu " + Util.getFormatNumber(bxh.nXH[0]) + " lượng\n";
+                        list.add(new TraoTop(bxh.index, bxh.name));
+                    }                 
+                }
+                break;
+            }
+             case 5:{               
+                if (bangXH[type].isEmpty()) {
+                    str = "Chưa có thông tin";
+                } else {
+                    for (Entry bxh : bangXH[type]) {
+                        str += bxh.index + ". " + bxh.name + " đã có " + Util.getFormatNumber(bxh.nXH[0]) + " điểm.\n";                     
                     }                 
                 }
                 break;

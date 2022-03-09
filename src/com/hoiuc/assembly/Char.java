@@ -136,7 +136,7 @@ public class Char extends Body {
 
     public int ldgtID = -1;
     public int tempLdgtID = -1;
-
+    public short diemhoa =0;
     public int countTDB = 1;
     public int rankTDB = 0;
     public int isGiftTDB = 0;
@@ -151,6 +151,9 @@ public class Char extends Body {
     //exp chuyen sinh
     public long expCS = 0;
     public byte chuyenSinh = 0;
+    
+    //Nhan qua top
+    public byte nhanQua = 0;
     
     //Đua top vũ khí
     public int luongTop = 0;
@@ -644,6 +647,7 @@ public class Char extends Body {
                     nja.isGiftTDB = red.getInt("isGiftTDB");
                     nja.countTDB = red.getInt("countTDB");
                     nja.countWin = red.getInt("countWin");
+                    nja.nhanQua = red.getByte("nhanqua");
                     nja.nhanTP = red.getInt("nhanTP");
                     nja.pointBossChuot = red.getInt("pointBossChuot");
                     //nja.exptutien = red.getLong("exptutien");
@@ -656,6 +660,7 @@ public class Char extends Body {
                     nja.diemhoavang = red.getShort("diemhoado");
                     nja.diemhoaxanh = red.getShort("diemhoaxanh");
                     nja.diemtanghoa = red.getShort("diemtanghoa");
+                    nja.diemhoa = red.getShort("diemhoa");
                     JSONArray jar = (JSONArray)JSONValue.parse(red.getString("skill"));
                     JSONObject job;
                     Skill skill;
@@ -1162,7 +1167,7 @@ public class Char extends Body {
                 jarr.add(this.x);
                 jarr.add(this.y);
                 jarr.add(this.mapLTD);
-                String sqlSET = "`head`=" + this.head +",`caiTrang`=" + this.caiTrang +",`rankTDB`=" + this.rankTDB +",`countWin`=" + this.countWin +",`countPhao`=" + this.countPhao +",`nhanTP`=" + this.nhanTP +",`countTDB`=" + this.countTDB + ",`isGiftTDB`=" + this.isGiftTDB + ", `taskId`=" + this.taskId + ",`class`=" + this.get().nclass + ",`ppoint`=" + this.get().ppoint + ",`potential0`=" + this.get().potential0 + ",`potential1`=" + this.get().potential1 + ",`potential2`=" + this.get().potential2 + ",`potential3`=" + this.get().potential3 + ",`spoint`=" + this.get().spoint + ",`level`=" + this.get().level + ",`exp`=" + this.exp + ",`expdown`=" + this.expdown + ",`expSkillClone`=" + this.expSkillClone + ",`pk`=" + this.pk + ",`xu`=" + this.xu + ",`yen`=" + this.yen + ",`maxluggage`=" + this.maxluggage + ",`levelBag`=" + this.levelBag + ",`site`='" + jarr.toJSONString() + "', `buyX3` =" + this.countBuyX3;
+                String sqlSET = "`head`=" + this.head +",`caiTrang`=" + this.caiTrang +",`rankTDB`=" + this.rankTDB +",`countWin`=" + this.countWin +",`nhanqua`=" + this.nhanQua +",`countPhao`=" + this.countPhao +",`nhanTP`=" + this.nhanTP +",`countTDB`=" + this.countTDB + ",`isGiftTDB`=" + this.isGiftTDB + ", `taskId`=" + this.taskId + ",`class`=" + this.get().nclass + ",`ppoint`=" + this.get().ppoint + ",`potential0`=" + this.get().potential0 + ",`potential1`=" + this.get().potential1 + ",`potential2`=" + this.get().potential2 + ",`potential3`=" + this.get().potential3 + ",`spoint`=" + this.get().spoint + ",`level`=" + this.get().level + ",`exp`=" + this.exp + ",`expdown`=" + this.expdown + ",`expSkillClone`=" + this.expSkillClone + ",`pk`=" + this.pk + ",`xu`=" + this.xu + ",`yen`=" + this.yen + ",`maxluggage`=" + this.maxluggage + ",`levelBag`=" + this.levelBag + ",`site`='" + jarr.toJSONString() + "', `buyX3` =" + this.countBuyX3;
                 jarr.clear();
                 Iterator var4 = this.skill.iterator();
 
@@ -1375,7 +1380,7 @@ public class Char extends Body {
                 jarr.clear();
                 jarr.add(this.clan.clanName);
                 jarr.add(this.clan.pointClan);
-                sqlSET = sqlSET + ",`timeRemoveClone` = "+this.timeRemoveClone+  ",`isHangDong6x` = "+this.isHangDong6x+ ",`ldgtID` = "+this.ldgtID+",`pointBossTL` = "+this.pointBossTL+ ",`maxPointCT` = "+this.isTakePoint+",`clan`='" + jarr.toJSONString() + "',`denbu`=" + this.denbu + ",`newlogin`='" + Util.toDateString(this.newlogin) + "',`ddClan`=" + this.ddClan + ",`caveID`=" + this.caveID + ",`nCave`=" + this.nCave + ",`pointCave`=" + this.pointCave + ",`useCave`=" + this.useCave + ",`bagCaveMax`=" + this.bagCaveMax + ",`itemIDCaveMax`=" + this.itemIDCaveMax + ",`saveBXH`=" + this.saveBXH + ",`exptype`=" + this.exptype + ",`luongTN`=" + this.luongTop + ",`expCS`=" + this.expCS + ",`chuyenSinh`=" + this.chuyenSinh + ",`diemhoado`=" + this.diemhoado+ ",`diemhoavang`=" + this.diemhoavang+ ",`diemhoaxanh`=" + this.diemhoaxanh +",`diemtanghoa`=" + this.diemtanghoa +""; //",`exptutien`=" + this.exptutien + ",`leveltutien`=" + this.leveltutien +
+                sqlSET = sqlSET + ",`timeRemoveClone` = "+this.timeRemoveClone+  ",`isHangDong6x` = "+this.isHangDong6x+ ",`ldgtID` = "+this.ldgtID+",`pointBossTL` = "+this.pointBossTL+ ",`maxPointCT` = "+this.isTakePoint+",`clan`='" + jarr.toJSONString() + "',`denbu`=" + this.denbu + ",`newlogin`='" + Util.toDateString(this.newlogin) + "',`ddClan`=" + this.ddClan + ",`caveID`=" + this.caveID + ",`nCave`=" + this.nCave + ",`pointCave`=" + this.pointCave + ",`useCave`=" + this.useCave + ",`bagCaveMax`=" + this.bagCaveMax + ",`itemIDCaveMax`=" + this.itemIDCaveMax + ",`saveBXH`=" + this.saveBXH + ",`exptype`=" + this.exptype + ",`luongTN`=" + this.luongTop + ",`expCS`=" + this.expCS + ",`chuyenSinh`=" + this.chuyenSinh + ",`diemhoado`=" + this.diemhoado+ ",`diemhoavang`=" + this.diemhoavang+ ",`diemhoaxanh`=" + this.diemhoaxanh +",`diemtanghoa`=" + this.diemtanghoa+ ",`diemhoa`=" + this.diemhoa +""; //",`exptutien`=" + this.exptutien + ",`leveltutien`=" + this.leveltutien +
                 SQLManager.stat.executeUpdate("UPDATE `ninja` SET " + sqlSET + " WHERE `id`=" + this.id + " LIMIT 1;");
                 if (jarr != null && !jarr.isEmpty()) {
                     jarr.clear();

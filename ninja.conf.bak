@@ -14,8 +14,9 @@ mysql-database_ninja: teamobic_ninja
 max-level-up: 150
 up-exp: 20
 version-Data: 58
-version-Map: 40
+version-Map: 41
 version-Skill: 13
 version-Item: 58
-version-Event: 4
+version-Event: 5
 nhanquatdb: 0
+top-sv: false

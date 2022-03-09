@@ -105,7 +105,7 @@ public class Menu {
                         break;
                     }
                     case 5: {
-                        Menu.doMenuArray(p, new String[]{"Làm Hoa Hồng Đỏ","Làm Hoa Hồng Vàng","Làm Hoa Hồng Xanh","Làm Giỏ Hoa","Tặng Hoa Hồng Đỏ","Tặng Hoa Hồng Vàng","Tặng Hoa Hồng Xanh","Tặng Giỏ Hoa","Kết Hoa"});
+                        Menu.doMenuArray(p, new String[]{"Làm Hoa Hồng Đỏ","Làm Hoa Hồng Vàng","Làm Hoa Hồng Xanh","Làm Giỏ Hoa","Tặng Hoa Hồng Đỏ","Tặng Hoa Hồng Vàng","Tặng Hoa Hồng Xanh","Tặng Giỏ Hoa","Kết Hoa","BXH Tặng Hoa"});
                     }
                     default: {
                         break;
@@ -4798,6 +4798,10 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                                     " - Bó hoa hồng xanh = 8 Hoa hồng xanh + 1 Giấy màu + 1 Ruy băng + 1 Khung tre\n" +
                                     " - Giỏ hoa = 8 Hoa hồng đỏ + 8 Hoa hồng vàng + 8 Hoa hồng xanh + 1 Giấy màu + 1 Ruy băng + 1 Khung tre\n");
                            }
+                                case 9: {
+                            Server.manager.sendTB(p, "Top Hoa", Rank.getStringBXH(5));
+                            return;
+                        }
                     }
                 }
                 default: {
@@ -6006,7 +6010,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                 p.updateExp(Level.getMaxExp(10) - p.c.exp);
                 p.upluongMessage(-5000000);
                 p.c.upxuMessage(-50000000);
-                Manager.chatKTG("Chúc mừng anh: " + p.c.name + " đã đạt cảnh giới chuyển sinh 1. Chúng ta hãy cùng " + p.c.name + " quay lại tuổi thơ dữ dội và viết lên 1 hành trình mới đầy vẻ vang nào. Anh em nhìn " + p.c.name + " mà học hỏi nhé.!");
+                Manager.chatKTG("Chúc mừng anh em: " + p.c.name + " đã đạt cảnh giới chuyển sinh 1. Chúng ta hãy cùng anh em" + p.c.name + " quay lại tuổi thơ dữ dội và viết lên 1 hành trình mới đầy vẻ vang nào. Anh em nhìn " + p.c.name + " mà học hỏi nhé.!");
                 break;
             }
             case 6:{
@@ -6057,14 +6061,77 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                         p.upluongMessage(-luong);
                         break;
                     }
+                    case 1:{
+                        break;
+                    }
                     case 2:{
                         // nếu muốn tiêu lượng nó cộng thì ++ p.c.luongTN += giá trị ;
                         //trong này nhé
-                         Server.manager.sendTB(p, "Top tiêu lượng", Rank.getStringBXH(5));
+                        Server.manager.sendTB(p, "Top tiêu lượng", Rank.getStringBXH(4));
                         break;
                     }
+                    //chức năng tự tặng quà top
+                    case 3: {
+                          ArrayList<TraoTop> list = Rank.list;
+                          Rank.getStringBXH(4);
+                          if (!Manager.topSuKien){
+                              p.conn.sendMessageLog("Chưa đến lúc phát quà, xin trùm hãy quay lại vào lần sau");
+                              break;
+                          }
+                          if (p.c.nhanQua != 0){
+                              Service.chatNPC(p, (short) npcid, "Trùm đã nhận quà rồi");
+                              break;
+                          }
+                          for(TraoTop traoTop : list){
+                              Item itemup = ItemTemplate.itemDefault(839);
+                              if(p.c.name.equals(traoTop.name)){
+                                  if(traoTop.top < 2) {
+                                        itemup.quantity = 300;
+                                        p.c.addItemBag(true, itemup);
+                                        Manager.chatKTG("Đệ nhất tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
+                                        p.c.nhanQua = 1;
+                                        break;
+                                    }
+                                    else if (traoTop.top < 3) {
+                                        itemup.quantity = 300;
+                                        p.c.addItemBag(true, itemup);
+                                        Manager.chatKTG("Đệ nhì tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
+                                        p.c.nhanQua = 1;
+                                        break;
+                                    }
+                                    else if(traoTop.top <= 5) {
+                                        itemup.quantity = 300;
+                                        p.c.addItemBag(true, itemup);
+                                        Manager.chatKTG("Top 5 tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
+                                        p.c.nhanQua = 1;
+                                        break;
+                                    }
+                                    else if(traoTop.top <= 10){
+                                        itemup.quantity = 150;
+                                        p.c.addItemBag(true, itemup);
+                                        p.c.nhanQua = 1;
+                                        p.conn.sendMessageLog("Anh em nhận quà top 10 thành công!");
+                                        break;
+                                    }
+                                    else if(traoTop.top <= 20){
+                                        itemup.quantity = 100;
+                                        p.c.addItemBag(true, itemup);
+                                        p.c.nhanQua = 1;
+                                        p.conn.sendMessageLog("Anh em nhận quà top 20 thành công!");
+                                        break;
+                                    }
+                              }
+                              else {
+                                    itemup.quantity = 30;
+                                    p.c.addItemBag(true, itemup);
+                                    p.c.nhanQua = 1;
+                                    p.conn.sendMessageLog("Anh em nhận quà khuyến khích thành công!");
+                                    break;
+                              }
+                          }
+                          break;
+                    }
                 }
-                break;
             }
         }
     }

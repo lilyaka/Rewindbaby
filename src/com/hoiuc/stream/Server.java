@@ -3,12 +3,14 @@ package com.hoiuc.stream;
 import com.hoiuc.assembly.ClanManager;
 import com.hoiuc.assembly.Map;
 import com.hoiuc.io.SQLManager;
+import com.hoiuc.io.Util;
 import com.hoiuc.server.*;
 import com.hoiuc.template.MapTemplate;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +27,11 @@ public class Server extends Thread{
     public static RunTimeServer runTime = new RunTimeServer();
     public static Shinwa runShinwa = new Shinwa();
     public static ByteArrayOutputStream[] cache = new ByteArrayOutputStream[4];
+    
+    //đếm client
+    public static ArrayList<String> arrayListIP = new ArrayList<>();
+    public int count_connect;
+    public static long delay;
 
     public static int baseId = 0;
 
@@ -66,7 +73,7 @@ public class Server extends Thread{
             InetAddress inaddr;
             Inet4Address in4addr;
             String ip4string;
-            int idSer;
+            //int idSer;
             start = running;
             Socket clientSocket;
             Session conn;
@@ -91,22 +98,25 @@ public class Server extends Thread{
                 }
             }));
             while (start) {
-                clientSocket = listenSocket.accept();
-                conn = new Session(clientSocket, serverMessageHandler);
-                sockaddr = (InetSocketAddress) clientSocket.getRemoteSocketAddress();
-                inaddr = sockaddr.getAddress();
-                in4addr = (Inet4Address) inaddr;
-                ip4string = in4addr.toString().substring(1);
-                if((!Session.check(ip4string))||(Session.check1(ip4string))){
-                idSer = Server.baseId++;
-                conn.ipv4 = ip4string;
-                conn.idSer = idSer;
-                conn.run();
-                Client.gI().put(conn);
-                }else{
-                    clientSocket.close();
+                if (delay < System.currentTimeMillis() && !Manager.isClearCloneLogin) {
+                    clientSocket = listenSocket.accept();
+                    conn = new Session(clientSocket, serverMessageHandler);
+                    sockaddr = (InetSocketAddress) clientSocket.getRemoteSocketAddress();
+                    inaddr = sockaddr.getAddress();
+                    in4addr = (Inet4Address) inaddr;
+                    ip4string = in4addr.toString().substring(1);
+                    Server.arrayListIP.add(ip4string);
+                    if(Util.countIP(Server.arrayListIP, ip4string) <= Manager.max_connect_socket){
+                        conn.ipv4 = ip4string;
+                        conn.run();
+                        Client.gI().put(conn);
+                    }else{
+                       conn.ipv4 = ip4string;                  
+                       conn.disconnect();
+                    }
+                    delay = System.currentTimeMillis() + 500L;
+                    System.out.println("Accept socket - " + conn.id + " - size :" + Client.gI().conns_size() + " - ip: " + ip4string);
                 }
-                System.out.println("Accept socket - " + conn.id + " - size :" + Client.gI().conns_size() + " - ip: " + ip4string);
             }
             return;
         }
