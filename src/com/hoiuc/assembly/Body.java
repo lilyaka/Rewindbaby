@@ -390,9 +390,9 @@ public int getMaxHP() {
         dame += this.getPramItem(73);
         dame += this.getPramItem(76);
         dame += this.getPramItem(87);
-        if (dame < 0) {
-            dame = 0;
-        }
+    //    if (dame < 0) {
+     //       dame = 0;
+    //    }
         return dame;
     }
 
