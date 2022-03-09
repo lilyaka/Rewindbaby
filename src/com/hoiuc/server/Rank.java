@@ -21,7 +21,8 @@ public class Rank {
     
     
 
-    //test commit
+    //test commit\
+    // một con vịt
     
     public static void updateCaoThu() {
         Rank.bxhCaoThu.clear();
