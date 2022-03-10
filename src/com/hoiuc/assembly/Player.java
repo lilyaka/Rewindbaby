@@ -437,7 +437,7 @@ public void tanggiohoa()  throws IOException {
                     //vip
                     p.vip = vip;
                     p.coinnap = coinnap;
-                    p.vxLuong = vxLuong;
+                    p.vxLuong = vxLuong;                  
                     
                     for (byte i = 0; i < jarr.size(); ++i) {
                         p.sortNinja[i] = jarr.get((int) i).toString();

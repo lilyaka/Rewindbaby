@@ -30,7 +30,7 @@ public class Server extends Thread{
     
     //đếm client
     public static ArrayList<String> arrayListIP = new ArrayList<>();
-    public int count_connect;
+    public static int count_connect;
     public static long delay;
 
     public static int baseId = 0;
@@ -107,15 +107,18 @@ public class Server extends Thread{
                     ip4string = in4addr.toString().substring(1);
                     Server.arrayListIP.add(ip4string);
                     if(Util.countIP(Server.arrayListIP, ip4string) <= Manager.max_connect_socket){
-                        conn.ipv4 = ip4string;
-                        conn.run();
                         Client.gI().put(conn);
-                    }else{
+                        conn.ipv4 = ip4string;
+                        conn.start();
+                        Server.count_connect++;
+                    }
+                    else{
                        conn.ipv4 = ip4string;                  
                        conn.disconnect();
                     }
                     delay = System.currentTimeMillis() + 500L;
                     System.out.println("Accept socket - " + conn.id + " - size :" + Client.gI().conns_size() + " - ip: " + ip4string);
+                    System.err.println(Util.countIP(Server.arrayListIP, ip4string));
                 }
             }
             return;

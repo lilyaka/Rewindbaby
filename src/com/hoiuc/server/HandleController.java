@@ -3340,9 +3340,9 @@ public static void submitTrade(Player player) {
                     for(i = 0; i < player.sortNinja.length; ++i) {
                         if (name.equals(player.sortNinja[i])) {
                             player.c = Char.setup(player, player.sortNinja[i]);
-                            if (player.c != null) {
-                                Client.gI().put(player.c);
+                            if (player.c != null) {                             
                                 player.sendInfo();
+                                Client.gI().put(player.c);
                                 Manager.alert.sendAlert(player);
                                 m = new Message(-23);
                                 m.writer().writeInt(player.c.get().id);

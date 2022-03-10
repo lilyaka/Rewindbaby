@@ -1,10 +1,8 @@
 package com.hoiuc.io;
 
 import com.hoiuc.assembly.WaitLogin;
-import com.hoiuc.server.Ip;
 import org.joda.time.DateTime;
 
-import java.io.*;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -216,64 +214,6 @@ public class Util {
 
     public static int countUsername(ArrayList<WaitLogin> list, String username) {
         return Collections.frequency(list, username);
-    }
-
-    public static List<Ip> ReadIp(){
-        ArrayList<Ip> list = new ArrayList<>();
-        try{
-            FileReader fr = new FileReader("log/ip.txt");
-            BufferedReader br = new BufferedReader(fr);
-            String line = "";
-            while(true){
-                line = br.readLine();
-                if (line == null){
-                    break;
-                }
-                /*String txt[] = line.split(";");
-                String name = txt[0];
-                byte log = Byte.parseByte(txt[1]);*/
-                list.add(new Ip(line));
-            }
-            fr.close();
-            br.close();
-        }catch (Exception e){
-        }
-        return list;
-    }
-    
-    public static List<Ip> ReadIp1(){
-        ArrayList<Ip> list = new ArrayList<>();
-        try{
-            FileReader fr = new FileReader("log/ipmember.txt");
-            BufferedReader br = new BufferedReader(fr);
-            String line = "";
-            while(true){
-                line = br.readLine();
-                if (line == null){
-                    break;
-                }
-                /*String txt[] = line.split(";");
-                String name = txt[0];
-                byte log = Byte.parseByte(txt[1]);*/
-                list.add(new Ip(line));
-            }
-            fr.close();
-            br.close();
-        }catch (Exception e){
-        }
-        return list;
-    }
-    
-    public static void WriteIp(String IP){
-        try{
-            FileWriter fw = new FileWriter("log/ip.txt",true);
-            BufferedWriter bs = new BufferedWriter(fw);
-            bs.write(IP);
-            bs.newLine();
-            bs.close();
-            fw.close();
-        }catch (Exception e){
-        }
     }
 
     public static boolean isSameWeek(Date d1, Date d2) {

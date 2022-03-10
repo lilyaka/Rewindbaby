@@ -19,13 +19,7 @@ public class Rank {
     public static ArrayList<Entry3> bxhBossTuanLoc = new ArrayList<>();
     public static ArrayList<Entry4> bxhBossChuot = new ArrayList<>();
 
-    public static ArrayList<TraoTop> list = new ArrayList<>();
-
-    
-    
-
-    //test commit\
-    // một con vịt
+    public static ArrayList<TraoTop> traoTop = new ArrayList<>();
     
     public static void updateCaoThu() {
         Rank.bxhCaoThu.clear();
@@ -442,7 +436,8 @@ public class Rank {
                 } else {
                     for (Entry bxh : bangXH[type]) {
                         str += bxh.index + ". " + bxh.name + " đã tiêu " + Util.getFormatNumber(bxh.nXH[0]) + " lượng\n";
-                        list.add(new TraoTop(bxh.index, bxh.name));
+                        TraoTop tr = new TraoTop(bxh.index, bxh.name);
+                        traoTop.add(tr);
                     }                 
                 }
                 break;

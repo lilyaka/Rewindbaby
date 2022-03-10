@@ -27,360 +27,365 @@ public class Controller implements IMessageHandler {
     public void onConnectOK(Session var1) {}
 
     public static void onMessage(Session session, Message message) {
-        if(session == null) {
-            return;
-        }
-        byte num1 = message.getCommand();
-        Util.Debug("Check cmd ---> " + num1);
-        Player player = session.player;
-        switch (num1) {
-            case -30: {
-                Controller.messageSubCommand(message, player);
-                break;
+        try {
+            if(session == null) {
+                return;
             }
-            case -29: {
-                Controller.messageNotLogin(message, session);
-                break;
-            }
-            case -28: {
-                Controller.messageNotMap(message, player);
-                break;
-            }
-            case -27: {
-                session.hansakeMessage();
-                break;
-            }
+            byte num1 = message.getCommand();
+            Util.Debug("Check cmd ---> " + num1);
+            Player player = session.player;
+            switch (num1) {
+                case -30: {
+                    Controller.messageSubCommand(message, player);
+                    break;
+                }
+                case -29: {
+                    Controller.messageNotLogin(message, session);
+                    break;
+                }
+                case -28: {
+                    Controller.messageNotMap(message, player);
+                    break;
+                }
+                case -27: {
+                    session.hansakeMessage();
+                    break;
+                }
 
-            //Public chat
-            case -23: {
-                HandleController.publicChat(player, message);
-                break;
-            }
-            //Private chat
-            case -22: {
-                HandleController.privateChat(player, message);
-                break;
-            }
-            //World chat
-            case -21: {
-                HandleController.worldChat(player, message);
-                break;
-            }
-            //Party chat
-            case -20: {
-                HandleController.partyChat(player, message);
-                break;
-            }
-            //Clan chat
-            case -19: {
-                HandleController.clanChat(player, message);
-                break;
-            }
-            //Next map
-            case -17: {
-                HandleController.nextMap(player, message);
-                break;
-            }
-            //Pick Item
-            case -14: {
-                HandleController.pickItem(player, message);
-                break;
-            }
-            //Leave Item To Character
-            case -12: {
-                HandleController.leaveItemToCharacter(player, message);
-                break;
-            }
-            //Wake Up Die Return
-            case -10: {
-                HandleController.wakeUpDieReturn(player);
-                break;
-            }
-            //Die Return
-            case -9: {
-                HandleController.dieReturn(player);
-                break;
-            }
-            //Move
-            case 1: {
-                HandleController.move(player, message);
-                break;
-            }
-            //Fight All
-            case 4:
-            case 73: {
-                HandleController.fightAll(player, message);
-                break;
-            }
-            //Use Item
-            case 11: {
-                HandleController.useItem(player, message);
-                break;
-            }
-            //Use Item Change Map
-            case 12: {
-                HandleController.useItemChangeMap(player, message);
-                break;
-            }
-            //Buy Item
-            case 13: {
-                HandleController.buyItem(player, message);
-                break;
-            }
-            //Sell Item
-            case 14: {
-                HandleController.sellItem(player, message);
-                break;
-            }
-            //Item Body To Bag
-            case 15: {
-                HandleController.itemBodyToBag(player, message);
-                break;
-            }
-            //Item Box To Bag
-            case 16: {
-                HandleController.itemBoxToBag(player, message);
-                break;
-            }
-            //Item Bag To Box
-            case 17: {
-                HandleController.itemBagToBox(player, message);
-                break;
-            }
-            //Luyện đá xu
-            case 19: {
-                HandleController.stoneSmelting(player, message, true);
-                break;
-            }
-            //Luyện đá yên
-            case 20: {
-                HandleController.stoneSmelting(player, message, false);
-                break;
-            }
-            //Nâng cấp trang bị
-            case 21: {
-                HandleController.upgradeEquipment(player, message);
-                break;
-            }
-            //Tách trang bị
-            case 22: {
-                HandleController.splitEquipment(player, message);
-                break;
-            }
-            //Xin vào nhóm
-            case 23: {
-                HandleController.pleaseParty(player, message);
-                break;
-            }
-            //Đồng ý xin vào nhóm
-            case 24: {
-                HandleController.acceptPleaseParty(player, message);
-                break;
-            }
-            //Request Players
-            case 25: {
-                break;
-            }
-            //Chọn khu
-            case 28: {
-                HandleController.selectZone(player, message);
-                break;
-            }
-            //Chọn Menu NPC
-            case 29: {
-                HandleController.selectMenuNpc(player, message);
-                break;
-            }
-            //Mở khu vực
-            case 36: {
-                HandleController.openZone(player);
-                break;
-            }
-            //Mở menu NPC
-            case 40: {
-                HandleController.openMenuNpc(player, message);
-                break;
-            }
-            //Dùng Kỹ Năng
-            case 41:
-            case 74: {
-                HandleController.useSkill(player, message);
-                break;
-            }
-            //Lấy thông tin Item
-            case 42: {
-                HandleController.requestItemInfo(player, message);
-                break;
-            }
-            //Mời giao dịch
-            case 43: {
-                HandleController.inviteTrade(player, message);
-                break;
-            }
-            //Đồng ý giao dịch
-            case 44: {
-                HandleController.accpetTrade(player, message);
-                break;
-            }
-            //Khoá giao dịch
-            case 45: {
-                HandleController.lockTrade(player, message);
-                break;
-            }
-            //Hoàn tất giao dịch
-            case 46: {
-                HandleController.submitTrade(player);
-                break;
-            }
-            //Chọn menu npc
-            case 47: {
-                HandleController.selectMenuNpcTileMap(player, message);
-                break;
-            }
-            //Huỷ giao dịch
-            case 56: {
-                HandleController.closeTrade(player);
-                break;
-            }
-            //Dừng tải
-            case 57: {
-                HandleController.closeLoad(player);
-                break;
-            }
-            //Thêm bạn bè
-            case 59: {
-                HandleController.addFriend(player, message);
-                break;
-            }
-            //Tấn công quái
-            case 60: {
-                HandleController.attackMob(player, message);
-                break;
-            }
-            //Tấn công người
-            case 61: {
-                HandleController.attackNinja(player, message);
-                break;
-            }
-            //Mời tỷ thí
-            case 65: {
-                HandleController.inviteSolo(player, message);
-                break;
-            }
-            //Đống ý tỷ thí
-            case 66: {
-                HandleController.accpetSolo(player, message);
-                break;
-            }
-            //Cừu sát
-            case 68: {
-                HandleController.startKillNinja(player, message);
-                break;
-            }
-            //Mời vào nhóm
-            case 79: {
-                HandleController.inviteToParty(player, message);
-                break;
-            }
-            //Đồng ý lời mời vào nhóm
-            case 80: {
-                HandleController.accpetInviteToParty(player, message);
-                break;
-            }
-            //Rời nhóm
-            case 83: {
-                HandleController.outParty(player);
-                break;
-            }
-            //Xử lý nhập dữ liệu
-            case 92: {
-                HandleController.inputValue(player, message);
-                break;
-            }
-            //Xem thông tin người chơi
-            case 93: {
-                HandleController.viewInfoNinja(player, message);
-                break;
-            }
-            //Xem trang bị người chơi
-            case 94: {
-                HandleController.viewItemNinja(player, message);
-                break;
-            }
-            //Đồng ý lôi đài
-            case 99: {
-                HandleController.accpetDun(player, message);
-                break;
-            }
-            //Vào xem lôi đài
-            case 100: {
-                HandleController.viewDun(player, message);
-                break;
-            }
+                //Public chat
+                case -23: {
+                    HandleController.publicChat(player, message);
+                    break;
+                }
+                //Private chat
+                case -22: {
+                    HandleController.privateChat(player, message);
+                    break;
+                }
+                //World chat
+                case -21: {
+                    HandleController.worldChat(player, message);
+                    break;
+                }
+                //Party chat
+                case -20: {
+                    HandleController.partyChat(player, message);
+                    break;
+                }
+                //Clan chat
+                case -19: {
+                    HandleController.clanChat(player, message);
+                    break;
+                }
+                //Next map
+                case -17: {
+                    HandleController.nextMap(player, message);
+                    break;
+                }
+                //Pick Item
+                case -14: {
+                    HandleController.pickItem(player, message);
+                    break;
+                }
+                //Leave Item To Character
+                case -12: {
+                    HandleController.leaveItemToCharacter(player, message);
+                    break;
+                }
+                //Wake Up Die Return
+                case -10: {
+                    HandleController.wakeUpDieReturn(player);
+                    break;
+                }
+                //Die Return
+                case -9: {
+                    HandleController.dieReturn(player);
+                    break;
+                }
+                //Move
+                case 1: {
+                    HandleController.move(player, message);
+                    break;
+                }
+                //Fight All
+                case 4:
+                case 73: {
+                    HandleController.fightAll(player, message);
+                    break;
+                }
+                //Use Item
+                case 11: {
+                    HandleController.useItem(player, message);
+                    break;
+                }
+                //Use Item Change Map
+                case 12: {
+                    HandleController.useItemChangeMap(player, message);
+                    break;
+                }
+                //Buy Item
+                case 13: {
+                    HandleController.buyItem(player, message);
+                    break;
+                }
+                //Sell Item
+                case 14: {
+                    HandleController.sellItem(player, message);
+                    break;
+                }
+                //Item Body To Bag
+                case 15: {
+                    HandleController.itemBodyToBag(player, message);
+                    break;
+                }
+                //Item Box To Bag
+                case 16: {
+                    HandleController.itemBoxToBag(player, message);
+                    break;
+                }
+                //Item Bag To Box
+                case 17: {
+                    HandleController.itemBagToBox(player, message);
+                    break;
+                }
+                //Luyện đá xu
+                case 19: {
+                    HandleController.stoneSmelting(player, message, true);
+                    break;
+                }
+                //Luyện đá yên
+                case 20: {
+                    HandleController.stoneSmelting(player, message, false);
+                    break;
+                }
+                //Nâng cấp trang bị
+                case 21: {
+                    HandleController.upgradeEquipment(player, message);
+                    break;
+                }
+                //Tách trang bị
+                case 22: {
+                    HandleController.splitEquipment(player, message);
+                    break;
+                }
+                //Xin vào nhóm
+                case 23: {
+                    HandleController.pleaseParty(player, message);
+                    break;
+                }
+                //Đồng ý xin vào nhóm
+                case 24: {
+                    HandleController.acceptPleaseParty(player, message);
+                    break;
+                }
+                //Request Players
+                case 25: {
+                    break;
+                }
+                //Chọn khu
+                case 28: {
+                    HandleController.selectZone(player, message);
+                    break;
+                }
+                //Chọn Menu NPC
+                case 29: {
+                    HandleController.selectMenuNpc(player, message);
+                    break;
+                }
+                //Mở khu vực
+                case 36: {
+                    HandleController.openZone(player);
+                    break;
+                }
+                //Mở menu NPC
+                case 40: {
+                    HandleController.openMenuNpc(player, message);
+                    break;
+                }
+                //Dùng Kỹ Năng
+                case 41:
+                case 74: {
+                    HandleController.useSkill(player, message);
+                    break;
+                }
+                //Lấy thông tin Item
+                case 42: {
+                    HandleController.requestItemInfo(player, message);
+                    break;
+                }
+                //Mời giao dịch
+                case 43: {
+                    HandleController.inviteTrade(player, message);
+                    break;
+                }
+                //Đồng ý giao dịch
+                case 44: {
+                    HandleController.accpetTrade(player, message);
+                    break;
+                }
+                //Khoá giao dịch
+                case 45: {
+                    HandleController.lockTrade(player, message);
+                    break;
+                }
+                //Hoàn tất giao dịch
+                case 46: {
+                    HandleController.submitTrade(player);
+                    break;
+                }
+                //Chọn menu npc
+                case 47: {
+                    HandleController.selectMenuNpcTileMap(player, message);
+                    break;
+                }
+                //Huỷ giao dịch
+                case 56: {
+                    HandleController.closeTrade(player);
+                    break;
+                }
+                //Dừng tải
+                case 57: {
+                    HandleController.closeLoad(player);
+                    break;
+                }
+                //Thêm bạn bè
+                case 59: {
+                    HandleController.addFriend(player, message);
+                    break;
+                }
+                //Tấn công quái
+                case 60: {
+                    HandleController.attackMob(player, message);
+                    break;
+                }
+                //Tấn công người
+                case 61: {
+                    HandleController.attackNinja(player, message);
+                    break;
+                }
+                //Mời tỷ thí
+                case 65: {
+                    HandleController.inviteSolo(player, message);
+                    break;
+                }
+                //Đống ý tỷ thí
+                case 66: {
+                    HandleController.accpetSolo(player, message);
+                    break;
+                }
+                //Cừu sát
+                case 68: {
+                    HandleController.startKillNinja(player, message);
+                    break;
+                }
+                //Mời vào nhóm
+                case 79: {
+                    HandleController.inviteToParty(player, message);
+                    break;
+                }
+                //Đồng ý lời mời vào nhóm
+                case 80: {
+                    HandleController.accpetInviteToParty(player, message);
+                    break;
+                }
+                //Rời nhóm
+                case 83: {
+                    HandleController.outParty(player);
+                    break;
+                }
+                //Xử lý nhập dữ liệu
+                case 92: {
+                    HandleController.inputValue(player, message);
+                    break;
+                }
+                //Xem thông tin người chơi
+                case 93: {
+                    HandleController.viewInfoNinja(player, message);
+                    break;
+                }
+                //Xem trang bị người chơi
+                case 94: {
+                    HandleController.viewItemNinja(player, message);
+                    break;
+                }
+                //Đồng ý lôi đài
+                case 99: {
+                    HandleController.accpetDun(player, message);
+                    break;
+                }
+                //Vào xem lôi đài
+                case 100: {
+                    HandleController.viewDun(player, message);
+                    break;
+                }
 
-            //Bán đấu giá
-            case 102: {
-                HandleController.sendItemToAuction(player, message);
-                break;
+                //Bán đấu giá
+                case 102: {
+                    HandleController.sendItemToAuction(player, message);
+                    break;
+                }
+                case 103: {
+                    break;
+                }
+                case 104: {
+                    HandleController.viewItemAuction(player, message);
+                    break;
+                }
+                //mua đồ đấu giá
+                case 105: {
+                    HandleController.buyItemAuction(player, message);
+                    break;
+                }
+                //Gửi giao diện Yes/No
+                case 107: {
+                    HandleController.yesNoDlg(player, message);
+                    break;
+                }
+                //Chuyển đồ từ Thứ cưỡi vào hành trang
+                case 108: {
+                    HandleController.itemMountToBag(player, message);
+                    break;
+                }
+                //Luyện thạch
+                case 110: {
+                    HandleController.luyenThach(player, message);
+                    break;
+                }
+                //Chuyển đồ từ Thứ cưỡi vào hành trang
+                case 111: {
+                    HandleController.tinhLuyen(player, message);
+                    break;
+                }
+                //Dịch chuyển trang bị
+                case 112: {
+                    HandleController.dichChuyen(player, message);
+                    break;
+                }
+                //Luyện ngọc
+                case 121: {
+                    HandleController.thienDiaBang(player, message);
+                    break;
+                }
+                //Luyện ngọc
+                case 124: {
+                    HandleController.luyenNgoc(player, message);
+                    break;
+                }
+                //Gửi Effect
+                case 125: {
+                    HandleController.sendEffect(player, message);
+                    break;
+                }
+                default: {
+                    break;
+                }
             }
-            case 103: {
-                break;
-            }
-            case 104: {
-                HandleController.viewItemAuction(player, message);
-                break;
-            }
-            //mua đồ đấu giá
-            case 105: {
-                HandleController.buyItemAuction(player, message);
-                break;
-            }
-            //Gửi giao diện Yes/No
-            case 107: {
-                HandleController.yesNoDlg(player, message);
-                break;
-            }
-            //Chuyển đồ từ Thứ cưỡi vào hành trang
-            case 108: {
-                HandleController.itemMountToBag(player, message);
-                break;
-            }
-            //Luyện thạch
-            case 110: {
-                HandleController.luyenThach(player, message);
-                break;
-            }
-            //Chuyển đồ từ Thứ cưỡi vào hành trang
-            case 111: {
-                HandleController.tinhLuyen(player, message);
-                break;
-            }
-            //Dịch chuyển trang bị
-            case 112: {
-                HandleController.dichChuyen(player, message);
-                break;
-            }
-            //Luyện ngọc
-            case 121: {
-                HandleController.thienDiaBang(player, message);
-                break;
-            }
-            //Luyện ngọc
-            case 124: {
-                HandleController.luyenNgoc(player, message);
-                break;
-            }
-            //Gửi Effect
-            case 125: {
-                HandleController.sendEffect(player, message);
-                break;
-            }
-            default: {
-                break;
+            if(message != null) {
+                message.cleanup();
             }
         }
-        if(message != null) {
-            message.cleanup();
+        catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

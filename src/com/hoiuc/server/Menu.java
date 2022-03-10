@@ -6020,7 +6020,7 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                 }
                     Service.startYesNoDlg(p, (byte) 13, "Trùm sẽ xoá sạch rương đồ của chính mình?");
                     break;
-            }
+                }
                 /*{
                 if(p.luong < 10000){
                     p.conn.sendMessageLog("Bạn không đủ lượng để tham gia");
@@ -6072,68 +6072,66 @@ public static void HUYDAT(Player p, byte npcid, byte menuId, byte b3) throws IOE
                     }
                     //chức năng tự tặng quà top
                     case 3: {
-                          ArrayList<TraoTop> list = Rank.list;
-                          Rank.getStringBXH(4);
-                          if (!Manager.topSuKien){
-                              p.conn.sendMessageLog("Chưa đến lúc phát quà, xin trùm hãy quay lại vào lần sau");
-                              break;
-                          }
-                          if (p.c.nhanQua != 0){
-                              Service.chatNPC(p, (short) npcid, "Trùm đã nhận quà rồi");
-                              break;
-                          }
-                          for(TraoTop traoTop : list){
-                              Item itemup = ItemTemplate.itemDefault(839);
-                              if(p.c.name.equals(traoTop.name)){
-                                  if(traoTop.top < 2) {
-                                        itemup.quantity = 300;
-                                        p.c.addItemBag(true, itemup);
-                                        Manager.chatKTG("Đệ nhất tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
-                                        p.c.nhanQua = 1;
-                                        break;
-                                    }
-                                    else if (traoTop.top < 3) {
-                                        itemup.quantity = 300;
-                                        p.c.addItemBag(true, itemup);
-                                        Manager.chatKTG("Đệ nhì tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
-                                        p.c.nhanQua = 1;
-                                        break;
-                                    }
-                                    else if(traoTop.top <= 5) {
-                                        itemup.quantity = 300;
-                                        p.c.addItemBag(true, itemup);
-                                        Manager.chatKTG("Top 5 tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
-                                        p.c.nhanQua = 1;
-                                        break;
-                                    }
-                                    else if(traoTop.top <= 10){
-                                        itemup.quantity = 150;
-                                        p.c.addItemBag(true, itemup);
-                                        p.c.nhanQua = 1;
-                                        p.conn.sendMessageLog("Anh em nhận quà top 10 thành công!");
-                                        break;
-                                    }
-                                    else if(traoTop.top <= 20){
-                                        itemup.quantity = 100;
-                                        p.c.addItemBag(true, itemup);
-                                        p.c.nhanQua = 1;
-                                        p.conn.sendMessageLog("Anh em nhận quà top 20 thành công!");
-                                        break;
-                                    }
-                              }
-                              else {
-                                    itemup.quantity = 30;
+                        ArrayList<TraoTop> list = Rank.traoTop;
+                        Rank.getStringBXH(4);
+                        if (!Manager.topSuKien) {
+                            p.conn.sendMessageLog("Chưa đến lúc phát quà, xin trùm hãy quay lại vào lần sau");
+                            break;
+                        }
+                        if (p.c.nhanQua != 0) {
+                            Service.chatNPC(p, (short) npcid, "Trùm đã nhận quà rồi");
+                            break;
+                        }
+                        for (TraoTop traoTop : list) {
+                            Item itemup = ItemTemplate.itemDefault(839);
+                            if (p.c.name.equals(traoTop.name)) {
+                                if (traoTop.top < 2) {
+                                    itemup.quantity = 300;
+                                    p.c.addItemBag(true, itemup);
+                                    Manager.chatKTG("Đệ nhất tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
+                                    p.c.nhanQua = 1;
+                                    break;
+                                } else if (traoTop.top < 3) {
+                                    itemup.quantity = 300;
+                                    p.c.addItemBag(true, itemup);
+                                    Manager.chatKTG("Đệ nhì tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
+                                    p.c.nhanQua = 1;
+                                    break;
+                                } else if (traoTop.top <= 5) {
+                                    itemup.quantity = 300;
+                                    p.c.addItemBag(true, itemup);
+                                    Manager.chatKTG("Top 5 tiêu lượng: " + p.c.name + " đã lĩnh phần thưởng to lớn");
+                                    p.c.nhanQua = 1;
+                                    break;
+                                } else if (traoTop.top <= 10) {
+                                    itemup.quantity = 150;
                                     p.c.addItemBag(true, itemup);
                                     p.c.nhanQua = 1;
-                                    p.conn.sendMessageLog("Anh em nhận quà khuyến khích thành công!");
+                                    p.conn.sendMessageLog("Anh em nhận quà top 10 thành công!");
                                     break;
-                              }
-                          }
-                          break;
+                                } else if (traoTop.top <= 20) {
+                                    itemup.quantity = 100;
+                                    p.c.addItemBag(true, itemup);
+                                    p.c.nhanQua = 1;
+                                    p.conn.sendMessageLog("Anh em nhận quà top 20 thành công!");
+                                    break;
+                                }
+                            } else {
+                                itemup.quantity = 30;
+                                p.c.addItemBag(true, itemup);
+                                p.c.nhanQua = 1;
+                                p.conn.sendMessageLog("Anh em nhận quà khuyến khích thành công!");
+                                break;
+                            }
+                        }
+                        break;
                     }
                 }
             }
         }
+    }
+    
+    public static void npcGiaoDich(Player p, byte npcid, byte menuId, byte b3) throws IOException {
     }
     
     public static void npcPhoBan(Player p, byte npcid, byte menuId, byte b3) throws IOException {

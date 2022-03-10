@@ -487,7 +487,7 @@ public class RunTimeServer extends Thread{
                                 }
                             }
                         }
-                        System.out.println(" Clear clone login");
+                        //System.out.println(" Clear clone login");
                     }                      
                 }
                 if((min == 58 || min == 30)&& sec == 0) {
